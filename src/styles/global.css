@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+:root {
+  --navy:    #0D1B2A;
+  --gold:    #C9A84C;
+  --surface: #F7F5F0;
+  --charcoal:#2C2C2C;
+  --muted:   #8A8F99;
+  --border:  #E5E0D8;
+
+  /* Branch accents */
+  --drone:     #0EA5E9;
+  --cosmetics: #E8A0A0;
+  --cola:      #E63946;
+  --tourism:   #2D9B6F;
+  --consult:   #C9A84C;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--surface);
+  color: var(--charcoal);
+}
