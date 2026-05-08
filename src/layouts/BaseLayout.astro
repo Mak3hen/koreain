@@ -1,24 +1,36 @@
 ---
+import Navbar from '../components/global/Navbar.astro';
+
 interface Props {
   title: string;
   accent?: string;
+  description?: string;
 }
 
-const { title, accent = 'var(--gold)' } = Astro.props;
+const {
+  title,
+  accent = '#1B2B8B',
+  description = 'KoreaIn — Bridging Korea with the World'
+} = Astro.props;
 ---
 
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
     <title>{title} — KoreaIn</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Noto+Serif+KR:wght@300;400;700&display=swap" rel="stylesheet"/>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="/src/styles/global.css" />
     <style define:vars={{ accent }}>
-      :root { --branch-accent: var(--accent); }
+      :root { --accent: var(--accent); }
     </style>
   </head>
   <body>
+    <Navbar />
     <slot />
   </body>
 </html>

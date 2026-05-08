@@ -1,0 +1,232 @@
+---
+const branches = [
+  { name: 'Consultation', href: '/consultation', accent: '#E8192C', icon: '💼', desc: 'Business & strategy advisory' },
+  { name: 'Academic',     href: '/academic',     accent: '#1B2B8B', icon: '🎓', desc: 'Education & research' },
+  { name: 'Beauty',       href: '/beauty',       accent: '#FF6B8A', icon: '✦',  desc: 'K-beauty & skincare' },
+  { name: 'AI',           href: '/ai',           accent: '#0071E3', icon: '🤖', desc: 'Artificial intelligence' },
+  { name: 'Car',          href: '/car',          accent: '#3A3A3C', icon: '🚗', desc: 'Automotive solutions' },
+  { name: 'Drone',        href: '/drone',        accent: '#00A3E0', icon: '🚁', desc: 'Aerial technology' },
+  { name: 'Medical',      href: '/medical',      accent: '#34A853', icon: '🏥', desc: 'Healthcare & wellness' },
+  { name: 'Tourism',      href: '/tourism',      accent: '#FF6B35', icon: '✈️', desc: 'Travel & experiences' },
+];
+---
+
+<header class="navbar">
+  <div class="navbar-inner">
+
+    <!-- Logo -->
+    <a href="/" class="navbar-logo">
+      <img src="/koreain-logo.svg" alt="KoreaIn" class="navbar-logo-img" />
+    </a>
+
+    <!-- Center nav -->
+    <nav class="navbar-nav">
+      <div class="nav-item nav-item--mega">
+        <button class="nav-link">
+          Our Branches
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+
+        <!-- Mega menu -->
+        <div class="mega-menu">
+          <div class="mega-menu-inner">
+            <div class="mega-menu-header">
+              <span class="mega-menu-title">Our Branches</span>
+              <span class="mega-menu-subtitle">8 industries, one vision</span>
+            </div>
+            <div class="mega-menu-grid">
+              {branches.map(branch => (
+                <a href={branch.href} class="mega-item">
+                  <div class="mega-item-icon" style={`background: ${branch.accent}18`}>
+                    <span>{branch.icon}</span>
+                  </div>
+                  <div class="mega-item-content">
+                    <div class="mega-item-name" style={`color: ${branch.accent}`}>{branch.name}</div>
+                    <div class="mega-item-desc">{branch.desc}</div>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a href="/about" class="nav-link">About</a>
+      <a href="/news" class="nav-link">News</a>
+      <a href="/contact" class="nav-link">Contact</a>
+    </nav>
+
+    <!-- Right side -->
+    <div class="navbar-right">
+      <a href="/contact" class="navbar-cta">Get in Touch</a>
+    </div>
+
+  </div>
+</header>
+
+<style>
+  .navbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .navbar-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .navbar-logo-img {
+  height: 100px;
+  width: auto;
+  display: block;
+    }
+
+  /* Nav links */
+  .navbar-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text);
+    text-decoration: none;
+    border-radius: var(--radius);
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .nav-link:hover {
+    background: var(--surface);
+  }
+
+  /* Mega menu trigger */
+  .nav-item {
+    position: relative;
+  }
+
+  .nav-item--mega:hover .mega-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  /* Mega menu */
+  .mega-menu {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-8px);
+    width: 640px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.10);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  }
+
+  .mega-menu-inner {
+    padding: 1.5rem;
+  }
+
+  .mega-menu-header {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .mega-menu-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .mega-menu-subtitle {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .mega-menu-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+  }
+
+  .mega-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0.6rem 0.75rem;
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+
+  .mega-item:hover {
+    background: var(--surface);
+  }
+
+  .mega-item-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .mega-item-name {
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 1px;
+  }
+
+  .mega-item-desc {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  /* CTA */
+  .navbar-cta {
+    padding: 0.5rem 1.1rem;
+    background: var(--blue);
+    color: white;
+    border-radius: var(--radius);
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .navbar-cta:hover {
+    opacity: 0.85;
+  }
+</style>
