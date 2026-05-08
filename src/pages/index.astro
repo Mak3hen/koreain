@@ -1,9 +1,546 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const branches = [
+  { name: 'Consultation', href: '/consultation', accent: '#E8192C', icon: '💼', desc: 'Business & strategy advisory' },
+  { name: 'Academic',     href: '/academic',     accent: '#1B2B8B', icon: '🎓', desc: 'Education & research' },
+  { name: 'Beauty',       href: '/beauty',       accent: '#FF6B8A', icon: '✦',  desc: 'K-beauty & skincare' },
+  { name: 'AI',           href: '/ai',           accent: '#0071E3', icon: '🤖', desc: 'Artificial intelligence' },
+  { name: 'Car',          href: '/car',          accent: '#3A3A3C', icon: '🚗', desc: 'Automotive solutions' },
+  { name: 'Drone',        href: '/drone',        accent: '#00A3E0', icon: '🚁', desc: 'Aerial technology' },
+  { name: 'Medical',      href: '/medical',      accent: '#34A853', icon: '🏥', desc: 'Healthcare & wellness' },
+  { name: 'Tourism',      href: '/tourism',      accent: '#FF6B35', icon: '✈️', desc: 'Travel & experiences' },
+];
 ---
 
-<BaseLayout title="KoreaIn">
-  <main style="padding-top: 64px;">
-    <h1 style="padding: 4rem 2rem;">Homepage coming soon</h1>
-  </main>
+<BaseLayout title="KoreaIn" description="Your Gateway to Korean Business">
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-dot"></span>
+        Saudi-Korea Business Council Member
+      </div>
+      <h1 class="hero-title">
+        Your Gateway to<br/>
+        <span class="hero-title-accent">Korean Business</span>
+      </h1>
+      <p class="hero-sub">
+        KoreaIn connects the world to Korea's most dynamic industries —
+        from AI and drones to beauty, tourism and beyond.
+      </p>
+      <div class="hero-actions">
+        <a href="/contact" class="btn-primary">Get in Touch</a>
+        <a href="#branches" class="btn-ghost">
+          Explore Branches
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-number">8</div>
+          <div class="stat-label">Business Branches</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <div class="stat-number">2</div>
+          <div class="stat-label">Countries</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <div class="stat-number">1</div>
+          <div class="stat-label">Vision</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── BRANCHES ── -->
+  <section class="branches" id="branches">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow">What We Do</p>
+        <h2 class="section-title">Our Business Branches</h2>
+        <p class="section-sub">Eight industries. One unified vision for Korea's global presence.</p>
+      </div>
+      <div class="branches-grid">
+        {branches.map(branch => (
+          <a href={branch.href} class="branch-card">
+            <div class="branch-card-top" style={`background: ${branch.accent}12`}>
+              <div class="branch-card-icon" style={`color: ${branch.accent}`}>
+                {branch.icon}
+              </div>
+              <div class="branch-card-arrow" style={`color: ${branch.accent}`}>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+            <div class="branch-card-body">
+              <div class="branch-card-name" style={`color: ${branch.accent}`}>{branch.name}</div>
+              <div class="branch-card-desc">{branch.desc}</div>
+            </div>
+            <div class="branch-card-bar" style={`background: ${branch.accent}`}></div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ABOUT STRIP ── -->
+  <section class="about">
+    <div class="container about-inner">
+      <div class="about-text">
+        <p class="section-eyebrow">Who We Are</p>
+        <h2 class="section-title">Bridging Two Worlds</h2>
+        <p class="about-body">
+          KoreaIn was founded by Yaser Khalifa, CEO and Saudi-Korea Business
+          Counselor Member, with a mission to create meaningful bridges between
+          Korean expertise and global markets. We operate across 8 industries,
+          bringing Korean innovation to the world.
+        </p>
+        <a href="/about" class="btn-secondary">Learn More About Us</a>
+      </div>
+      <div class="about-card">
+        <div class="about-card-inner">
+          <div class="about-card-name">Yaser Khalifa</div>
+          <div class="about-card-title">CEO, KoreaIn</div>
+          <div class="about-card-divider"></div>
+          <div class="about-card-tag">Saudi-Korea Business Counselor Member</div>
+          <div class="about-card-contacts">
+            <div class="about-contact">🇰🇷 +82 10 3714 3143</div>
+            <div class="about-contact">🇸🇦 +966 55 273 3125</div>
+            <div class="about-contact">✉️ yaser@korea-in.com</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA BANNER ── -->
+  <section class="cta-banner">
+    <div class="container cta-inner">
+      <div>
+        <h2 class="cta-title">Ready to enter the Korean market?</h2>
+        <p class="cta-sub">Let's build something great together.</p>
+      </div>
+      <a href="/contact" class="btn-primary btn-primary--white">Contact Us Today</a>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <img src="/koreain-logo.svg" alt="KoreaIn" class="footer-logo" />
+        <p class="footer-tagline">Your Gateway to Korean Business</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <div class="footer-col-title">Branches</div>
+          {branches.map(b => (
+            <a href={b.href} class="footer-link">{b.name}</a>
+          ))}
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Company</div>
+          <a href="/about" class="footer-link">About</a>
+          <a href="/news" class="footer-link">News</a>
+          <a href="/contact" class="footer-link">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <span>© 2026 KoreaIn. All rights reserved.</span>
+        <span>korea-in.com</span>
+      </div>
+    </div>
+  </footer>
+
 </BaseLayout>
+
+<style>
+  /* ── LAYOUT ── */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 10rem 0 6rem;
+    background: var(--white);
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .eyebrow-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--red);
+    display: inline-block;
+  }
+
+  .hero-title {
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+    max-width: 700px;
+  }
+
+  .hero-title-accent {
+    color: var(--blue);
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    line-height: 1.75;
+    max-width: 520px;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 4rem;
+  }
+
+  .hero-stats {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--border);
+    max-width: 400px;
+  }
+
+  .stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  .stat-divider {
+    width: 1px;
+    height: 40px;
+    background: var(--border);
+  }
+
+  /* ── BUTTONS ── */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    background: var(--blue);
+    color: white;
+    border-radius: var(--radius);
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .btn-primary:hover { opacity: 0.85; }
+
+  .btn-primary--white {
+    background: white;
+    color: var(--blue);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .btn-secondary:hover { background: var(--surface); }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text);
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: gap 0.2s;
+  }
+
+  .btn-ghost:hover { gap: 10px; }
+
+  /* ── SECTION SHARED ── */
+  .section-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 1rem;
+  }
+
+  .section-sub {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.75;
+    max-width: 480px;
+  }
+
+  /* ── BRANCHES ── */
+  .branches {
+    padding: 6rem 0;
+    background: var(--surface);
+  }
+
+  .section-header {
+    margin-bottom: 3rem;
+  }
+
+  .branches-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+
+  .branch-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    text-decoration: none;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+  }
+
+  .branch-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+  }
+
+  .branch-card-top {
+    padding: 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .branch-card-icon {
+    font-size: 1.5rem;
+  }
+
+  .branch-card-body {
+    padding: 0 1.25rem 1.25rem;
+  }
+
+  .branch-card-name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .branch-card-desc {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .branch-card-bar {
+    height: 3px;
+    width: 100%;
+  }
+
+  /* ── ABOUT ── */
+  .about {
+    padding: 6rem 0;
+    background: var(--white);
+  }
+
+  .about-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .about-body {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+
+  .about-card {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    padding: 2rem;
+  }
+
+  .about-card-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .about-card-title {
+    font-size: 0.875rem;
+    color: var(--red);
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+
+  .about-card-divider {
+    height: 1px;
+    background: var(--border);
+    margin-bottom: 1rem;
+  }
+
+  .about-card-tag {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--blue);
+    background: #1B2B8B12;
+    padding: 6px 12px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 1.25rem;
+  }
+
+  .about-contact {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+
+  /* ── CTA BANNER ── */
+  .cta-banner {
+    padding: 5rem 0;
+    background: var(--blue);
+  }
+
+  .cta-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .cta-title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.5rem;
+  }
+
+  .cta-sub {
+    color: rgba(255,255,255,0.7);
+    font-size: 1rem;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--text);
+    padding: 4rem 0 0;
+  }
+
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .footer-logo {
+    height: 32px;
+    width: auto;
+    filter: brightness(0) invert(1);
+    margin-bottom: 1rem;
+  }
+
+  .footer-tagline {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .footer-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .footer-col-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 1rem;
+  }
+
+  .footer-link {
+    display: block;
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.65);
+    text-decoration: none;
+    margin-bottom: 0.5rem;
+    transition: color 0.15s;
+  }
+
+  .footer-link:hover { color: white; }
+
+  .footer-bottom {
+    padding: 1.5rem 0;
+  }
+
+  .footer-bottom .container {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.3);
+  }
+</style>
