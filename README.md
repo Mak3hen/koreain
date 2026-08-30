@@ -1,43 +1,30 @@
-# Astro Starter Kit: Minimal
+# KoreaIN Web
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Temporary technical baseline for the KoreaIN website, built with Astro and
+deployed manually to Cloudflare Workers.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Requirements
 
-## 🚀 Project Structure
+- Node.js 22.12.0 or newer
+- npm
+- Wrangler authenticated with the intended Cloudflare account for deployment
 
-Inside of your Astro project, you'll see the following folders and files:
+## Commands
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+| Command | Action |
+| --- | --- |
+| `npm install` | Install dependencies |
+| `npm run dev` | Start the local Astro development server |
+| `npm run build` | Build the Worker and static assets into `dist/` |
+| `npm run preview` | Build and preview with the Cloudflare runtime |
+| `npm run generate-types` | Regenerate Cloudflare Worker types |
+| `npm run deploy` | Build and deploy `koreain-web` with Wrangler |
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Deployment policy
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Production deployment is manual. Pushing to GitHub only versions the source and
+must not deploy the website.
 
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+The production Worker is named `koreain-web`. The `korea-in.com` Custom Domain
+will be attached in Cloudflare separately when the existing Pages project is
+retired. No DNS or Custom Domain change is performed by this repository setup.
