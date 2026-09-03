@@ -1,0 +1,348 @@
+---
+const editorialPlaceholders = [
+  {
+    label: 'KoreaIN updates',
+    date: 'Publication date pending',
+    title: 'Company news and announcements',
+    description: 'Verified KoreaIN updates will be published here.'
+  },
+  {
+    label: 'Perspectives',
+    date: 'Publication date pending',
+    title: 'Korea-focused business insights',
+    description: 'Future perspectives from KoreaIN will be published here.'
+  },
+  {
+    label: 'Global markets',
+    date: 'Publication date pending',
+    title: 'International market perspectives',
+    description: 'Selected market perspectives will be published here.'
+  }
+] as const;
+---
+
+<section class="section latest-news" id="news" aria-labelledby="latest-news-title">
+  <div class="container">
+    <div class="latest-news__heading">
+      <div>
+        <p class="eyebrow">News &amp; perspectives</p>
+        <h2 class="section-title" id="latest-news-title">Latest News</h2>
+      </div>
+
+      <a class="arrow-link latest-news__desktop-link" href="/news">
+        <span>Explore more</span>
+        <svg viewBox="0 0 20 20" aria-hidden="true">
+          <path d="M4 10h11M11 5l5 5-5 5" />
+        </svg>
+      </a>
+    </div>
+
+    <div class="news-grid">
+      {
+        editorialPlaceholders.map((item, index) => (
+          <article class="news-card">
+            <div class={`news-card__visual news-card__visual--${index + 1}`} aria-hidden="true">
+              <span class="news-card__visual-index">{String(index + 1).padStart(2, '0')}</span>
+              <span class="news-card__visual-ring" />
+            </div>
+            <div class="news-card__body">
+              <p class="news-card__meta">
+                <span>{item.label}</span>
+                <span aria-hidden="true">—</span>
+                <span>{item.date}</span>
+              </p>
+              <h3>{item.title}</h3>
+              <p class="news-card__description">{item.description}</p>
+              <a class="news-card__link" href="/news" aria-label={`Read more about ${item.title}`}>
+                <span>Read more</span>
+                <svg viewBox="0 0 20 20" aria-hidden="true">
+                  <path d="M4 10h11M11 5l5 5-5 5" />
+                </svg>
+              </a>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+
+    <a class="arrow-link latest-news__mobile-link" href="/news">
+      <span>Explore more</span>
+      <svg viewBox="0 0 20 20" aria-hidden="true">
+        <path d="M4 10h11M11 5l5 5-5 5" />
+      </svg>
+    </a>
+  </div>
+</section>
+
+<style>
+  .latest-news {
+    background: var(--color-bg);
+  }
+
+  .latest-news__heading {
+    display: flex;
+    gap: 2rem;
+    align-items: end;
+    justify-content: space-between;
+  }
+
+  .latest-news__heading .section-title {
+    margin-top: 1rem;
+  }
+
+  .latest-news__desktop-link,
+  .latest-news__mobile-link {
+    flex: 0 0 auto;
+  }
+
+  .latest-news__desktop-link svg,
+  .latest-news__mobile-link svg {
+    width: 1.15rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.7;
+  }
+
+  .latest-news__mobile-link {
+    display: none;
+  }
+
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(1.25rem, 2.5vw, 2rem);
+    margin-top: clamp(4rem, 7vw, 6rem);
+  }
+
+  .news-card {
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-card);
+    transition:
+      transform 220ms ease,
+      border-color 220ms ease,
+      box-shadow 220ms ease;
+  }
+
+  .news-card:hover {
+    border-color: color-mix(in srgb, var(--color-secondary) 32%, var(--color-border));
+    box-shadow: var(--shadow-menu);
+    transform: translateY(-0.15rem);
+  }
+
+  .news-card__visual {
+    position: relative;
+    min-height: clamp(18rem, 25vw, 22rem);
+    overflow: hidden;
+    background: #07113e;
+  }
+
+  .news-card__visual::before,
+  .news-card__visual::after {
+    position: absolute;
+    content: '';
+  }
+
+  .news-card__visual::before {
+    width: 74%;
+    aspect-ratio: 1;
+    border: 1px solid rgba(255, 255, 255, 0.19);
+    border-radius: 50%;
+  }
+
+  .news-card__visual::after {
+    width: 46%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.09);
+  }
+
+  .news-card__visual--1 {
+    background: linear-gradient(140deg, #0047a0, #000e8a 72%);
+  }
+
+  .news-card__visual--1::before {
+    top: -44%;
+    right: -18%;
+  }
+
+  .news-card__visual--1::after {
+    right: 12%;
+    bottom: -18%;
+  }
+
+  .news-card__visual--2 {
+    background: linear-gradient(145deg, #11173e 8%, #0047a0 125%);
+  }
+
+  .news-card__visual--2::before {
+    right: -28%;
+    bottom: -42%;
+  }
+
+  .news-card__visual--2::after {
+    top: -15%;
+    left: -12%;
+  }
+
+  .news-card__visual--3 {
+    background: linear-gradient(145deg, #000e8a, #121638 75%);
+  }
+
+  .news-card__visual--3::before {
+    top: -32%;
+    left: -24%;
+  }
+
+  .news-card__visual--3::after {
+    right: -8%;
+    bottom: -9%;
+    background: rgba(205, 46, 58, 0.62);
+  }
+
+  .news-card__visual-index {
+    position: absolute;
+    bottom: 1.25rem;
+    left: 1.35rem;
+    z-index: 1;
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 0.73rem;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+  }
+
+  .news-card__visual-ring {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    z-index: 1;
+    width: 0.55rem;
+    height: 0.55rem;
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    border-radius: 50%;
+  }
+
+  .news-card__body {
+    display: flex;
+    min-height: 21rem;
+    padding: clamp(1.75rem, 3vw, 2.5rem);
+    flex-direction: column;
+  }
+
+  .news-card__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.42rem;
+    margin: 0;
+    color: var(--color-muted);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    line-height: 1.5;
+    text-transform: uppercase;
+  }
+
+  .news-card h3 {
+    margin: 1.5rem 0 0;
+    color: var(--color-text);
+    font-size: clamp(1.55rem, 2.25vw, 2rem);
+    font-weight: 620;
+    line-height: 1.2;
+    letter-spacing: -0.035em;
+  }
+
+  .news-card__description {
+    margin: 1.15rem 0 0;
+    color: var(--color-muted);
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .news-card__link {
+    display: inline-flex;
+    width: fit-content;
+    margin: auto 0 0;
+    padding-top: 2rem;
+    align-items: center;
+    gap: 0.7rem;
+    color: var(--color-interactive);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: gap 180ms ease;
+  }
+
+  .news-card__link:hover {
+    gap: 1rem;
+  }
+
+  .news-card__link svg {
+    width: 1.1rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.7;
+  }
+
+  @media (max-width: 58rem) {
+    .news-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .news-card:last-child {
+      display: grid;
+      grid-column: 1 / -1;
+      grid-template-columns: minmax(16rem, 0.82fr) minmax(0, 1fr);
+    }
+
+    .news-card:last-child .news-card__visual {
+      min-height: 25rem;
+    }
+  }
+
+  @media (max-width: 40rem) {
+    .latest-news__desktop-link {
+      display: none;
+    }
+
+    .latest-news__mobile-link {
+      display: inline-flex;
+      margin-top: 2rem;
+    }
+
+    .news-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .news-card:last-child {
+      display: block;
+      grid-column: auto;
+    }
+
+    .news-card:last-child .news-card__visual,
+    .news-card__visual {
+      min-height: 17rem;
+    }
+
+    .news-card__body {
+      min-height: 19rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .news-card {
+      transition: none;
+    }
+
+    .news-card__link {
+      transition: none;
+    }
+  }
+</style>

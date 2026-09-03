@@ -1,0 +1,214 @@
+---
+import { businessAreas } from '../../data/businessAreas';
+---
+
+<section class="section business" id="business-areas" aria-labelledby="business-title">
+  <div class="container">
+    <header class="business__heading">
+      <h2 id="business-title" class="section-title">Our Business Areas</h2>
+    </header>
+
+    <div class="business__grid">
+      {
+        businessAreas.map((area) => (
+          <a class="business-card" href={area.href} aria-label={`Explore ${area.title}`}>
+            <div class="business-card__content">
+              <h3>{area.title}</h3>
+              <p>{area.description}</p>
+            </div>
+            <span class="business-card__corner" aria-hidden="true"></span>
+            <span class="business-card__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M5 12h14M13 6l6 6-6 6"></path>
+              </svg>
+            </span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .business {
+    background: var(--color-bg);
+  }
+
+  .business__heading {
+    margin-bottom: clamp(4rem, 7vw, 6rem);
+    text-align: center;
+  }
+
+  .business__grid {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: clamp(1.25rem, 2.25vw, 2rem);
+  }
+
+  .business-card {
+    position: relative;
+    display: flex;
+    min-height: 32rem;
+    grid-column: span 2;
+    flex-direction: column;
+    overflow: hidden;
+    padding: clamp(2.5rem, 3.5vw, 3.5rem);
+    border: 1px solid transparent;
+    border-radius: var(--radius-lg);
+    background: var(--color-surface-soft);
+    color: var(--color-text);
+    text-decoration: none;
+    transition:
+      transform 220ms ease,
+      border-color 220ms ease,
+      box-shadow 220ms ease,
+      background-color 220ms ease;
+  }
+
+  .business-card:nth-child(4) {
+    grid-column: 2 / span 2;
+  }
+
+  .business-card:nth-child(5) {
+    grid-column: 4 / span 2;
+  }
+
+  .business-card__content {
+    position: relative;
+    z-index: 1;
+    max-width: 27rem;
+  }
+
+  .business-card h3 {
+    max-width: 14ch;
+    margin: 0;
+    font-size: clamp(1.7rem, 2.4vw, 2.2rem);
+    font-weight: 680;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+  }
+
+  .business-card p {
+    margin: 1.5rem 0 0;
+    color: var(--color-muted);
+    font-size: 1.05rem;
+    line-height: 1.72;
+  }
+
+  .business-card__corner {
+    position: absolute;
+    right: -6rem;
+    bottom: -6rem;
+    width: 17rem;
+    height: 17rem;
+    border: 1px solid color-mix(in srgb, var(--color-secondary) 24%, transparent);
+    border-radius: 50%;
+    box-shadow:
+      0 0 0 2.2rem color-mix(in srgb, var(--color-secondary) 5%, transparent),
+      0 0 0 4.4rem color-mix(in srgb, var(--color-primary) 3%, transparent);
+    transition:
+      border-color 220ms ease,
+      transform 300ms ease;
+  }
+
+  .business-card__arrow {
+    position: absolute;
+    z-index: 2;
+    right: 2.25rem;
+    bottom: 2.25rem;
+    display: grid;
+    width: 3.5rem;
+    height: 3.5rem;
+    place-items: center;
+    border: 1px solid color-mix(in srgb, var(--color-secondary) 54%, var(--color-border));
+    border-radius: 50%;
+    background: var(--color-surface);
+    color: var(--color-secondary);
+    transition:
+      color 220ms ease,
+      background-color 220ms ease,
+      border-color 220ms ease,
+      transform 220ms ease;
+  }
+
+  .business-card__arrow svg {
+    width: 1.3rem;
+    height: 1.3rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.8;
+  }
+
+  .business-card:hover {
+    border-color: color-mix(in srgb, var(--color-secondary) 58%, var(--color-border));
+    background: var(--color-surface);
+    box-shadow: var(--shadow-card);
+    transform: translateY(-0.125rem);
+  }
+
+  .business-card:hover .business-card__corner {
+    border-color: color-mix(in srgb, var(--color-secondary) 48%, transparent);
+    transform: scale(1.06);
+  }
+
+  .business-card:hover .business-card__arrow {
+    border-color: var(--color-secondary);
+    background: var(--color-secondary);
+    color: #fff;
+    transform: translateX(0.15rem);
+  }
+
+  .business-card:focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 4px;
+  }
+
+  @media (max-width: 63.99rem) {
+    .business__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .business-card,
+    .business-card:nth-child(4) {
+      min-height: 27rem;
+      grid-column: auto;
+    }
+
+    .business-card:nth-child(5) {
+      width: calc((100% - clamp(1.25rem, 2.25vw, 2rem)) / 2);
+      grid-column: 1 / -1;
+      justify-self: center;
+    }
+  }
+
+  @media (max-width: 39.99rem) {
+    .business__grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .business-card,
+    .business-card:nth-child(4),
+    .business-card:nth-child(5) {
+      width: 100%;
+      min-height: 24rem;
+      grid-column: auto;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .business-card,
+    .business-card__corner,
+    .business-card__arrow {
+      transition: none;
+    }
+
+    .business-card:hover,
+    .business-card:hover .business-card__corner,
+    .business-card:hover .business-card__arrow {
+      transform: none;
+    }
+  }
+</style>

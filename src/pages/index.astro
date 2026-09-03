@@ -1,30 +1,20 @@
 ---
+import BusinessAreas from '../components/home/BusinessAreas.astro';
+import GlobalMarkets from '../components/home/GlobalMarkets.astro';
+import Hero from '../components/home/Hero.astro';
+import LatestNews from '../components/home/LatestNews.astro';
+import Leadership from '../components/home/Leadership.astro';
+import WhoWeAre from '../components/home/WhoWeAre.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="KoreaIN">
-  <main class="flex min-h-screen items-center justify-center bg-slate-950 px-6 py-16 text-white">
-    <section class="w-full max-w-2xl text-center">
-      <img
-        src="/images/koreain-logo.svg"
-        alt="KoreaIN"
-        class="mx-auto mb-10 h-auto w-full max-w-sm brightness-0 invert"
-      />
-      <p class="mb-3 text-sm font-semibold uppercase tracking-[0.22em] text-sky-300">
-        Technical baseline
-      </p>
-      <h1 class="text-4xl font-semibold tracking-tight sm:text-6xl">
-        KoreaIN is being rebuilt.
-      </h1>
-      <p class="mx-auto mt-6 max-w-xl text-base leading-7 text-slate-300 sm:text-lg">
-        Astro and Cloudflare Workers are configured. The new KoreaIN experience
-        will be designed next.
-      </p>
-      <div class="mt-10 flex flex-wrap justify-center gap-3 text-sm text-slate-200">
-        <span class="rounded-full border border-white/15 px-4 py-2">Astro</span>
-        <span class="rounded-full border border-white/15 px-4 py-2">Cloudflare Workers</span>
-        <span class="rounded-full border border-white/15 px-4 py-2">Manual deployment</span>
-      </div>
-    </section>
+<BaseLayout title="KoreaIN | Connecting Korea to Global Opportunities">
+  <main id="main-content">
+    <Hero />
+    <WhoWeAre />
+    <BusinessAreas />
+    <GlobalMarkets />
+    <Leadership />
+    <LatestNews />
   </main>
 </BaseLayout>

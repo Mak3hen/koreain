@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import Footer from '../components/global/Footer.astro';
+import Header from '../components/global/Header.astro';
 
 interface Props {
   title: string;
@@ -8,7 +10,7 @@ interface Props {
 
 const {
   title,
-  description = 'KoreaIN technical baseline powered by Astro and Cloudflare Workers.'
+  description = 'KoreaIN connects international businesses with Korean expertise, companies and opportunities across selected high-growth sectors.'
 } = Astro.props;
 ---
 
@@ -16,12 +18,38 @@ const {
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#F5F7FB" data-theme-color />
+    <script is:inline>
+      (() => {
+        const storageKey = 'koreain-theme';
+        let theme = 'light';
+
+        try {
+          const savedTheme = localStorage.getItem(storageKey);
+          theme = savedTheme === 'light' || savedTheme === 'dark'
+            ? savedTheme
+            : matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        } catch {
+          theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.style.colorScheme = theme;
+        document.querySelector('[data-theme-color]')?.setAttribute(
+          'content',
+          theme === 'dark' ? '#050722' : '#F5F7FB'
+        );
+      })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <Header />
     <slot />
+    <Footer />
   </body>
 </html>

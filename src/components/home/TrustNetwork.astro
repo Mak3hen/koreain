@@ -1,0 +1,152 @@
+<section class="section trust" aria-labelledby="trust-title">
+  <div class="container trust__heading">
+    <h2 id="trust-title" class="section-title">Connected Through Strong Networks.</h2>
+  </div>
+
+  <div class="trust__viewport" aria-hidden="true">
+    <div class="trust__rail">
+      {
+        Array.from({ length: 6 }, (_, index) => (
+          <div class="trust__slot" data-partner-slot={index + 1}>
+            <span class="trust__mark">
+              <i></i>
+              <i></i>
+              <i></i>
+            </span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .trust {
+    overflow: hidden;
+    border-block: 1px solid var(--color-border);
+    background: var(--color-surface);
+  }
+
+  .trust__heading {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .trust__heading h2 {
+    max-width: 19ch;
+  }
+
+  .trust__viewport {
+    position: relative;
+    max-width: 100rem;
+    margin: clamp(2.75rem, 6vw, 4.5rem) auto 0;
+    padding-inline: var(--gutter);
+  }
+
+  .trust__viewport::before,
+  .trust__viewport::after {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    bottom: 0;
+    width: min(9vw, 8rem);
+    content: "";
+    pointer-events: none;
+  }
+
+  .trust__viewport::before {
+    left: 0;
+    background: linear-gradient(90deg, var(--color-surface), transparent);
+  }
+
+  .trust__viewport::after {
+    right: 0;
+    background: linear-gradient(-90deg, var(--color-surface), transparent);
+  }
+
+  .trust__rail {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(9rem, 1fr));
+    gap: clamp(0.75rem, 2vw, 1.5rem);
+    max-width: var(--container);
+    margin-inline: auto;
+  }
+
+  .trust__slot {
+    display: grid;
+    min-height: 8rem;
+    place-items: center;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-surface-soft);
+  }
+
+  .trust__mark {
+    display: flex;
+    width: min(60%, 6.5rem);
+    height: 2.4rem;
+    align-items: end;
+    justify-content: center;
+    gap: 0.35rem;
+    opacity: 0.42;
+  }
+
+  .trust__mark i {
+    display: block;
+    width: 0.42rem;
+    border-radius: 999px;
+    background: var(--color-muted);
+  }
+
+  .trust__mark i:nth-child(1) {
+    height: 46%;
+  }
+
+  .trust__mark i:nth-child(2) {
+    height: 100%;
+  }
+
+  .trust__mark i:nth-child(3) {
+    height: 70%;
+  }
+
+  @media (max-width: 63.99rem) {
+    .trust__viewport {
+      overflow: hidden;
+    }
+
+    .trust__rail {
+      grid-template-columns: repeat(3, minmax(9rem, 1fr));
+    }
+  }
+
+  @media (max-width: 39.99rem) {
+    .trust__viewport {
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+      scroll-padding-inline: var(--gutter);
+      scrollbar-width: none;
+    }
+
+    .trust__viewport::-webkit-scrollbar {
+      display: none;
+    }
+
+    .trust__viewport::before,
+    .trust__viewport::after {
+      display: none;
+    }
+
+    .trust__rail {
+      width: max-content;
+      grid-template-columns: repeat(6, minmax(10rem, 72vw));
+      scroll-snap-type: x proximity;
+    }
+
+    .trust__slot {
+      min-height: 7rem;
+      scroll-snap-align: center;
+    }
+  }
+</style>

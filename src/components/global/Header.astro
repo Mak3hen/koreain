@@ -1,0 +1,785 @@
+---
+import { businessAreas } from '../../data/businessAreas';
+import ThemeToggle from './ThemeToggle.astro';
+
+const companyLinks = [
+  { title: 'About KoreaIN', href: '/about' },
+  { title: 'Leadership', href: '/about#leadership' },
+];
+---
+
+<header class="site-header" data-site-header>
+  <div class="site-header__inner">
+    <a class="brand" href="/" aria-label="KoreaIN home">
+      <span class="brand__crop">
+        <img
+          src="/images/logoK-IN.svg"
+          alt=""
+          width="1000"
+          height="500"
+          decoding="async"
+          fetchpriority="high"
+        />
+      </span>
+    </a>
+
+    <div class="site-header__desktop">
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <ul class="desktop-nav__list">
+          <li class="desktop-disclosure" data-desktop-disclosure>
+            <button
+              class="desktop-nav__control"
+              type="button"
+              aria-expanded="false"
+              aria-controls="company-menu"
+              aria-haspopup="true"
+            >
+              Company
+              <svg class="chevron" viewBox="0 0 16 16" aria-hidden="true">
+                <path d="m4 6 4 4 4-4" />
+              </svg>
+            </button>
+            <div class="dropdown dropdown--company" id="company-menu" hidden>
+              <p class="dropdown__eyebrow">Discover KoreaIN</p>
+              <ul class="dropdown__list">
+                {companyLinks.map((link) => (
+                  <li>
+                    <a class="dropdown__link" href={link.href}>
+                      <span>{link.title}</span>
+                      <svg viewBox="0 0 18 18" aria-hidden="true">
+                        <path d="M4 9h10M10 5l4 4-4 4" />
+                      </svg>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </li>
+
+          <li class="desktop-disclosure" data-desktop-disclosure>
+            <button
+              class="desktop-nav__control"
+              type="button"
+              aria-expanded="false"
+              aria-controls="business-areas-menu"
+              aria-haspopup="true"
+            >
+              Business Areas
+              <svg class="chevron" viewBox="0 0 16 16" aria-hidden="true">
+                <path d="m4 6 4 4 4-4" />
+              </svg>
+            </button>
+            <div class="dropdown dropdown--business" id="business-areas-menu" hidden>
+              <p class="dropdown__eyebrow">Our expertise</p>
+              <ul class="dropdown__list">
+                {businessAreas.map((area) => (
+                  <li>
+                    <a class="dropdown__link" href={area.href}>
+                      <span>{area.title}</span>
+                      <svg viewBox="0 0 18 18" aria-hidden="true">
+                        <path d="M4 9h10M10 5l4 4-4 4" />
+                      </svg>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </li>
+
+          <li><a class="desktop-nav__link" href="/news">News</a></li>
+          <li><a class="desktop-nav__link" href="/partners">Partners</a></li>
+          <li><a class="desktop-nav__link" href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="desktop-actions">
+        <ThemeToggle />
+        <a class="contact-button" href="/contact">
+          Contact Us
+          <svg viewBox="0 0 18 18" aria-hidden="true">
+            <path d="M4 9h10M10 5l4 4-4 4" />
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <button
+      class="menu-toggle"
+      type="button"
+      data-menu-toggle
+      aria-label="Open navigation menu"
+      aria-expanded="false"
+      aria-controls="mobile-navigation"
+    >
+      <span class="menu-toggle__line"></span>
+      <span class="menu-toggle__line"></span>
+      <span class="menu-toggle__line"></span>
+    </button>
+  </div>
+
+  <nav class="mobile-panel" id="mobile-navigation" aria-label="Mobile navigation" hidden>
+    <div class="mobile-panel__inner">
+      <div class="mobile-disclosure" data-mobile-disclosure>
+        <button
+          class="mobile-disclosure__control"
+          type="button"
+          aria-expanded="false"
+          aria-controls="mobile-company-menu"
+        >
+          <span>Company</span>
+          <svg class="mobile-disclosure__icon" viewBox="0 0 20 20" aria-hidden="true">
+            <path d="M10 4v12M4 10h12" />
+          </svg>
+        </button>
+        <div class="mobile-disclosure__panel" id="mobile-company-menu" hidden>
+          <ul>
+            {companyLinks.map((link) => (
+              <li><a href={link.href}>{link.title}</a></li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <div class="mobile-disclosure" data-mobile-disclosure>
+        <button
+          class="mobile-disclosure__control"
+          type="button"
+          aria-expanded="false"
+          aria-controls="mobile-business-areas-menu"
+        >
+          <span>Business Areas</span>
+          <svg class="mobile-disclosure__icon" viewBox="0 0 20 20" aria-hidden="true">
+            <path d="M10 4v12M4 10h12" />
+          </svg>
+        </button>
+        <div class="mobile-disclosure__panel" id="mobile-business-areas-menu" hidden>
+          <ul>
+            {businessAreas.map((area) => (
+              <li><a href={area.href}>{area.title}</a></li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <a class="mobile-panel__link" href="/news">News</a>
+      <a class="mobile-panel__link" href="/partners">Partners</a>
+      <a class="mobile-panel__link" href="/contact">Contact</a>
+
+      <div class="mobile-panel__actions">
+        <div class="mobile-panel__theme">
+          <span>Appearance</span>
+          <ThemeToggle />
+        </div>
+        <a class="contact-button contact-button--mobile" href="/contact">
+          Contact Us
+          <svg viewBox="0 0 18 18" aria-hidden="true">
+            <path d="M4 9h10M10 5l4 4-4 4" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const desktopQuery = window.matchMedia('(min-width: 64rem)');
+  const finePointerQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+  const setupHeader = (header: HTMLElement) => {
+    if (header.dataset.headerReady === 'true') return;
+    header.dataset.headerReady = 'true';
+
+    const menuToggle = header.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+    const mobilePanel = header.querySelector<HTMLElement>('#mobile-navigation');
+    const desktopDisclosures = Array.from(
+      header.querySelectorAll<HTMLElement>('[data-desktop-disclosure]'),
+    );
+    const mobileDisclosures = Array.from(
+      header.querySelectorAll<HTMLElement>('[data-mobile-disclosure]'),
+    );
+
+    let previousBodyOverflow = '';
+    let bodyIsLocked = false;
+
+    const lockBody = () => {
+      if (bodyIsLocked) return;
+      previousBodyOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      bodyIsLocked = true;
+    };
+
+    const unlockBody = () => {
+      if (!bodyIsLocked) return;
+      document.body.style.overflow = previousBodyOverflow;
+      bodyIsLocked = false;
+    };
+
+    const setDesktopDisclosure = (item: HTMLElement, open: boolean) => {
+      const control = item.querySelector<HTMLButtonElement>('.desktop-nav__control');
+      const panel = item.querySelector<HTMLElement>('.dropdown');
+      if (!control || !panel) return;
+
+      control.setAttribute('aria-expanded', String(open));
+      panel.hidden = !open;
+      item.toggleAttribute('data-open', open);
+    };
+
+    const closeDesktopDisclosures = (except?: HTMLElement) => {
+      desktopDisclosures.forEach((item) => {
+        if (item !== except) setDesktopDisclosure(item, false);
+      });
+    };
+
+    const setMobileDisclosure = (item: HTMLElement, open: boolean) => {
+      const control = item.querySelector<HTMLButtonElement>('.mobile-disclosure__control');
+      const panel = item.querySelector<HTMLElement>('.mobile-disclosure__panel');
+      if (!control || !panel) return;
+
+      control.setAttribute('aria-expanded', String(open));
+      panel.hidden = !open;
+      item.toggleAttribute('data-open', open);
+    };
+
+    const closeMobileDisclosures = (except?: HTMLElement) => {
+      mobileDisclosures.forEach((item) => {
+        if (item !== except) setMobileDisclosure(item, false);
+      });
+    };
+
+    const setMobileMenu = (open: boolean, restoreFocus = false) => {
+      if (!menuToggle || !mobilePanel) return;
+
+      menuToggle.setAttribute('aria-expanded', String(open));
+      menuToggle.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+      mobilePanel.hidden = !open;
+      header.toggleAttribute('data-mobile-open', open);
+
+      if (open) {
+        closeDesktopDisclosures();
+        lockBody();
+      } else {
+        closeMobileDisclosures();
+        unlockBody();
+        if (restoreFocus) menuToggle.focus();
+      }
+    };
+
+    desktopDisclosures.forEach((item) => {
+      const control = item.querySelector<HTMLButtonElement>('.desktop-nav__control');
+      const panel = item.querySelector<HTMLElement>('.dropdown');
+      if (!control || !panel) return;
+
+      control.addEventListener('click', () => {
+        const willOpen = control.getAttribute('aria-expanded') !== 'true';
+        closeDesktopDisclosures(item);
+        setDesktopDisclosure(item, willOpen);
+      });
+
+      control.addEventListener('keydown', (event) => {
+        if (event.key !== 'ArrowDown') return;
+        event.preventDefault();
+        closeDesktopDisclosures(item);
+        setDesktopDisclosure(item, true);
+        panel.querySelector<HTMLAnchorElement>('a')?.focus();
+      });
+
+      item.addEventListener('pointerenter', (event) => {
+        if (!desktopQuery.matches || !finePointerQuery.matches || event.pointerType === 'touch') return;
+        closeDesktopDisclosures(item);
+        setDesktopDisclosure(item, true);
+      });
+
+      item.addEventListener('pointerleave', (event) => {
+        if (!desktopQuery.matches || !finePointerQuery.matches || event.pointerType === 'touch') return;
+        setDesktopDisclosure(item, false);
+      });
+
+      item.addEventListener('focusout', () => {
+        window.setTimeout(() => {
+          if (!item.contains(document.activeElement)) setDesktopDisclosure(item, false);
+        }, 0);
+      });
+    });
+
+    mobileDisclosures.forEach((item) => {
+      const control = item.querySelector<HTMLButtonElement>('.mobile-disclosure__control');
+      if (!control) return;
+
+      control.addEventListener('click', () => {
+        const willOpen = control.getAttribute('aria-expanded') !== 'true';
+        closeMobileDisclosures(item);
+        setMobileDisclosure(item, willOpen);
+      });
+    });
+
+    menuToggle?.addEventListener('click', () => {
+      setMobileMenu(menuToggle.getAttribute('aria-expanded') !== 'true');
+    });
+
+    header.querySelectorAll<HTMLAnchorElement>('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        closeDesktopDisclosures();
+        if (!mobilePanel?.hidden) setMobileMenu(false);
+      });
+    });
+
+    document.addEventListener('pointerdown', (event) => {
+      if (event.target instanceof Node && header.contains(event.target)) return;
+      closeDesktopDisclosures();
+      if (!mobilePanel?.hidden) setMobileMenu(false);
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape') return;
+
+      if (mobilePanel && !mobilePanel.hidden) {
+        setMobileMenu(false, true);
+        return;
+      }
+
+      const openDisclosure = desktopDisclosures.find((item) => item.hasAttribute('data-open'));
+      if (openDisclosure) {
+        const control = openDisclosure.querySelector<HTMLButtonElement>('.desktop-nav__control');
+        setDesktopDisclosure(openDisclosure, false);
+        control?.focus();
+      }
+    });
+
+    desktopQuery.addEventListener('change', (event) => {
+      closeDesktopDisclosures();
+      if (event.matches && mobilePanel && !mobilePanel.hidden) setMobileMenu(false);
+    });
+  };
+
+  const setupHeaders = () => {
+    document.querySelectorAll<HTMLElement>('[data-site-header]').forEach(setupHeader);
+  };
+
+  setupHeaders();
+  document.addEventListener('astro:page-load', setupHeaders);
+</script>
+
+<style>
+  .site-header {
+    position: fixed;
+    z-index: 1000;
+    inset: 0 0 auto;
+    height: var(--header-height);
+    border-bottom: 1px solid var(--color-header-border);
+    background: color-mix(in srgb, var(--color-header) 96%, transparent);
+    color: var(--color-text);
+    backdrop-filter: blur(16px);
+  }
+
+  .site-header__inner {
+    display: flex;
+    width: calc(100% - (var(--gutter) * 2));
+    max-width: var(--container);
+    height: 100%;
+    margin-inline: auto;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+  }
+
+  .brand {
+    display: inline-flex;
+    min-width: 0;
+    flex: 0 0 auto;
+    align-items: center;
+    border-radius: 0.6rem;
+  }
+
+  .brand:focus-visible {
+    outline: 3px solid var(--color-interactive);
+    outline-offset: 4px;
+  }
+
+  .brand__crop {
+    position: relative;
+    display: block;
+    width: 11.5rem;
+    height: 2.75rem;
+    overflow: hidden;
+  }
+
+  .brand__crop img {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: auto;
+    transform: translateY(-50%);
+  }
+
+  .site-header__desktop {
+    display: none;
+    min-width: 0;
+    flex: 1;
+    align-items: center;
+    justify-content: flex-end;
+    gap: clamp(1rem, 2.2vw, 2rem);
+  }
+
+  .desktop-nav__list,
+  .dropdown__list,
+  .mobile-disclosure ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .desktop-nav__list {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.2rem, 0.6vw, 0.65rem);
+  }
+
+  .desktop-disclosure {
+    position: relative;
+  }
+
+  .desktop-nav__control,
+  .desktop-nav__link {
+    display: inline-flex;
+    min-height: 3rem;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.65rem clamp(0.5rem, 0.8vw, 0.75rem);
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--color-text);
+    font: inherit;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition:
+      color 180ms ease,
+      background-color 180ms ease;
+  }
+
+  .desktop-nav__control:hover,
+  .desktop-nav__link:hover,
+  .desktop-disclosure[data-open] .desktop-nav__control {
+    background: var(--color-surface-soft);
+    color: var(--color-interactive);
+  }
+
+  .desktop-nav__control:focus-visible,
+  .desktop-nav__link:focus-visible,
+  .dropdown__link:focus-visible,
+  .contact-button:focus-visible,
+  .menu-toggle:focus-visible,
+  .mobile-disclosure__control:focus-visible,
+  .mobile-panel__link:focus-visible,
+  .mobile-disclosure a:focus-visible {
+    outline: 3px solid var(--color-interactive);
+    outline-offset: 2px;
+  }
+
+  .chevron {
+    width: 1rem;
+    height: 1rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: transform 180ms ease;
+  }
+
+  .desktop-disclosure[data-open] .chevron {
+    transform: rotate(180deg);
+  }
+
+  .dropdown {
+    position: absolute;
+    top: calc(100% + 0.75rem);
+    left: 50%;
+    width: 18rem;
+    padding: 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-menu);
+    color: var(--color-text);
+    transform: translateX(-50%);
+  }
+
+  .dropdown[hidden],
+  .mobile-panel[hidden],
+  .mobile-disclosure__panel[hidden] {
+    display: none;
+  }
+
+  .dropdown--business {
+    width: 21rem;
+  }
+
+  .dropdown__eyebrow {
+    padding: 0 0.75rem 0.7rem;
+    margin: 0 0 0.35rem;
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-muted);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .dropdown__link {
+    display: flex;
+    min-height: 2.8rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.7rem 0.75rem;
+    border-radius: var(--radius-md);
+    color: var(--color-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition:
+      color 180ms ease,
+      background-color 180ms ease,
+      padding 180ms ease;
+  }
+
+  .dropdown__link:hover {
+    padding-inline-start: 0.95rem;
+    background: var(--color-surface-soft);
+    color: var(--color-interactive);
+  }
+
+  .dropdown__link svg,
+  .contact-button svg {
+    width: 1.1rem;
+    height: 1.1rem;
+    flex: 0 0 auto;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .desktop-actions {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .contact-button {
+    display: inline-flex;
+    min-height: 3rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    padding: 0.75rem 1.15rem;
+    border-radius: 999px;
+    background: var(--color-interactive);
+    color: var(--color-surface);
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1;
+    text-decoration: none;
+    white-space: nowrap;
+    transition:
+      filter 180ms ease,
+      transform 180ms ease;
+  }
+
+  .contact-button:hover {
+    filter: brightness(1.08);
+    transform: translateY(-1px);
+  }
+
+  .menu-toggle {
+    position: relative;
+    display: inline-flex;
+    width: 3rem;
+    height: 3rem;
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.28rem;
+    padding: 0;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    background: var(--color-surface-soft);
+    color: var(--color-text);
+    cursor: pointer;
+  }
+
+  .menu-toggle__line {
+    display: block;
+    width: 1.1rem;
+    height: 1.5px;
+    border-radius: 99px;
+    background: currentColor;
+    transform-origin: center;
+    transition:
+      opacity 180ms ease,
+      transform 180ms ease;
+  }
+
+  .site-header[data-mobile-open] .menu-toggle__line:nth-child(1) {
+    transform: translateY(0.33rem) rotate(45deg);
+  }
+
+  .site-header[data-mobile-open] .menu-toggle__line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .site-header[data-mobile-open] .menu-toggle__line:nth-child(3) {
+    transform: translateY(-0.33rem) rotate(-45deg);
+  }
+
+  .mobile-panel {
+    position: fixed;
+    z-index: -1;
+    top: var(--header-height);
+    right: 0;
+    left: 0;
+    max-height: calc(100svh - var(--header-height));
+    overflow-y: auto;
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-menu);
+    color: var(--color-text);
+    overscroll-behavior: contain;
+  }
+
+  .mobile-panel__inner {
+    width: calc(100% - (var(--gutter) * 2));
+    max-width: var(--container);
+    padding-block: 1rem 1.5rem;
+    margin-inline: auto;
+  }
+
+  .mobile-disclosure,
+  .mobile-panel__link {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .mobile-disclosure__control,
+  .mobile-panel__link {
+    display: flex;
+    width: 100%;
+    min-height: 3.6rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.85rem 0.25rem;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: var(--color-text);
+    font: inherit;
+    font-size: 1rem;
+    font-weight: 650;
+    line-height: 1.3;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .mobile-disclosure__icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex: 0 0 auto;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+  }
+
+  .mobile-disclosure__icon path {
+    transform-origin: center;
+    transition: transform 180ms ease;
+  }
+
+  .mobile-disclosure[data-open] .mobile-disclosure__icon path {
+    transform: rotate(45deg);
+  }
+
+  .mobile-disclosure__panel {
+    padding: 0 0 0.8rem 0.7rem;
+  }
+
+  .mobile-disclosure__panel a {
+    display: flex;
+    min-height: 2.8rem;
+    align-items: center;
+    padding: 0.65rem 0.75rem;
+    border-radius: var(--radius-md);
+    color: var(--color-muted);
+    font-size: 0.925rem;
+    font-weight: 550;
+    text-decoration: none;
+  }
+
+  .mobile-disclosure__panel a:hover,
+  .mobile-panel__link:hover {
+    color: var(--color-interactive);
+  }
+
+  .mobile-panel__actions {
+    display: grid;
+    gap: 1rem;
+    padding-top: 1.25rem;
+  }
+
+  .mobile-panel__theme {
+    display: flex;
+    min-height: 2.75rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    color: var(--color-muted);
+    font-size: 0.875rem;
+    font-weight: 650;
+  }
+
+  .contact-button--mobile {
+    width: 100%;
+    min-height: 3.2rem;
+  }
+
+  @media (min-width: 64rem) {
+    .site-header__desktop {
+      display: flex;
+    }
+
+    .menu-toggle,
+    .mobile-panel {
+      display: none !important;
+    }
+  }
+
+  @media (max-width: 27rem) {
+    .brand__crop {
+      width: 9.4rem;
+      height: 2.25rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .desktop-nav__control,
+    .desktop-nav__link,
+    .chevron,
+    .dropdown__link,
+    .contact-button,
+    .menu-toggle__line,
+    .mobile-disclosure__icon path {
+      transition: none;
+    }
+  }
+</style>

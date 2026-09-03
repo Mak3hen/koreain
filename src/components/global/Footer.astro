@@ -1,0 +1,310 @@
+---
+import { businessAreas } from '../../data/businessAreas';
+
+const currentYear = new Date().getFullYear();
+
+const usefulLinks = [
+  { label: 'About KoreaIN', href: '/about' },
+  { label: 'News', href: '/news' },
+  { label: 'Partners', href: '/partners' },
+  { label: 'Contact', href: '/contact' }
+] as const;
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__grid">
+      <div class="site-footer__brand">
+        <a class="site-footer__logo" href="/" aria-label="KoreaIN home">
+          <img
+            src="/images/logoK-IN.svg"
+            alt="KoreaIN"
+            width="1000"
+            height="500"
+            decoding="async"
+          />
+        </a>
+        <p>
+          Connecting international businesses with Korean expertise, companies
+          and opportunities across selected high-growth sectors.
+        </p>
+        <span class="site-footer__contact-placeholder">
+          Contact information coming soon
+        </span>
+      </div>
+
+      <nav class="site-footer__nav" aria-labelledby="footer-useful-title">
+        <h2 id="footer-useful-title">Useful Links</h2>
+        <ul>
+          {
+            usefulLinks.map((link) => (
+              <li><a href={link.href}>{link.label}</a></li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <nav class="site-footer__nav" aria-labelledby="footer-areas-title">
+        <h2 id="footer-areas-title">Business Areas</h2>
+        <ul>
+          {
+            businessAreas.map((area) => (
+              <li><a href={area.href}>{area.shortTitle}</a></li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <div class="site-footer__contact">
+        <p class="site-footer__heading">Start a conversation</p>
+        <p>
+          Talk with KoreaIN about opportunities connecting Korea and
+          international markets.
+        </p>
+        <a class="site-footer__contact-link" href="/contact">
+          <span>Contact Us</span>
+          <svg viewBox="0 0 20 20" aria-hidden="true">
+            <path d="M4 10h11M11 5l5 5-5 5" />
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="site-footer__bottom">
+      <p>&copy; {currentYear} KoreaIN. All rights reserved.</p>
+      <nav aria-label="Legal">
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(6rem, 10vw, 9.5rem) 0 2.25rem;
+    color: #f7f8fc;
+    background: #050722;
+  }
+
+  .site-footer::before {
+    position: absolute;
+    top: -13rem;
+    left: 46%;
+    width: 31rem;
+    height: 31rem;
+    border: 1px solid rgba(255, 255, 255, 0.055);
+    border-radius: 50%;
+    content: '';
+    pointer-events: none;
+  }
+
+  .site-footer__grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(16rem, 1.45fr) minmax(8rem, 0.65fr) minmax(10rem, 0.8fr) minmax(15rem, 1fr);
+    gap: clamp(3rem, 5.5vw, 6.5rem);
+  }
+
+  .site-footer__logo {
+    display: block;
+    width: min(15.5rem, 100%);
+    height: 4.6rem;
+    overflow: hidden;
+  }
+
+  .site-footer__logo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .site-footer__logo:focus-visible,
+  .site-footer a:focus-visible {
+    outline: 2px solid #91b8f0;
+    outline-offset: 4px;
+  }
+
+  .site-footer__brand > p {
+    max-width: 29rem;
+    margin: 2rem 0 0;
+    color: #b6bed1;
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  .site-footer__contact-placeholder {
+    display: inline-flex;
+    margin-top: 1.4rem;
+    align-items: center;
+    gap: 0.65rem;
+    color: #929bb3;
+    font-size: 0.72rem;
+    font-weight: 650;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+
+  .site-footer__contact-placeholder::before {
+    width: 0.42rem;
+    height: 0.42rem;
+    border-radius: 50%;
+    background: #cd2e3a;
+    content: '';
+  }
+
+  .site-footer h2,
+  .site-footer__heading {
+    margin: 0;
+    color: #f7f8fc;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+  }
+
+  .site-footer__nav ul {
+    display: grid;
+    gap: 1.05rem;
+    margin: 1.85rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .site-footer__nav a {
+    color: #b6bed1;
+    font-size: 0.96rem;
+    line-height: 1.4;
+    text-decoration: none;
+    transition: color 180ms ease;
+  }
+
+  .site-footer__nav a:hover {
+    color: #fff;
+  }
+
+  .site-footer__contact > p:not(.site-footer__heading) {
+    max-width: 20rem;
+    margin: 1.85rem 0 0;
+    color: #b6bed1;
+    font-size: 0.98rem;
+    line-height: 1.7;
+  }
+
+  .site-footer__contact-link {
+    display: inline-flex;
+    margin-top: 2rem;
+    padding: 1.05rem 1.35rem;
+    align-items: center;
+    justify-content: center;
+    gap: 1.6rem;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+    color: #fff;
+    background: #000e8a;
+    font-size: 0.83rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition:
+      background-color 180ms ease,
+      border-color 180ms ease,
+      transform 180ms ease;
+  }
+
+  .site-footer__contact-link:hover {
+    border-color: rgba(255, 255, 255, 0.32);
+    background: #0047a0;
+    transform: translateY(-0.15rem);
+  }
+
+  .site-footer__contact-link svg {
+    width: 1.05rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.7;
+  }
+
+  .site-footer__bottom {
+    display: flex;
+    margin-top: clamp(5rem, 9vw, 8rem);
+    padding-top: 1.9rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .site-footer__bottom p,
+  .site-footer__bottom a {
+    margin: 0;
+    color: #929bb3;
+    font-size: 0.75rem;
+    line-height: 1.5;
+  }
+
+  .site-footer__bottom nav {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .site-footer__bottom a {
+    text-decoration: none;
+    transition: color 180ms ease;
+  }
+
+  .site-footer__bottom a:hover {
+    color: #fff;
+  }
+
+  @media (max-width: 65rem) {
+    .site-footer__grid {
+      grid-template-columns: minmax(0, 1.25fr) repeat(2, minmax(9rem, 0.72fr));
+    }
+
+    .site-footer__contact {
+      grid-column: 1 / -1;
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  @media (max-width: 44rem) {
+    .site-footer__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 3rem 2rem;
+    }
+
+    .site-footer__brand,
+    .site-footer__contact {
+      grid-column: 1 / -1;
+    }
+
+    .site-footer__bottom {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 27rem) {
+    .site-footer__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .site-footer__brand,
+    .site-footer__contact {
+      grid-column: auto;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .site-footer a {
+      transition: none;
+    }
+  }
+</style>

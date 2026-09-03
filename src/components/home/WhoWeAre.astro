@@ -1,0 +1,152 @@
+<section class="section who" aria-labelledby="who-title">
+  <div class="container who__grid">
+    <figure class="who__visual">
+      <img
+        src="/images/whoweare.png"
+        alt="A conceptual bridge connecting Korean and Middle Eastern cityscapes."
+        width="2752"
+        height="1536"
+        loading="lazy"
+        decoding="async"
+      />
+    </figure>
+
+    <div class="who__content">
+      <h2 id="who-title" class="section-title">Who are we?</h2>
+      <p class="section-copy who__copy">
+        KoreaIN is an international business company based in Korea, connecting Korean
+        expertise, companies and opportunities with international markets, with a strong
+        focus on Saudi Arabia and the Middle East.
+      </p>
+
+      <div class="who__leadership">
+        <span>Led by Yaser Khalifa</span>
+        <span>Member of the Saudi-Korea Business Council</span>
+      </div>
+
+      <a class="arrow-link" href="/about">
+        <span>More About Us</span>
+        <svg aria-hidden="true" viewBox="0 0 24 24">
+          <path d="M5 12h14M13 6l6 6-6 6"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .who {
+    overflow: hidden;
+  }
+
+  .who__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.82fr) minmax(24rem, 1fr);
+    gap: clamp(4rem, 8vw, 8.5rem);
+    align-items: center;
+  }
+
+  .who__visual {
+    position: relative;
+    min-height: clamp(38rem, 53vw, 48rem);
+    margin: 0;
+    overflow: hidden;
+    border-radius: var(--radius-xl);
+    background: var(--color-surface-soft);
+    box-shadow: var(--shadow-card);
+  }
+
+  .who__visual::after {
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: inherit;
+    box-shadow: inset 0 -8rem 8rem -8rem rgba(5, 7, 34, 0.36);
+    content: "";
+    pointer-events: none;
+  }
+
+  .who__visual img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .who__content {
+    max-width: 43rem;
+  }
+
+  .who__content .section-title {
+    max-width: 10ch;
+    font-size: clamp(3rem, 6vw, 5.75rem);
+  }
+
+  .who__copy {
+    max-width: 42rem;
+    margin-top: 2.25rem;
+  }
+
+  .who__leadership {
+    display: grid;
+    gap: 0.4rem;
+    margin-top: 2.75rem;
+    padding: 0.35rem 0 0.35rem 1.5rem;
+    border-left: 2px solid var(--color-accent);
+    color: var(--color-muted);
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+
+  .who__leadership span:first-child {
+    color: var(--color-text);
+    font-size: 1.05rem;
+    font-weight: 700;
+  }
+
+  .who :global(.arrow-link) {
+    margin-top: 3.5rem;
+  }
+
+  .who :global(.arrow-link svg) {
+    width: 1.15rem;
+    height: 1.15rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.8;
+  }
+
+  @media (max-width: 63.99rem) {
+    .who__grid {
+      grid-template-columns: 1fr;
+      gap: 4rem;
+    }
+
+    .who__visual {
+      min-height: auto;
+      aspect-ratio: 16 / 9;
+    }
+
+    .who__content {
+      max-width: 46rem;
+    }
+  }
+
+  @media (max-width: 39.99rem) {
+    .who__visual {
+      aspect-ratio: 4 / 4.7;
+    }
+
+    .who__visual img {
+      object-position: center;
+    }
+
+    .who__leadership {
+      margin-top: 1.5rem;
+    }
+  }
+</style>
