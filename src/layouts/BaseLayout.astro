@@ -3,15 +3,41 @@ import '../styles/global.css';
 import Footer from '../components/global/Footer.astro';
 import Header from '../components/global/Header.astro';
 
+interface SocialImage {
+  src: string;
+  alt: string;
+  type?: string;
+  width?: number;
+  height?: number;
+}
+
 interface Props {
   title: string;
   description?: string;
+  canonicalPath?: string;
+  socialImage?: SocialImage;
 }
+
+const productionOrigin = 'https://korea-in.com';
 
 const {
   title,
-  description = 'KoreaIN connects international businesses with Korean expertise, companies and opportunities across selected high-growth sectors.'
+  description = 'KoreaIN connects international businesses with Korean expertise, companies and opportunities across selected high-growth sectors.',
+  canonicalPath = Astro.url.pathname,
+  socialImage = {
+    src: '/images/koreain-social-card.jpg',
+    alt: 'KoreaIN — Connecting Korea to Global Opportunities',
+    type: 'image/jpeg',
+    width: 1200,
+    height: 630
+  }
 } = Astro.props;
+
+// Resolve the current page against production, including during local development.
+const canonicalUrl = new URL(canonicalPath, productionOrigin);
+canonicalUrl.search = '';
+canonicalUrl.hash = '';
+const socialImageUrl = new URL(socialImage.src, productionOrigin);
 ---
 
 <!doctype html>
@@ -43,7 +69,31 @@ const {
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalUrl.href} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="KoreaIN" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl.href} />
+    <meta property="og:image" content={socialImageUrl.href} />
+    {socialImageUrl.protocol === 'https:' && (
+      <meta property="og:image:secure_url" content={socialImageUrl.href} />
+    )}
+    {socialImage.type && <meta property="og:image:type" content={socialImage.type} />}
+    {socialImage.width && <meta property="og:image:width" content={socialImage.width} />}
+    {socialImage.height && <meta property="og:image:height" content={socialImage.height} />}
+    <meta property="og:image:alt" content={socialImage.alt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImageUrl.href} />
+    <meta name="twitter:image:alt" content={socialImage.alt} />
+    <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any" />
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
+    <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+    <link rel="manifest" href="/site.webmanifest" />
     <title>{title}</title>
   </head>
   <body>
