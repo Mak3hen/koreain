@@ -17,6 +17,8 @@
     position: relative;
     width: 100%;
     height: clamp(48rem, 94svh, 64rem);
+    margin: 0;
+    padding: 0;
     overflow: hidden;
     background: #050722;
   }
@@ -28,7 +30,8 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
+    /* Keep the source's top edge below the fixed navigation. */
+    object-position: 50% var(--header-height);
   }
 
   @media (max-width: 47.99rem) {
@@ -37,7 +40,25 @@
     }
 
     .hero__video {
-      object-position: 62% center;
+      object-position: 62% var(--header-height);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero {
+      height: auto;
+      /* Reserve space for the fixed header without shifting or cropping the video. */
+      margin-top: var(--header-height);
+      overflow: visible;
+    }
+
+    .hero__video {
+      position: static;
+      inset: auto;
+      height: auto;
+      aspect-ratio: auto 16 / 9;
+      object-fit: contain;
+      object-position: center;
     }
   }
 </style>
