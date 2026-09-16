@@ -10,14 +10,20 @@
   >
     <source src="/homepage.mp4" type="video/mp4" />
   </video>
+  <div class="hero__shade" aria-hidden="true"></div>
+  <div class="hero__signature">
+    <p class="hero__eyebrow">KOREA ↔ GLOBAL</p>
+    <h1 class="hero__tagline">Connecting Korea to Global Opportunities</h1>
+  </div>
 </div>
 
 <style>
   .hero {
     position: relative;
     width: 100%;
-    height: clamp(48rem, 94svh, 64rem);
-    margin: 0;
+    height: calc(100svh - var(--header-height));
+    /* Offset the fixed header; together, header and hero fill one small viewport. */
+    margin: var(--header-height) 0 0;
     padding: 0;
     overflow: hidden;
     background: #050722;
@@ -25,40 +31,108 @@
 
   .hero__video {
     position: absolute;
+    z-index: 0;
     inset: 0;
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* Keep the source's top edge below the fixed navigation. */
-    object-position: 50% var(--header-height);
+    /* Favor the upper skyline while allowing full-bleed edge cropping. */
+    object-position: 50% 25%;
   }
 
   @media (max-width: 47.99rem) {
-    .hero {
-      height: max(43rem, 88svh);
-    }
-
     .hero__video {
-      object-position: 62% var(--header-height);
+      object-position: 62% 25%;
     }
   }
 
-  @media (min-width: 1024px) {
-    .hero {
-      height: auto;
-      /* Reserve space for the fixed header without shifting or cropping the video. */
-      margin-top: var(--header-height);
-      overflow: visible;
+  .hero__shade {
+    position: absolute;
+    z-index: 1;
+    inset: auto 0 0;
+    height: 42%;
+    background: linear-gradient(
+      to bottom,
+      rgba(5, 7, 34, 0),
+      rgba(5, 7, 34, 0.08) 50%,
+      rgba(5, 7, 34, 0.26)
+    );
+    pointer-events: none;
+  }
+
+  .hero__signature {
+    position: absolute;
+    z-index: 2;
+    left: 6vw;
+    bottom: max(clamp(1.5rem, 6svh, 4.5rem), env(safe-area-inset-bottom, 0px));
+    width: min(35rem, 88%);
+    animation: hero-signature-enter 650ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .hero__eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    margin: 0 0 1rem;
+    color: rgba(255, 255, 255, 0.86);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    line-height: 1.5;
+    text-transform: uppercase;
+  }
+
+  .hero__eyebrow::before {
+    content: '';
+    width: 1.75rem;
+    height: 2px;
+    flex: 0 0 auto;
+    background: #cd2e3a;
+  }
+
+  .hero__tagline {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(2.25rem, 3.2vw, 2.875rem);
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+    text-wrap: balance;
+    text-shadow: 0 2px 14px rgba(5, 7, 34, 0.28);
+  }
+
+  @keyframes hero-signature-enter {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
     }
 
-    .hero__video {
-      position: static;
-      inset: auto;
-      height: auto;
-      aspect-ratio: auto 16 / 9;
-      object-fit: contain;
-      object-position: center;
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .hero__tagline {
+      font-size: clamp(1.75rem, 4vw, 2.25rem);
+    }
+  }
+
+  @media (max-width: 479px) {
+    .hero__eyebrow {
+      display: none;
+    }
+
+    .hero__tagline {
+      font-size: clamp(1.5rem, 6.5vw, 1.875rem);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero__signature {
+      animation: none;
     }
   }
 </style>
