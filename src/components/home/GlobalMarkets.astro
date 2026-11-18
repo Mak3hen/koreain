@@ -1,229 +1,709 @@
 ---
 const markets = [
-  { name: 'Korea', context: 'Home base' },
-  { name: 'Saudi Arabia', context: 'Key connection' },
-  { name: 'Middle East', context: 'Regional focus' },
-  { name: 'International Markets', context: 'Global outlook' }
-] as const;
+  { name: 'Asia', map: 'asia' },
+  { name: 'Middle East', map: 'middle-east' },
+  { name: 'North Africa', map: 'north-africa' },
+  { name: 'Europe', map: 'europe' },
+  { name: 'North America', map: 'north-america' },
+];
 ---
 
-<section class="section global-markets" id="markets" aria-labelledby="markets-title">
+<section class="markets-section section" id="markets" aria-labelledby="markets-heading">
   <div class="container">
-    <div class="global-markets__heading">
-      <div>
-        <p class="eyebrow global-markets__eyebrow">Our reach</p>
-        <h2 class="section-title global-markets__title" id="markets-title">
-          From Korea to<br />Global Markets
-        </h2>
+    <!-- Header: NGVSEA editorial typography & punchy text -->
+    <div class="markets-intro">
+      <div class="markets-heading">
+        <h2 id="markets-heading">From Korea.<br />{' '}<em>To the world.</em></h2>
       </div>
-
-      <p class="section-copy global-markets__copy">
-        KoreaIN creates a clear path between Korean expertise and international
-        business opportunities, with a focused connection to Saudi Arabia and
-        the Middle East.
-      </p>
+      <div class="markets-copy">
+        <p class="markets-lead">
+          Anchored by a direct bilateral bridge with Saudi Arabia, connecting Korean innovation to the world’s leading growth markets.
+        </p>
+        <p class="markets-description">
+          KoreaIN provides strategic access, market navigation, and cross-border partnerships across East Asia, the GCC, Europe, and the Americas.
+        </p>
+      </div>
     </div>
 
-    <ol class="market-path" aria-label="KoreaIN's international market focus">
-      {
-        markets.map((market, index) => (
-          <li class="market-path__item">
-            <div class="market-path__marker" aria-hidden="true">
-              <span />
-            </div>
-            <p class="market-path__index">{String(index + 1).padStart(2, '0')}</p>
-            <h3>{market.name}</h3>
-            <p class="market-path__context">{market.context}</p>
+    <!-- Network Stage: Korea directly linked with Saudi Arabia, then branching to the 5 continents -->
+    <div class="market-network" role="group" aria-label="Connections from South Korea and Saudi Arabia to global markets">
+      <!-- Primary Bilateral Hubs: South Korea ⇄ Saudi Arabia -->
+      <div class="bilateral-axis">
+        <!-- South Korea Hub -->
+        <div class="hub-node hub-node--korea">
+          <div class="hub-node__image-wrap">
+            <img
+              src="/home/markets/korea-graph.webp"
+              alt="South Korea"
+              width="140"
+              height="180"
+              loading="lazy"
+              decoding="async"
+              class="hub-node__image"
+            />
+          </div>
+          <div class="hub-node__content">
+            <span class="hub-node__city">Seoul</span>
+            <h3 class="hub-node__title">South Korea</h3>
+          </div>
+        </div>
+
+        <!-- Direct Bilateral Connector Bridge -->
+        <div class="bilateral-bridge" aria-hidden="true">
+          <span class="bilateral-bridge__badge">Direct Axis ⇄</span>
+          <div class="bilateral-bridge__line"></div>
+          <div class="bilateral-bridge__core"></div>
+        </div>
+
+        <!-- Saudi Arabia Hub -->
+        <div class="hub-node hub-node--saudi">
+          <div class="hub-node__image-wrap">
+            <img
+              src="/home/markets/saudi-graph.webp"
+              alt="Saudi Arabia"
+              width="180"
+              height="135"
+              loading="lazy"
+              decoding="async"
+              class="hub-node__image"
+            />
+          </div>
+          <div class="hub-node__content">
+            <span class="hub-node__city">Riyadh</span>
+            <h3 class="hub-node__title">Saudi Arabia</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Network Feeder Circuit: Trunk line drops from the Bilateral Axis into the 5 continent cards -->
+      <div class="network-trunk" aria-hidden="true"></div>
+
+      <!-- 5 Continent Cards: Exact NGVSEA SVGs, compass circle, NO text below continent names -->
+      <ul class="market-cards">
+        {markets.map((market) => (
+          <li class="market-card">
+            <a class="market-card-body" href="/global-markets">
+              <span class="market-card-arrow" aria-hidden="true">
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M4 10h11M11 5l5 5-5 5"></path>
+                </svg>
+              </span>
+              <div class="market-map">
+                <img
+                  src={`/home/markets/${market.map}.svg`}
+                  alt=""
+                  width="240"
+                  height="160"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <h3 class="market-name">{market.name}</h3>
+            </a>
           </li>
-        ))
-      }
-    </ol>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Bottom Action Link -->
+    <div class="markets-action">
+      <a href="/global-markets">
+        <span>Explore Global Markets</span>
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path d="M4 10h11M11 5l5 5-5 5"></path>
+        </svg>
+      </a>
+    </div>
   </div>
 </section>
 
 <style>
-  .global-markets {
+  /* ── Layout & Variables ── */
+  .markets-section {
+    --network-line: rgba(141, 164, 255, 0.28);
+    --market-gap: 20px;
+    --card-height: 290px;
+    background: #05091e;
+    color: #f7f8fc;
+    border-top: 1px solid rgba(141, 164, 255, 0.12);
+    border-bottom: 1px solid rgba(141, 164, 255, 0.12);
+    padding-block: clamp(4.5rem, 7.5vw, 7rem);
     position: relative;
     overflow: hidden;
-    color: #f7f8fc;
-    background:
-      radial-gradient(circle at 92% 15%, rgba(0, 71, 160, 0.34), transparent 34rem),
-      #050722;
   }
 
-  .global-markets::after {
-    position: absolute;
-    right: -10rem;
-    bottom: -15rem;
-    width: 31rem;
-    height: 31rem;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 50%;
-    content: '';
-    pointer-events: none;
-  }
-
-  .global-markets__heading {
+  /* ── Intro Header ── */
+  .markets-intro {
     display: grid;
-    grid-template-columns: minmax(0, 1.1fr) minmax(18rem, 0.68fr);
-    gap: clamp(4rem, 9vw, 9rem);
-    align-items: end;
+    grid-template-columns: 1.15fr 1fr;
+    gap: clamp(40px, 6vw, 96px);
+    align-items: start;
+    margin-bottom: clamp(3rem, 5vw, 4.5rem);
   }
 
-  .global-markets__eyebrow {
-    color: #91b8f0;
-  }
-
-  .global-markets__title {
-    max-width: 12ch;
-    margin-top: 1rem;
-    color: #f7f8fc;
-  }
-
-  .global-markets__copy {
-    max-width: 38rem;
-    color: #b6bed1;
-    font-size: clamp(1.08rem, 1.5vw, 1.24rem);
-  }
-
-  .market-path {
-    position: relative;
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: clamp(1rem, 1.8vw, 1.5rem);
-    margin: clamp(5rem, 8vw, 8rem) 0 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .market-path::before {
-    position: absolute;
-    top: 1.15rem;
-    right: calc(12.5% - 0.25rem);
-    left: calc(12.5% - 0.25rem);
-    height: 1px;
-    background: linear-gradient(90deg, #0047a0, #6176d7 68%, #cd2e3a);
-    content: '';
-  }
-
-  .market-path__item {
-    position: relative;
-    min-height: 16rem;
-    padding: 4.75rem clamp(1.5rem, 2.7vw, 2.5rem) 2.25rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: var(--radius-lg);
-    background: #0b1033;
-    transition:
-      transform 220ms ease,
-      border-color 220ms ease,
-      background-color 220ms ease;
-  }
-
-  .market-path__item:hover {
-    border-color: rgba(145, 184, 240, 0.35);
-    background: #0e1540;
-    transform: translateY(-0.15rem);
-  }
-
-  .market-path__marker {
-    position: absolute;
-    top: 0.78rem;
-    left: 50%;
-    z-index: 1;
-    display: grid;
-    width: 0.75rem;
-    height: 0.75rem;
-    place-items: center;
-    border: 3px solid #050722;
-    border-radius: 50%;
-    background: #6f8ee1;
-    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.42);
-    transform: translateX(-50%);
-  }
-
-  .market-path__item:first-child .market-path__marker {
-    background: #0047a0;
-  }
-
-  .market-path__item:last-child .market-path__marker {
-    background: #cd2e3a;
-  }
-
-  .market-path__index,
-  .market-path__context {
+  h2 {
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 700;
+    line-height: 0.98;
+    letter-spacing: -0.04em;
     margin: 0;
-    color: #929bb3;
-    font-size: 0.73rem;
-    font-weight: 650;
-    letter-spacing: 0.11em;
-    text-transform: uppercase;
+    color: #ffffff;
   }
 
-  .market-path h3 {
-    margin: 1.4rem 0 0.7rem;
-    color: #f7f8fc;
-    font-size: clamp(1.3rem, 1.9vw, 1.7rem);
+  h2 em {
+    color: #8da4ff;
+    font-style: italic;
+    font-weight: inherit;
+    background: linear-gradient(135deg, #8da4ff 0%, #34d399 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .markets-copy {
+    padding-top: 8px;
+  }
+
+  .markets-lead {
+    font-size: clamp(1.25rem, 1.8vw, 1.6rem);
+    font-weight: 500;
+    line-height: 1.35;
+    letter-spacing: -0.015em;
+    color: #ffffff;
+    margin: 0 0 16px;
+  }
+
+  .markets-description {
+    color: #9cb1d4;
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    margin: 0;
+    text-wrap: pretty;
+  }
+
+  /* ── Network Container ── */
+  .market-network {
+    position: relative;
+    margin-top: 2rem;
+  }
+
+  /* ── Bilateral Axis (South Korea ⇄ Saudi Arabia) ── */
+  .bilateral-axis {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(20px, 4vw, 54px);
+    max-width: 860px;
+    margin-inline: auto;
+  }
+
+  .hub-node {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 16px 28px 16px 20px;
+    background: #09102c;
+    border: 1px solid rgba(141, 164, 255, 0.22);
+    border-radius: 2px 24px 2px 2px;
+    color: #ffffff;
+    box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.4);
+    transition: transform 220ms ease, border-color 220ms ease, background-color 220ms ease;
+  }
+
+  .hub-node:hover {
+    transform: translateY(-2px);
+    border-color: rgba(141, 164, 255, 0.45);
+    background: #0e173e;
+  }
+
+  .hub-node__image-wrap {
+    width: 64px;
+    height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .hub-node__image {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
+  }
+
+  .hub-node__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hub-node__city {
+    font-size: 0.75rem;
     font-weight: 600;
-    line-height: 1.2;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #8da4ff;
+    line-height: 1.4;
+  }
+
+  .hub-node__title {
+    font-size: clamp(1.35rem, 1.8vw, 1.75rem);
+    font-weight: 600;
+    line-height: 1.15;
     letter-spacing: -0.025em;
+    margin: 2px 0 0;
+    color: #ffffff;
   }
 
-  .market-path__context {
-    color: #aab3c9;
-    letter-spacing: 0.06em;
+  /* ── Direct Bilateral Connector Bridge ── */
+  .bilateral-bridge {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 140px;
+    max-width: 220px;
   }
 
-  @media (max-width: 60rem) {
-    .global-markets__heading {
-      grid-template-columns: 1fr;
-      gap: 2rem;
+  .bilateral-bridge__badge {
+    position: absolute;
+    top: -24px;
+    padding: 3px 10px;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #ffffff;
+    background: #0b1436;
+    border: 1px solid rgba(141, 164, 255, 0.35);
+    border-radius: 9999px;
+    white-space: nowrap;
+  }
+
+  .bilateral-bridge__line {
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #4c82ff 0%, #34d399 100%);
+  }
+
+  .bilateral-bridge__core {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 0 12px #34d399;
+  }
+
+  /* ── Central Trunk Line to the 5 Cards ── */
+  .network-trunk {
+    position: relative;
+    width: 1px;
+    height: 56px;
+    background: var(--network-line);
+    margin-inline: auto;
+  }
+
+  /* ── 5 Continent Cards Grid (Exact NGVSEA circuit & card style) ── */
+  .market-cards {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: var(--market-gap);
+    list-style: none;
+    margin: 40px 0 0;
+    padding: 0;
+  }
+
+  /* Horizontal Distribution Bus Line */
+  .market-cards::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    left: calc((100% - var(--market-gap) * 4) / 10);
+    right: calc((100% - var(--market-gap) * 4) / 10);
+    height: 1px;
+    background: var(--network-line);
+  }
+
+  .market-card {
+    position: relative;
+    min-width: 0;
+  }
+
+  /* Vertical feeder line into each card */
+  .market-card::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    width: 1px;
+    height: 40px;
+    background: var(--network-line);
+  }
+
+  /* Node circle dot at the top of each card */
+  .market-card::after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: calc(50% - 4px);
+    z-index: 1;
+    width: 8px;
+    height: 8px;
+    border: 1px solid #8da4ff;
+    border-radius: 50%;
+    background: #05091e;
+  }
+
+  /* Card Body */
+  .market-card-body {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: var(--card-height);
+    padding: 26px 18px 24px;
+    background: #0a112f;
+    color: #ffffff;
+    border: 1px solid rgba(141, 164, 255, 0.16);
+    border-radius: 2px 24px 2px 2px;
+    text-decoration: none;
+    transition: background-color 220ms ease, border-color 220ms ease, transform 220ms ease;
+  }
+
+  .market-card-body:hover,
+  .market-card-body:focus-visible {
+    background: #0f1a44;
+    border-color: rgba(141, 164, 255, 0.45);
+    transform: translateY(-4px);
+  }
+
+  .market-card-body:focus-visible {
+    outline: 2px solid #8da4ff;
+    outline-offset: 3px;
+  }
+
+  /* Top Right Arrow */
+  .market-card-arrow {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    color: #8da4ff;
+    transition: transform 220ms ease;
+  }
+
+  .market-card-arrow svg {
+    display: block;
+    width: 18px;
+    height: 18px;
+  }
+
+  .market-card-body:hover .market-card-arrow {
+    transform: translateX(3px);
+    color: #ffffff;
+  }
+
+  /* Visual Map Area with NGVSEA circular radar ring */
+  .market-map {
+    position: relative;
+    display: grid;
+    flex: 1;
+    place-items: center;
+    min-height: 0;
+    border-bottom: 1px solid rgba(141, 164, 255, 0.14);
+    padding-bottom: 16px;
+  }
+
+  .market-map::before {
+    content: '';
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    border: 1px solid rgba(141, 164, 255, 0.12);
+    border-radius: 50%;
+  }
+
+  .market-map img {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 140px;
+    object-fit: contain;
+    transition: transform 400ms ease;
+  }
+
+  .market-card-body:hover .market-map img {
+    transform: scale(1.05);
+  }
+
+  /* Continent Name (NO text below) */
+  .market-name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.2em;
+    font-size: clamp(1.2rem, 1.4vw, 1.45rem);
+    font-weight: 600;
+    line-height: 1.15;
+    text-align: center;
+    letter-spacing: -0.025em;
+    margin: 18px 0 0;
+    color: #ffffff;
+  }
+
+  /* ── Bottom Action Link ── */
+  .markets-action {
+    display: flex;
+    justify-content: center;
+    margin-top: 48px;
+  }
+
+  .markets-action a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 36px;
+    min-height: 48px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(141, 164, 255, 0.35);
+    color: #ffffff;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: border-color 180ms ease, color 180ms ease;
+  }
+
+  .markets-action a svg {
+    width: 18px;
+    height: 18px;
+    transition: transform 200ms ease;
+  }
+
+  .markets-action a:hover {
+    color: #8da4ff;
+    border-bottom-color: #8da4ff;
+  }
+
+  .markets-action a:hover svg {
+    transform: translateX(4px);
+  }
+
+  /* ── Responsive Queries ── */
+  @media (max-width: 1199px) {
+    .markets-section {
+      --market-gap: 32px;
     }
 
-    .global-markets__title br {
-      display: none;
-    }
-
-    .market-path {
+    .market-cards {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+      row-gap: 28px;
+      margin-top: 56px;
     }
 
-    .market-path::before {
-      display: none;
+    .market-cards::before {
+      top: -56px;
+      bottom: calc(var(--card-height) / 2);
+      left: 50%;
+      right: auto;
+      width: 1px;
+      height: auto;
     }
 
-    .market-path__item {
-      min-height: 13rem;
-      padding: 2.75rem 2rem 2rem;
-    }
-
-    .market-path__marker {
-      top: 1.05rem;
-      right: 1.1rem;
+    .market-card::before {
+      top: 50%;
       left: auto;
-      transform: none;
+      right: -16px;
+      width: 16px;
+      height: 1px;
+    }
+
+    .market-card::after {
+      top: calc(50% - 4px);
+      left: auto;
+      right: -4px;
+    }
+
+    .market-card:nth-child(even)::before {
+      left: -16px;
+      right: auto;
+    }
+
+    .market-card:nth-child(even)::after {
+      left: -4px;
+      right: auto;
+    }
+
+    .market-card:last-child {
+      grid-column: 1 / -1;
+      justify-self: center;
+      width: calc((100% - var(--market-gap)) / 2);
+    }
+
+    .market-card:last-child::before {
+      top: -24px;
+      left: 50%;
+      right: auto;
+      width: 1px;
+      height: 24px;
+    }
+
+    .market-card:last-child::after {
+      top: -4px;
+      left: calc(50% - 4px);
+      right: auto;
     }
   }
 
-  @media (max-width: 35rem) {
-    .market-path {
+  @media (max-width: 1023px) {
+    .markets-intro {
       grid-template-columns: 1fr;
-      gap: 0.75rem;
+      gap: 28px;
     }
 
-    .market-path__item {
+    h2 {
+      font-size: clamp(2.75rem, 8vw, 4rem);
+    }
+
+    .markets-copy {
+      padding-top: 0;
+      max-width: 680px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .bilateral-axis {
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+    }
+
+    .hub-node {
+      width: 100%;
+      justify-content: flex-start;
+      padding: 16px 20px;
+    }
+
+    .bilateral-bridge {
+      width: 100%;
+      min-width: 0;
+      height: 36px;
+    }
+
+    .bilateral-bridge__line {
+      width: 2px;
+      height: 100%;
+      background: linear-gradient(180deg, #4c82ff 0%, #34d399 100%);
+    }
+
+    .bilateral-bridge__badge {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .bilateral-bridge__core {
+      display: none;
+    }
+
+    .network-trunk {
+      height: 32px;
+    }
+  }
+
+  @media (max-width: 599px) {
+    .markets-section {
+      --card-height: 190px;
+    }
+
+    .market-cards {
+      grid-template-columns: 1fr;
+      padding-left: 24px;
+      row-gap: 16px;
+      margin-top: 32px;
+    }
+
+    .market-cards::before {
+      top: -32px;
+      bottom: calc(var(--card-height) / 2);
+      left: 0;
+    }
+
+    .market-card-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 16px;
+      border-radius: 2px 20px 2px 2px;
+    }
+
+    .market-card-arrow {
+      top: 14px;
+      right: 14px;
+    }
+
+    .market-card::before,
+    .market-card:nth-child(even)::before,
+    .market-card:last-child::before {
+      top: 50%;
+      left: -24px;
+      right: auto;
+      width: 24px;
+      height: 1px;
+    }
+
+    .market-card::after,
+    .market-card:nth-child(even)::after,
+    .market-card:last-child::after {
+      top: calc(50% - 4px);
+      left: -4px;
+      right: auto;
+    }
+
+    .market-card:last-child {
+      grid-column: auto;
+      width: 100%;
+      justify-self: stretch;
+    }
+
+    .market-map {
+      height: 120px;
+      border: 0;
+      padding: 0;
+    }
+
+    .market-map::before {
+      width: 80px;
+      height: 80px;
+    }
+
+    .market-name {
+      font-size: 1.25rem;
       min-height: 0;
-      padding: 2rem;
-    }
-
-    .market-path__marker {
-      top: 1.5rem;
-      right: 1.5rem;
+      margin: 0;
+      text-align: left;
+      justify-content: flex-start;
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .market-path__item {
+    .hub-node,
+    .market-card-body,
+    .market-card-arrow,
+    .market-map img,
+    .markets-action a svg {
       transition: none;
+    }
+
+    .market-card-body:hover .market-map img {
+      transform: none;
     }
   }
 </style>

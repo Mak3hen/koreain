@@ -1,214 +1,204 @@
 ---
 import { businessAreas } from '../../data/businessAreas';
+
+interface AreaMeta {
+  num: string;
+  image?: string;
+  isPlaceholder?: boolean;
+  alt: string;
+  width?: number;
+  height?: number;
+}
+
+const areaMetadata: Record<string, AreaMeta> = {
+  '/business-areas/consultation': {
+    num: '01',
+    image: '/home/business-areas/consultation.webp',
+    alt: 'Executive advisors analyzing corporate market intelligence and financial metrics.',
+    width: 960,
+    height: 637
+  },
+  '/business-areas/artificial-intelligence': {
+    num: '02',
+    image: '/home/business-areas/ai.webp',
+    alt: 'High-precision robotic hand interacting with an illuminated AI semiconductor hologram.',
+    width: 960,
+    height: 640
+  },
+  '/business-areas/automotive': {
+    num: '03',
+    image: '/home/business-areas/automotive.webp',
+    alt: 'Aerodynamic silhouette and LED tail signature of a high-performance modern concept vehicle.',
+    width: 960,
+    height: 484
+  },
+  '/business-areas/investment': {
+    num: '04',
+    image: '',
+    isPlaceholder: true,
+    alt: 'Cross-border investment, venture funding, and bilateral capital advisory.',
+    width: 960,
+    height: 679
+  },
+  '/business-areas/beauty': {
+    num: '05',
+    image: '/home/business-areas/beauty.webp',
+    alt: 'Premium minimalist skincare glass bottles and serum droppers on polished marble.',
+    width: 960,
+    height: 643
+  }
+};
 ---
 
 <section class="section business" id="business-areas" aria-labelledby="business-title">
   <div class="container">
     <header class="business__heading">
       <h2 id="business-title" class="section-title">Our Business Areas</h2>
+      <p class="section-copy business__copy">
+        Bridging Korean technological and industrial leadership with high-growth international ecosystems through specialized bilateral execution.
+      </p>
     </header>
 
     <div class="business__grid">
       {
-        businessAreas.map((area) => (
-          <a class="business-card" href={area.href} aria-label={`Explore ${area.title}`}>
-            <div class="business-card__content">
-              <h3>{area.title}</h3>
-              <p>{area.description}</p>
-            </div>
-            <span class="business-card__corner" aria-hidden="true"></span>
-            <span class="business-card__arrow" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M5 12h14M13 6l6 6-6 6"></path>
-              </svg>
-            </span>
-          </a>
-        ))
+        businessAreas.map((area, index) => {
+          const meta = areaMetadata[area.href] || {
+            num: `0${index + 1}`,
+            image: '/home/business-areas/consultation.webp',
+            alt: area.title,
+            width: 960,
+            height: 640
+          };
+          const isSignature = index === 4;
+
+          return (
+            <article class:list={['business-card', `business-card--${meta.num}`, { 'business-card--signature': isSignature }]}>
+              <a class="business-card__link" href={area.href}>
+                <!-- Top CTA indicator -->
+                <div class="business-card__meta">
+                  <span class="business-card__arrow" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                      <path d="M5 12h14M13 6l6 6-6 6"></path>
+                    </svg>
+                  </span>
+                </div>
+
+                <!-- Card Body: Image Stage & Editorial Copy -->
+                <div class="business-card__body">
+                  <figure class="business-card__visual">
+                    {meta.isPlaceholder || !meta.image ? (
+                      <div class="business-card__black-box" aria-label="Visual placeholder">
+                        <div class="business-card__black-box-inner">
+                          <span class="business-card__placeholder-dot"></span>
+                          <span class="business-card__placeholder-label">Visual Placeholder</span>
+                        </div>
+                      </div>
+                    ) : (
+                      <img
+                        src={meta.image}
+                        alt={meta.alt}
+                        width={meta.width}
+                        height={meta.height}
+                        loading="lazy"
+                        decoding="async"
+                        class="business-card__img"
+                      />
+                    )}
+                    <div class="business-card__overlay" aria-hidden="true"></div>
+                  </figure>
+
+                  <div class="business-card__content">
+                    <h3 class="business-card__title">{area.title}</h3>
+                    <p class="business-card__desc">{area.description}</p>
+                    <span class="business-card__cta">
+                      <span>Explore Sector</span>
+                      <svg class="business-card__cta-icon" viewBox="0 0 16 16" aria-hidden="true">
+                        <path d="M3 8h10M9 4l4 4-4 4"></path>
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+              </a>
+            </article>
+          );
+        })
       }
     </div>
   </div>
 </section>
 
 <style>
-  .business {
-    background: var(--color-bg);
+  .business { position: relative; overflow: hidden; background: var(--color-bg); }
+  .business__heading { max-width: 48rem; margin-bottom: clamp(3rem, 6vw, 5.5rem); }
+  .business__copy { max-width: 43rem; }
+  .business__grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: clamp(3.5rem, 5vw, 5rem) clamp(1.5rem, 3vw, 3rem); align-items: start; }
+  .business-card { position: relative; min-width: 0; }
+  .business-card--01 { grid-column: 1 / 8; }
+  .business-card--02 { grid-column: 8 / -1; margin-top: clamp(4rem, 8vw, 7.5rem); }
+  .business-card--03 { grid-column: 1 / 6; margin-top: -2.5rem; }
+  .business-card--04 { grid-column: 6 / -1; margin-top: 3rem; }
+  .business-card--signature { grid-column: 1 / -1; margin-top: 1rem; }
+  .business-card__link { position: relative; display: block; color: inherit; text-decoration: none; }
+  .business-card__link:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 6px; }
+  .business-card__meta { position: absolute; z-index: 3; inset: 1.5rem 1.5rem auto; display: flex; align-items: flex-start; justify-content: flex-end; color: #fff; pointer-events: none; }
+  .business-card__arrow { flex: 0 0 auto; display: flex; align-items: center; justify-content: center; width: 2.5rem; height: 2.5rem; border-radius: 50%; background: rgba(5, 7, 34, 0.45); border: 1px solid rgba(255, 255, 255, 0.25); backdrop-filter: blur(8px); transition: transform 220ms ease, background-color 220ms ease; }
+  .business-card__arrow svg { width: 1.15rem; height: 1.15rem; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .business-card__link:is(:hover, :focus-visible) .business-card__arrow { transform: translate(3px, -3px); background-color: rgba(5, 7, 34, 0.85); }
+  .business-card__body { position: relative; }
+  .business-card__visual { position: relative; width: 100%; height: clamp(20rem, 28vw, 26rem); margin: 0; overflow: hidden; background: #0b1033; clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 0 100%); }
+  .business-card--02 .business-card__visual { height: clamp(21rem, 30vw, 28rem); }
+  .business-card--03 .business-card__visual { height: clamp(19rem, 24vw, 23rem); }
+  .business-card__img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+  .business-card__black-box { display: flex; width: 100%; height: 100%; align-items: center; justify-content: center; background: #000000; border: 1px solid rgba(255, 255, 255, 0.08); }
+  .business-card__black-box-inner { display: flex; align-items: center; gap: 0.6rem; padding: 0.5rem 0.9rem; border-radius: 999px; border: 1px dashed rgba(255, 255, 255, 0.22); background: rgba(255, 255, 255, 0.04); }
+  .business-card__placeholder-dot { width: 0.45rem; height: 0.45rem; border-radius: 50%; background: var(--color-accent); }
+  .business-card__placeholder-label { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255, 255, 255, 0.5); }
+  .business-card--02 .business-card__img { object-position: 46% 50%; }
+  .business-card--03 .business-card__img { object-position: 60% 50%; }
+  .business-card__overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5, 7, 34, 0.8), transparent 38%); pointer-events: none; }
+  .business-card__content { position: relative; z-index: 2; margin-top: 2rem; padding: 0 1rem 0 1.5rem; border-left: 2px solid var(--color-secondary); }
+  .business-card__title { max-width: 20ch; margin: 0 0 1rem; font-size: clamp(2rem, 3.3vw, 3rem); font-weight: 600; letter-spacing: -0.045em; line-height: 1.06; color: var(--color-text); }
+  .business-card__desc { max-width: 35ch; margin: 0 0 1.5rem; font-size: clamp(1rem, 1.25vw, 1.125rem); line-height: 1.65; color: var(--color-muted); }
+  .business-card__cta { display: inline-flex; align-items: center; gap: 1rem; color: var(--color-secondary); font-size: 0.8125rem; font-weight: 600; }
+  .business-card__cta-icon { width: 1.125rem; height: 1.125rem; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; transition: transform 220ms ease; }
+  .business-card__link:is(:hover, :focus-visible) .business-card__cta-icon { transform: translateX(4px); }
+  /* A split cinematic finish: the image bleeds to the right edge. */
+  .business-card--signature .business-card__body { display: grid; grid-template-columns: 5fr 7fr; min-height: clamp(24rem, 32vw, 29rem); background: var(--color-surface-soft); }
+  .business-card--signature .business-card__visual { grid-column: 2; grid-row: 1; height: 100%; min-height: 0; clip-path: none; }
+  .business-card--signature .business-card__img { object-position: 62% center; }
+  .business-card--signature .business-card__overlay { background: none; }
+  .business-card--signature .business-card__meta { inset: 2rem 2rem auto auto; }
+  .business-card--signature .business-card__content { grid-column: 1; grid-row: 1; align-self: center; padding: 5.5rem 2.5rem 4rem; border: 0; margin: 0; }
+  .business-card--signature .business-card__title { font-size: clamp(2.5rem, 4.5vw, 4rem); }
+  @media (min-width: 40rem) and (max-width: 63.99rem) {
+    .business__grid { gap: 3.5rem 1.5rem; }
+    .business-card--02 { margin-top: 2.5rem; }
+    .business-card--03 { margin-top: 0; }
+    .business-card--04 { margin-top: 1.5rem; }
+    .business-card__visual, .business-card--02 .business-card__visual, .business-card--03 .business-card__visual { height: 18rem; }
+    .business-card__meta { inset: 1rem 1rem auto auto; }
+    .business-card__content { padding-left: 1rem; padding-right: 0; }
+    .business-card--signature .business-card__body { grid-template-columns: 1fr 1fr; min-height: 24rem; }
+    .business-card--signature .business-card__meta { inset: 1.5rem 1.5rem auto auto; }
+    .business-card--signature .business-card__content { padding: 5rem 1.5rem 2.5rem; }
   }
-
-  .business__heading {
-    margin-bottom: clamp(4rem, 7vw, 6rem);
-    text-align: center;
-  }
-
-  .business__grid {
-    display: grid;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    gap: clamp(1.25rem, 2.25vw, 2rem);
-  }
-
-  .business-card {
-    position: relative;
-    display: flex;
-    min-height: 32rem;
-    grid-column: span 2;
-    flex-direction: column;
-    overflow: hidden;
-    padding: clamp(2.5rem, 3.5vw, 3.5rem);
-    border: 1px solid transparent;
-    border-radius: var(--radius-lg);
-    background: var(--color-surface-soft);
-    color: var(--color-text);
-    text-decoration: none;
-    transition:
-      transform 220ms ease,
-      border-color 220ms ease,
-      box-shadow 220ms ease,
-      background-color 220ms ease;
-  }
-
-  .business-card:nth-child(4) {
-    grid-column: 2 / span 2;
-  }
-
-  .business-card:nth-child(5) {
-    grid-column: 4 / span 2;
-  }
-
-  .business-card__content {
-    position: relative;
-    z-index: 1;
-    max-width: 27rem;
-  }
-
-  .business-card h3 {
-    max-width: 14ch;
-    margin: 0;
-    font-size: clamp(1.7rem, 2.4vw, 2.2rem);
-    font-weight: 680;
-    letter-spacing: -0.025em;
-    line-height: 1.15;
-  }
-
-  .business-card p {
-    margin: 1.5rem 0 0;
-    color: var(--color-muted);
-    font-size: 1.05rem;
-    line-height: 1.72;
-  }
-
-  .business-card__corner {
-    position: absolute;
-    right: -6rem;
-    bottom: -6rem;
-    width: 17rem;
-    height: 17rem;
-    border: 1px solid color-mix(in srgb, var(--color-secondary) 24%, transparent);
-    border-radius: 50%;
-    box-shadow:
-      0 0 0 2.2rem color-mix(in srgb, var(--color-secondary) 5%, transparent),
-      0 0 0 4.4rem color-mix(in srgb, var(--color-primary) 3%, transparent);
-    transition:
-      border-color 220ms ease,
-      transform 300ms ease;
-  }
-
-  .business-card__arrow {
-    position: absolute;
-    z-index: 2;
-    right: 2.25rem;
-    bottom: 2.25rem;
-    display: grid;
-    width: 3.5rem;
-    height: 3.5rem;
-    place-items: center;
-    border: 1px solid color-mix(in srgb, var(--color-secondary) 54%, var(--color-border));
-    border-radius: 50%;
-    background: var(--color-surface);
-    color: var(--color-secondary);
-    transition:
-      color 220ms ease,
-      background-color 220ms ease,
-      border-color 220ms ease,
-      transform 220ms ease;
-  }
-
-  .business-card__arrow svg {
-    width: 1.3rem;
-    height: 1.3rem;
-    fill: none;
-    stroke: currentColor;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-width: 1.8;
-  }
-
-  .business-card:hover {
-    border-color: color-mix(in srgb, var(--color-secondary) 58%, var(--color-border));
-    background: var(--color-surface);
-    box-shadow: var(--shadow-card);
-    transform: translateY(-0.125rem);
-  }
-
-  .business-card:hover .business-card__corner {
-    border-color: color-mix(in srgb, var(--color-secondary) 48%, transparent);
-    transform: scale(1.06);
-  }
-
-  .business-card:hover .business-card__arrow {
-    border-color: var(--color-secondary);
-    background: var(--color-secondary);
-    color: #fff;
-    transform: translateX(0.15rem);
-  }
-
-  .business-card:focus-visible {
-    outline: 3px solid var(--focus-ring);
-    outline-offset: 4px;
-  }
-
-  @media (max-width: 63.99rem) {
-    .business__grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .business-card,
-    .business-card:nth-child(4) {
-      min-height: 27rem;
-      grid-column: auto;
-    }
-
-    .business-card:nth-child(5) {
-      width: calc((100% - clamp(1.25rem, 2.25vw, 2rem)) / 2);
-      grid-column: 1 / -1;
-      justify-self: center;
-    }
-  }
-
   @media (max-width: 39.99rem) {
-    .business__grid {
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
-
-    .business-card,
-    .business-card:nth-child(4),
-    .business-card:nth-child(5) {
-      width: 100%;
-      min-height: 24rem;
-      grid-column: auto;
-    }
+    .business__grid { grid-template-columns: 1fr; gap: 3.5rem; }
+    .business-card--01, .business-card--02, .business-card--03, .business-card--04, .business-card--signature { grid-column: 1; margin-top: 0; }
+    .business-card__visual, .business-card--02 .business-card__visual, .business-card--03 .business-card__visual { height: auto; aspect-ratio: 4 / 3; }
+    .business-card__meta { inset: 1.125rem 1.125rem auto auto; }
+    .business-card__content { margin-top: 1.5rem; padding: 0 0 0 1rem; }
+    .business-card__title { font-size: clamp(2rem, 8.5vw, 2.5rem); }
+    .business-card__desc { max-width: 36ch; }
+    .business-card--signature .business-card__body { display: flex; flex-direction: column; min-height: 0; background: transparent; }
+    .business-card--signature .business-card__visual { height: auto; aspect-ratio: 4 / 3; }
+    .business-card--signature .business-card__overlay { background: linear-gradient(180deg, rgba(5, 7, 34, 0.8), transparent 48%); }
+    .business-card--signature .business-card__meta { inset: 1.125rem 1.125rem auto auto; }
+    .business-card--signature .business-card__content { padding: 0 0 0 1rem; margin-top: 1.5rem; border-left: 2px solid var(--color-secondary); }
+    .business-card--signature .business-card__title { font-size: clamp(2rem, 8.5vw, 2.5rem); }
   }
-
   @media (prefers-reduced-motion: reduce) {
-    .business-card,
-    .business-card__corner,
-    .business-card__arrow {
-      transition: none;
-    }
-
-    .business-card:hover,
-    .business-card:hover .business-card__corner,
-    .business-card:hover .business-card__arrow {
-      transform: none;
-    }
+    .business-card__cta-icon { transition: none; }
+    .business-card__link:is(:hover, :focus-visible) .business-card__cta-icon { transform: none; }
   }
 </style>

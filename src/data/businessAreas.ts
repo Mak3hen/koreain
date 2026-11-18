@@ -18,10 +18,10 @@ export const businessAreas = [
     description: 'Supporting international engagement across Korea\'s automotive landscape.'
   },
   {
-    title: 'Drone',
-    shortTitle: 'Drone',
-    href: '/business-areas/drone',
-    description: 'Creating pathways into Korea\'s commercial drone and aerial technology sector.'
+    title: 'Investment',
+    shortTitle: 'Investment',
+    href: '/business-areas/investment',
+    description: 'Facilitating strategic capital, cross-border investments, and venture partnerships between Korea and global markets.'
   },
   {
     title: 'Beauty',

@@ -1,52 +1,152 @@
 ---
-import { businessAreas } from '../../data/businessAreas';
 import ThemeToggle from './ThemeToggle.astro';
 
-const companyLinks = [
-  { title: 'About KoreaIN', href: '/about' },
-  { title: 'Leadership', href: '/about#leadership' },
+const currentPath = Astro.url.pathname;
+const isHomepage = currentPath === '/' || currentPath === '';
+
+const isAboutActive = currentPath === '/about' || currentPath.startsWith('/about');
+const isPartnersActive = currentPath === '/partners' || currentPath.startsWith('/partners');
+const isMarketsActive = currentPath === '/global-markets' || currentPath.startsWith('/global-markets');
+const isConsultationActive = currentPath === '/business-areas/consultation';
+const isBeautyActive = currentPath === '/business-areas/beauty';
+const isServicesActive =
+  currentPath === '/business-areas' ||
+  currentPath === '/business-areas/investment' ||
+  currentPath === '/business-areas/artificial-intelligence' ||
+  currentPath === '/business-areas/automotive';
+const isContactActive = currentPath === '/contact' || currentPath.startsWith('/contact');
+
+// Other branches for Services dropdown (excluding Consultation & Beauty which are top-level on the right)
+const otherBranches = [
+  {
+    title: 'Investment',
+    href: '/business-areas/investment',
+    desc: 'Strategic capital, venture funding & FDI joint ventures'
+  },
+  {
+    title: 'Artificial Intelligence',
+    href: '/business-areas/artificial-intelligence',
+    desc: 'Semiconductor hardware, NPUs & cognitive computing'
+  },
+  {
+    title: 'Automotive',
+    href: '/business-areas/automotive',
+    desc: 'Clean mobility, EV platforms & battery supply chains'
+  }
 ];
 ---
 
-<header class="site-header" data-site-header>
+<header
+  class="site-header"
+  data-site-header
+  data-homepage={isHomepage ? 'true' : 'false'}
+>
   <div class="site-header__inner">
-    <a class="brand" href="/" aria-label="KoreaIN home">
-      <span class="brand__crop">
-        <img
-          src="/images/logoK-IN.svg"
-          alt=""
-          width="1000"
-          height="500"
-          decoding="async"
-          fetchpriority="high"
-        />
-      </span>
-    </a>
+    <!-- Desktop Left Nav (About, Partner Ecosystem, Global Markets) -->
+    <nav class="desktop-nav desktop-nav--left" aria-label="Company and ecosystem">
+      <ul class="desktop-nav__list">
+        <li>
+          <a
+            class:list={['desktop-nav__link', { 'desktop-nav__link--active': isAboutActive }]}
+            href="/about"
+          >
+            About
+          </a>
+        </li>
+        <li>
+          <a
+            class:list={['desktop-nav__link', { 'desktop-nav__link--active': isPartnersActive }]}
+            href="/partners"
+          >
+            Partner Ecosystem
+          </a>
+        </li>
+        <li>
+          <a
+            class:list={['desktop-nav__link', { 'desktop-nav__link--active': isMarketsActive }]}
+            href="/global-markets"
+          >
+            Global Markets
+          </a>
+        </li>
+      </ul>
+    </nav>
 
-    <div class="site-header__desktop">
-      <nav class="desktop-nav" aria-label="Primary navigation">
+    <!-- Center Brand Logo -->
+    <div class="site-header__center">
+      <a class="brand" href="/" aria-label="KoreaIN home">
+        <span class="brand__crop">
+          <img
+            class="brand__logo--standard"
+            src="/images/logoK-IN.svg"
+            alt="KoreaIN"
+            width="1000"
+            height="500"
+            decoding="async"
+            fetchpriority="high"
+          />
+          <img
+            class="brand__logo--light"
+            src="/images/logoK-IN-light.svg"
+            alt="KoreaIN"
+            width="1000"
+            height="500"
+            decoding="async"
+          />
+        </span>
+      </a>
+    </div>
+
+    <!-- Desktop Right Nav Group (Consultation, Beauty, Services, Contact, ThemeToggle) -->
+    <div class="desktop-nav-group desktop-nav-group--right">
+      <nav class="desktop-nav desktop-nav--right" aria-label="Services and contact">
         <ul class="desktop-nav__list">
+          <li>
+            <a
+              class:list={['desktop-nav__link', { 'desktop-nav__link--active': isConsultationActive }]}
+              href="/business-areas/consultation"
+            >
+              Consultation
+            </a>
+          </li>
+          <li>
+            <a
+              class:list={['desktop-nav__link', { 'desktop-nav__link--active': isBeautyActive }]}
+              href="/business-areas/beauty"
+            >
+              Beauty
+            </a>
+          </li>
           <li class="desktop-disclosure" data-desktop-disclosure>
             <button
-              class="desktop-nav__control"
+              class:list={['desktop-nav__control', { 'desktop-nav__control--active': isServicesActive }]}
               type="button"
               aria-expanded="false"
-              aria-controls="company-menu"
+              aria-controls="services-menu"
               aria-haspopup="true"
             >
-              Company
+              <span>Services</span>
               <svg class="chevron" viewBox="0 0 16 16" aria-hidden="true">
                 <path d="m4 6 4 4 4-4" />
               </svg>
             </button>
-            <div class="dropdown dropdown--company" id="company-menu" hidden>
-              <p class="dropdown__eyebrow">Discover KoreaIN</p>
+            <div class="dropdown dropdown--services" id="services-menu" hidden>
+              <div class="dropdown__bridge" aria-hidden="true"></div>
+              <div class="dropdown__header">
+                <a href="/business-areas" class="dropdown__header-link">All 5 Sectors &rarr;</a>
+              </div>
               <ul class="dropdown__list">
-                {companyLinks.map((link) => (
+                {otherBranches.map((branch) => (
                   <li>
-                    <a class="dropdown__link" href={link.href}>
-                      <span>{link.title}</span>
-                      <svg viewBox="0 0 18 18" aria-hidden="true">
+                    <a
+                      class:list={['dropdown__link', { 'dropdown__link--active': currentPath === branch.href }]}
+                      href={branch.href}
+                    >
+                      <div class="dropdown__link-text">
+                        <span class="dropdown__link-title">{branch.title}</span>
+                        <span class="dropdown__link-desc">{branch.desc}</span>
+                      </div>
+                      <svg class="dropdown__link-icon" viewBox="0 0 18 18" aria-hidden="true">
                         <path d="M4 9h10M10 5l4 4-4 4" />
                       </svg>
                     </a>
@@ -55,115 +155,117 @@ const companyLinks = [
               </ul>
             </div>
           </li>
-
-          <li class="desktop-disclosure" data-desktop-disclosure>
-            <button
-              class="desktop-nav__control"
-              type="button"
-              aria-expanded="false"
-              aria-controls="business-areas-menu"
-              aria-haspopup="true"
+          <li>
+            <a
+              class:list={['desktop-nav__link', { 'desktop-nav__link--active': isContactActive }]}
+              href="/contact"
             >
-              Business Areas
-              <svg class="chevron" viewBox="0 0 16 16" aria-hidden="true">
-                <path d="m4 6 4 4 4-4" />
-              </svg>
-            </button>
-            <div class="dropdown dropdown--business" id="business-areas-menu" hidden>
-              <p class="dropdown__eyebrow">Our expertise</p>
-              <ul class="dropdown__list">
-                {businessAreas.map((area) => (
-                  <li>
-                    <a class="dropdown__link" href={area.href}>
-                      <span>{area.title}</span>
-                      <svg viewBox="0 0 18 18" aria-hidden="true">
-                        <path d="M4 9h10M10 5l4 4-4 4" />
-                      </svg>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+              Contact
+            </a>
           </li>
-
-          <li><a class="desktop-nav__link" href="/news">News</a></li>
-          <li><a class="desktop-nav__link" href="/partners">Partners</a></li>
-          <li><a class="desktop-nav__link" href="/contact">Contact</a></li>
         </ul>
       </nav>
 
       <div class="desktop-actions">
         <ThemeToggle />
-        <a class="contact-button" href="/contact">
-          Contact Us
-          <svg viewBox="0 0 18 18" aria-hidden="true">
-            <path d="M4 9h10M10 5l4 4-4 4" />
-          </svg>
-        </a>
       </div>
     </div>
 
-    <button
-      class="menu-toggle"
-      type="button"
-      data-menu-toggle
-      aria-label="Open navigation menu"
-      aria-expanded="false"
-      aria-controls="mobile-navigation"
-    >
-      <span class="menu-toggle__line"></span>
-      <span class="menu-toggle__line"></span>
-      <span class="menu-toggle__line"></span>
-    </button>
+    <!-- Mobile Header Actions (Visible on small screens) -->
+    <div class="mobile-actions">
+      <ThemeToggle />
+      <button
+        class="menu-toggle"
+        type="button"
+        data-menu-toggle
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="mobile-navigation"
+      >
+        <span class="menu-toggle__line"></span>
+        <span class="menu-toggle__line"></span>
+        <span class="menu-toggle__line"></span>
+      </button>
+    </div>
   </div>
 
+  <!-- Mobile Navigation Drawer -->
   <nav class="mobile-panel" id="mobile-navigation" aria-label="Mobile navigation" hidden>
     <div class="mobile-panel__inner">
+      <a
+        class:list={['mobile-panel__link', { 'mobile-panel__link--active': isAboutActive }]}
+        href="/about"
+      >
+        About
+      </a>
+      <a
+        class:list={['mobile-panel__link', { 'mobile-panel__link--active': isPartnersActive }]}
+        href="/partners"
+      >
+        Partner Ecosystem
+      </a>
+      <a
+        class:list={['mobile-panel__link', { 'mobile-panel__link--active': isMarketsActive }]}
+        href="/global-markets"
+      >
+        Global Markets
+      </a>
+      <a
+        class:list={['mobile-panel__link', { 'mobile-panel__link--active': isConsultationActive }]}
+        href="/business-areas/consultation"
+      >
+        Consultation
+      </a>
+      <a
+        class:list={['mobile-panel__link', { 'mobile-panel__link--active': isBeautyActive }]}
+        href="/business-areas/beauty"
+      >
+        Beauty
+      </a>
+
+      <!-- Mobile Services Accordion -->
       <div class="mobile-disclosure" data-mobile-disclosure>
         <button
           class="mobile-disclosure__control"
           type="button"
           aria-expanded="false"
-          aria-controls="mobile-company-menu"
+          aria-controls="mobile-services-menu"
         >
-          <span>Company</span>
+          <span>Services</span>
           <svg class="mobile-disclosure__icon" viewBox="0 0 20 20" aria-hidden="true">
             <path d="M10 4v12M4 10h12" />
           </svg>
         </button>
-        <div class="mobile-disclosure__panel" id="mobile-company-menu" hidden>
+        <div class="mobile-disclosure__panel" id="mobile-services-menu" hidden>
           <ul>
-            {companyLinks.map((link) => (
-              <li><a href={link.href}>{link.title}</a></li>
+            <li>
+              <a
+                class:list={['mobile-link--overview', { 'mobile-link--active': currentPath === '/business-areas' }]}
+                href="/business-areas"
+              >
+                Overview — All 5 Sectors &rarr;
+              </a>
+            </li>
+            {otherBranches.map((branch) => (
+              <li>
+                <a
+                  class:list={[{ 'mobile-link--active': currentPath === branch.href }]}
+                  href={branch.href}
+                >
+                  {branch.title}
+                </a>
+              </li>
             ))}
           </ul>
         </div>
       </div>
 
-      <div class="mobile-disclosure" data-mobile-disclosure>
-        <button
-          class="mobile-disclosure__control"
-          type="button"
-          aria-expanded="false"
-          aria-controls="mobile-business-areas-menu"
-        >
-          <span>Business Areas</span>
-          <svg class="mobile-disclosure__icon" viewBox="0 0 20 20" aria-hidden="true">
-            <path d="M10 4v12M4 10h12" />
-          </svg>
-        </button>
-        <div class="mobile-disclosure__panel" id="mobile-business-areas-menu" hidden>
-          <ul>
-            {businessAreas.map((area) => (
-              <li><a href={area.href}>{area.title}</a></li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      <a class="mobile-panel__link" href="/news">News</a>
-      <a class="mobile-panel__link" href="/partners">Partners</a>
-      <a class="mobile-panel__link" href="/contact">Contact</a>
+      <a
+        class:list={['mobile-panel__link', { 'mobile-panel__link--active': isContactActive }]}
+        href="/contact"
+      >
+        Contact
+      </a>
 
       <div class="mobile-panel__actions">
         <div class="mobile-panel__theme">
@@ -182,9 +284,6 @@ const companyLinks = [
 </header>
 
 <script>
-  const desktopQuery = window.matchMedia('(min-width: 64rem)');
-  const finePointerQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
-
   const setupHeader = (header: HTMLElement) => {
     if (header.dataset.headerReady === 'true') return;
     header.dataset.headerReady = 'true';
@@ -198,8 +297,8 @@ const companyLinks = [
       header.querySelectorAll<HTMLElement>('[data-mobile-disclosure]'),
     );
 
-    let previousBodyOverflow = '';
     let bodyIsLocked = false;
+    let previousBodyOverflow = '';
 
     const lockBody = () => {
       if (bodyIsLocked) return;
@@ -214,6 +313,18 @@ const companyLinks = [
       bodyIsLocked = false;
     };
 
+    // Scroll state management (40-60px threshold)
+    const SCROLL_THRESHOLD = 50;
+
+    const updateScrollState = () => {
+      const isScrolled = window.scrollY > SCROLL_THRESHOLD;
+      header.toggleAttribute('data-scrolled', isScrolled);
+    };
+
+    updateScrollState();
+    window.addEventListener('scroll', updateScrollState, { passive: true });
+
+    // Desktop disclosures
     const setDesktopDisclosure = (item: HTMLElement, open: boolean) => {
       const control = item.querySelector<HTMLButtonElement>('.desktop-nav__control');
       const panel = item.querySelector<HTMLElement>('.dropdown');
@@ -224,12 +335,89 @@ const companyLinks = [
       item.toggleAttribute('data-open', open);
     };
 
-    const closeDesktopDisclosures = (except?: HTMLElement) => {
+    const closeAllDesktopDisclosures = (except?: HTMLElement) => {
       desktopDisclosures.forEach((item) => {
-        if (item !== except) setDesktopDisclosure(item, false);
+        if (item !== except) {
+          setDesktopDisclosure(item, false);
+        }
       });
     };
 
+    // Debounced desktop hover handling
+    let closeTimer: number | undefined;
+
+    desktopDisclosures.forEach((item) => {
+      const control = item.querySelector<HTMLButtonElement>('.desktop-nav__control');
+      const panel = item.querySelector<HTMLElement>('.dropdown');
+      if (!control || !panel) return;
+
+      const openDropdown = () => {
+        if (closeTimer) {
+          window.clearTimeout(closeTimer);
+          closeTimer = undefined;
+        }
+        closeAllDesktopDisclosures(item);
+        setDesktopDisclosure(item, true);
+      };
+
+      const closeDropdownWithDelay = () => {
+        if (closeTimer) window.clearTimeout(closeTimer);
+        closeTimer = window.setTimeout(() => {
+          setDesktopDisclosure(item, false);
+        }, 180);
+      };
+
+      // Mouse hover on disclosure item (button + dropdown + bridge)
+      item.addEventListener('mouseenter', () => {
+        if (window.innerWidth >= 1024) {
+          openDropdown();
+        }
+      });
+
+      item.addEventListener('mouseleave', () => {
+        if (window.innerWidth >= 1024) {
+          closeDropdownWithDelay();
+        }
+      });
+
+      // Click event for touch devices / accessibility toggle
+      control.addEventListener('click', (event) => {
+        event.stopPropagation();
+        const isOpen = item.hasAttribute('data-open');
+        if (isOpen) {
+          setDesktopDisclosure(item, false);
+        } else {
+          openDropdown();
+        }
+      });
+
+      // Keyboard arrow navigation
+      control.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowDown') {
+          event.preventDefault();
+          openDropdown();
+          panel.querySelector<HTMLAnchorElement>('a')?.focus();
+        }
+      });
+
+      // Keyboard focusout management
+      item.addEventListener('focusin', () => {
+        if (closeTimer) {
+          window.clearTimeout(closeTimer);
+          closeTimer = undefined;
+        }
+      });
+
+      item.addEventListener('focusout', () => {
+        window.setTimeout(() => {
+          if (!item.contains(document.activeElement)) {
+            setDesktopDisclosure(item, false);
+          }
+        }, 60);
+      });
+    });
+
+    // Mobile disclosures accordion
     const setMobileDisclosure = (item: HTMLElement, open: boolean) => {
       const control = item.querySelector<HTMLButtonElement>('.mobile-disclosure__control');
       const panel = item.querySelector<HTMLElement>('.mobile-disclosure__panel');
@@ -240,12 +428,24 @@ const companyLinks = [
       item.toggleAttribute('data-open', open);
     };
 
-    const closeMobileDisclosures = (except?: HTMLElement) => {
+    const closeAllMobileDisclosures = (except?: HTMLElement) => {
       mobileDisclosures.forEach((item) => {
         if (item !== except) setMobileDisclosure(item, false);
       });
     };
 
+    mobileDisclosures.forEach((item) => {
+      const control = item.querySelector<HTMLButtonElement>('.mobile-disclosure__control');
+      if (!control) return;
+
+      control.addEventListener('click', () => {
+        const isOpen = control.getAttribute('aria-expanded') === 'true';
+        closeAllMobileDisclosures(item);
+        setMobileDisclosure(item, !isOpen);
+      });
+    });
+
+    // Mobile menu toggle
     const setMobileMenu = (open: boolean, restoreFocus = false) => {
       if (!menuToggle || !mobilePanel) return;
 
@@ -255,80 +455,40 @@ const companyLinks = [
       header.toggleAttribute('data-mobile-open', open);
 
       if (open) {
-        closeDesktopDisclosures();
+        closeAllDesktopDisclosures();
         lockBody();
       } else {
-        closeMobileDisclosures();
+        closeAllMobileDisclosures();
         unlockBody();
         if (restoreFocus) menuToggle.focus();
       }
     };
 
-    desktopDisclosures.forEach((item) => {
-      const control = item.querySelector<HTMLButtonElement>('.desktop-nav__control');
-      const panel = item.querySelector<HTMLElement>('.dropdown');
-      if (!control || !panel) return;
-
-      control.addEventListener('click', () => {
-        const willOpen = control.getAttribute('aria-expanded') !== 'true';
-        closeDesktopDisclosures(item);
-        setDesktopDisclosure(item, willOpen);
-      });
-
-      control.addEventListener('keydown', (event) => {
-        if (event.key !== 'ArrowDown') return;
-        event.preventDefault();
-        closeDesktopDisclosures(item);
-        setDesktopDisclosure(item, true);
-        panel.querySelector<HTMLAnchorElement>('a')?.focus();
-      });
-
-      item.addEventListener('pointerenter', (event) => {
-        if (!desktopQuery.matches || !finePointerQuery.matches || event.pointerType === 'touch') return;
-        closeDesktopDisclosures(item);
-        setDesktopDisclosure(item, true);
-      });
-
-      item.addEventListener('pointerleave', (event) => {
-        if (!desktopQuery.matches || !finePointerQuery.matches || event.pointerType === 'touch') return;
-        setDesktopDisclosure(item, false);
-      });
-
-      item.addEventListener('focusout', () => {
-        window.setTimeout(() => {
-          if (!item.contains(document.activeElement)) setDesktopDisclosure(item, false);
-        }, 0);
-      });
-    });
-
-    mobileDisclosures.forEach((item) => {
-      const control = item.querySelector<HTMLButtonElement>('.mobile-disclosure__control');
-      if (!control) return;
-
-      control.addEventListener('click', () => {
-        const willOpen = control.getAttribute('aria-expanded') !== 'true';
-        closeMobileDisclosures(item);
-        setMobileDisclosure(item, willOpen);
-      });
-    });
-
     menuToggle?.addEventListener('click', () => {
-      setMobileMenu(menuToggle.getAttribute('aria-expanded') !== 'true');
+      const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+      setMobileMenu(!isOpen);
     });
 
+    // Close on any navigation link click
     header.querySelectorAll<HTMLAnchorElement>('a').forEach((link) => {
       link.addEventListener('click', () => {
-        closeDesktopDisclosures();
-        if (!mobilePanel?.hidden) setMobileMenu(false);
+        closeAllDesktopDisclosures();
+        if (mobilePanel && !mobilePanel.hidden) {
+          setMobileMenu(false);
+        }
       });
     });
 
+    // Close on outside pointer interaction
     document.addEventListener('pointerdown', (event) => {
       if (event.target instanceof Node && header.contains(event.target)) return;
-      closeDesktopDisclosures();
-      if (!mobilePanel?.hidden) setMobileMenu(false);
+      closeAllDesktopDisclosures();
+      if (mobilePanel && !mobilePanel.hidden) {
+        setMobileMenu(false);
+      }
     });
 
+    // Close on Escape key
     document.addEventListener('keydown', (event) => {
       if (event.key !== 'Escape') return;
 
@@ -337,17 +497,23 @@ const companyLinks = [
         return;
       }
 
-      const openDisclosure = desktopDisclosures.find((item) => item.hasAttribute('data-open'));
-      if (openDisclosure) {
-        const control = openDisclosure.querySelector<HTMLButtonElement>('.desktop-nav__control');
-        setDesktopDisclosure(openDisclosure, false);
+      const openItem = desktopDisclosures.find((item) => item.hasAttribute('data-open'));
+      if (openItem) {
+        const control = openItem.querySelector<HTMLButtonElement>('.desktop-nav__control');
+        setDesktopDisclosure(openItem, false);
         control?.focus();
       }
     });
 
-    desktopQuery.addEventListener('change', (event) => {
-      closeDesktopDisclosures();
-      if (event.matches && mobilePanel && !mobilePanel.hidden) setMobileMenu(false);
+    // Responsive cleanup on viewport resize
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 1024) {
+        if (mobilePanel && !mobilePanel.hidden) {
+          setMobileMenu(false);
+        }
+      } else {
+        closeAllDesktopDisclosures();
+      }
     });
   };
 
@@ -360,28 +526,109 @@ const companyLinks = [
 </script>
 
 <style>
+  :root {
+    --header-height-initial: 5.65rem;
+    --header-height-scrolled: 4.5rem;
+  }
+
   .site-header {
     position: fixed;
     z-index: 1000;
     inset: 0 0 auto;
-    height: var(--header-height);
-    border-bottom: 1px solid var(--color-header-border);
-    background: color-mix(in srgb, var(--color-header) 96%, transparent);
+    height: var(--header-height-initial);
+    border-bottom: 1px solid transparent;
+    background: transparent;
     color: var(--color-text);
-    backdrop-filter: blur(16px);
+    transition:
+      height 240ms cubic-bezier(0.16, 1, 0.3, 1),
+      background-color 240ms ease,
+      border-color 240ms ease,
+      box-shadow 240ms ease;
   }
 
+  /* Scrolled header state: reduced height, frosted background, border, shadow */
+  .site-header[data-scrolled] {
+    height: var(--header-height-scrolled);
+    border-bottom: 1px solid var(--color-header-border);
+    background: color-mix(in srgb, var(--color-header) 92%, transparent);
+    box-shadow: 0 4px 20px rgba(8, 15, 45, 0.08);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  :global(html[data-theme='dark']) .site-header[data-scrolled] {
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+  }
+
+  /* Internal pages: readable from the very first pixel */
+  .site-header[data-homepage='false'] {
+    border-bottom: 1px solid var(--color-header-border);
+    background: color-mix(in srgb, var(--color-header) 96%, transparent);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 2px 10px rgba(8, 15, 45, 0.04);
+  }
+
+  :global(html[data-theme='dark']) .site-header[data-homepage='false'] {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .site-header[data-homepage='false'][data-scrolled] {
+    box-shadow: 0 4px 20px rgba(8, 15, 45, 0.08);
+  }
+
+  /* ── Inner Grid Layout (3-Column Symmetric on Desktop) ── */
   .site-header__inner {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
     width: calc(100% - (var(--gutter) * 2));
     max-width: var(--container);
     height: 100%;
     margin-inline: auto;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.25rem;
+    gap: clamp(0.75rem, 1.5vw, 2rem);
   }
 
+  .desktop-nav--left {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .desktop-nav--left .desktop-nav__list {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: clamp(0.2rem, 0.5vw, 0.65rem);
+  }
+
+  .site-header__center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+  }
+
+  .desktop-nav-group--right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: clamp(0.5rem, 1vw, 1.25rem);
+  }
+
+  .desktop-nav--right .desktop-nav__list {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.2rem, 0.5vw, 0.65rem);
+  }
+
+  .desktop-actions {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+  }
+
+  /* ── Brand Logo & Shrink Animation ── */
   .brand {
     display: inline-flex;
     min-width: 0;
@@ -401,6 +648,15 @@ const companyLinks = [
     width: 11.5rem;
     height: 2.75rem;
     overflow: hidden;
+    transition:
+      width 240ms cubic-bezier(0.16, 1, 0.3, 1),
+      height 240ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Shrink logo on scroll */
+  .site-header[data-scrolled] .brand__crop {
+    width: 9.75rem;
+    height: 2.35rem;
   }
 
   .brand__crop img {
@@ -413,27 +669,71 @@ const companyLinks = [
     transform: translateY(-50%);
   }
 
-  .site-header__desktop {
-    display: none;
-    min-width: 0;
-    flex: 1;
-    align-items: center;
-    justify-content: flex-end;
-    gap: clamp(1rem, 2.2vw, 2rem);
+  .brand__crop .brand__logo--light { display: none; }
+  :global(html[data-theme='dark']) .brand__crop .brand__logo--standard { display: none; }
+  :global(html[data-theme='dark']) .brand__crop .brand__logo--light { display: block; }
+
+  /* ── Top of Homepage Hero Contrast ── */
+  .site-header[data-homepage='true']:not([data-scrolled]) {
+    background: transparent;
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
   }
 
+  .site-header[data-homepage='true']:not([data-scrolled]) .desktop-nav__link,
+  .site-header[data-homepage='true']:not([data-scrolled]) .desktop-nav__control {
+    color: rgba(255, 255, 255, 0.94);
+  }
+
+  .site-header[data-homepage='true']:not([data-scrolled]) .desktop-nav__link:hover,
+  .site-header[data-homepage='true']:not([data-scrolled]) .desktop-nav__control:hover,
+  .site-header[data-homepage='true']:not([data-scrolled]) .desktop-disclosure[data-open] .desktop-nav__control {
+    background: rgba(255, 255, 255, 0.14);
+    color: #ffffff;
+  }
+
+  .site-header[data-homepage='true']:not([data-scrolled]) .desktop-nav__link--active,
+  .site-header[data-homepage='true']:not([data-scrolled]) .desktop-nav__control--active {
+    background: rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+    font-weight: 700;
+  }
+
+  .site-header[data-homepage='true']:not([data-scrolled]) .chevron {
+    stroke: currentColor;
+  }
+
+  /* Force light logo on dark video hero at top of homepage */
+  .site-header[data-homepage='true']:not([data-scrolled]) .brand__crop .brand__logo--standard {
+    display: none !important;
+  }
+  .site-header[data-homepage='true']:not([data-scrolled]) .brand__crop .brand__logo--light {
+    display: block !important;
+  }
+
+  /* Theme toggle styling over top video */
+  .site-header[data-homepage='true']:not([data-scrolled]) :global(.theme-toggle) {
+    background: rgba(5, 7, 34, 0.45);
+    border-color: rgba(255, 255, 255, 0.28);
+    color: #ffffff;
+    backdrop-filter: blur(8px);
+  }
+
+  .site-header[data-homepage='true']:not([data-scrolled]) :global(.theme-toggle:hover) {
+    background: rgba(5, 7, 34, 0.7);
+    border-color: rgba(255, 255, 255, 0.6);
+    color: #ffffff;
+  }
+
+  /* ── Navigation Links ── */
   .desktop-nav__list,
   .dropdown__list,
   .mobile-disclosure ul {
     padding: 0;
     margin: 0;
     list-style: none;
-  }
-
-  .desktop-nav__list {
-    display: flex;
-    align-items: center;
-    gap: clamp(0.2rem, 0.6vw, 0.65rem);
   }
 
   .desktop-disclosure {
@@ -443,10 +743,10 @@ const companyLinks = [
   .desktop-nav__control,
   .desktop-nav__link {
     display: inline-flex;
-    min-height: 3rem;
+    min-height: 2.85rem;
     align-items: center;
     gap: 0.35rem;
-    padding: 0.65rem clamp(0.5rem, 0.8vw, 0.75rem);
+    padding: 0.55rem clamp(0.55rem, 0.8vw, 0.85rem);
     border: 0;
     border-radius: 999px;
     background: transparent;
@@ -470,6 +770,13 @@ const companyLinks = [
     color: var(--color-interactive);
   }
 
+  .desktop-nav__control--active,
+  .desktop-nav__link--active {
+    background: var(--color-surface-soft);
+    color: var(--color-interactive);
+    font-weight: 700;
+  }
+
   .desktop-nav__control:focus-visible,
   .desktop-nav__link:focus-visible,
   .dropdown__link:focus-visible,
@@ -483,123 +790,205 @@ const companyLinks = [
   }
 
   .chevron {
-    width: 1rem;
-    height: 1rem;
+    width: 0.95rem;
+    height: 0.95rem;
     fill: none;
     stroke: currentColor;
-    stroke-width: 1.6;
+    stroke-width: 1.8;
     stroke-linecap: round;
     stroke-linejoin: round;
-    transition: transform 180ms ease;
+    transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .desktop-disclosure[data-open] .chevron {
     transform: rotate(180deg);
   }
 
+  /* ── Invisible Hover Bridge & Dropdown ── */
+  .dropdown__bridge {
+    position: absolute;
+    top: -0.85rem;
+    left: -0.5rem;
+    right: -0.5rem;
+    height: 0.9rem;
+    background: transparent;
+    pointer-events: auto;
+  }
+
   .dropdown {
     position: absolute;
-    top: calc(100% + 0.75rem);
+    top: calc(100% + 0.35rem);
     left: 50%;
-    width: 18rem;
-    padding: 1rem;
+    width: 24rem;
+    padding: 0.85rem;
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
     background: var(--color-surface);
     box-shadow: var(--shadow-menu);
     color: var(--color-text);
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateY(4px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      opacity 200ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 200ms cubic-bezier(0.16, 1, 0.3, 1),
+      visibility 200ms ease;
   }
 
-  .dropdown[hidden],
-  .mobile-panel[hidden],
-  .mobile-disclosure__panel[hidden] {
-    display: none;
+  /* Open state via JS */
+  .dropdown:not([hidden]),
+  .desktop-disclosure[data-open] .dropdown {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
   }
 
-  .dropdown--business {
-    width: 21rem;
+  @media (min-width: 64rem) {
+    /* Pure CSS hover fallback */
+    .desktop-disclosure:hover .dropdown,
+    .desktop-disclosure:focus-within .dropdown {
+      display: block !important;
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .desktop-disclosure:hover .chevron,
+    .desktop-disclosure:focus-within .chevron {
+      transform: rotate(180deg);
+    }
   }
 
-  .dropdown__eyebrow {
-    padding: 0 0.75rem 0.7rem;
-    margin: 0 0 0.35rem;
+  .dropdown--services {
+    width: 25.5rem;
+  }
+
+  .dropdown__header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 0.5rem 0.65rem;
+    margin-bottom: 0.4rem;
     border-bottom: 1px solid var(--color-border);
-    color: var(--color-muted);
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+  }
+
+  .dropdown__header-link {
+    font-size: 0.75rem;
+    font-weight: 650;
+    color: var(--color-secondary);
+    text-decoration: none;
+    transition: color 160ms ease;
+  }
+
+  .dropdown__header-link:hover {
+    color: var(--color-interactive);
+    text-decoration: underline;
   }
 
   .dropdown__link {
     display: flex;
-    min-height: 2.8rem;
     align-items: center;
     justify-content: space-between;
-    gap: 1rem;
-    padding: 0.7rem 0.75rem;
+    gap: 0.75rem;
+    padding: 0.65rem 0.85rem;
     border-radius: var(--radius-md);
     color: var(--color-text);
-    font-size: 0.9rem;
-    font-weight: 600;
     text-decoration: none;
     transition:
-      color 180ms ease,
-      background-color 180ms ease,
-      padding 180ms ease;
+      background-color 160ms ease,
+      color 160ms ease,
+      padding-left 160ms ease;
   }
 
-  .dropdown__link:hover {
-    padding-inline-start: 0.95rem;
+  .dropdown__link:hover,
+  .dropdown__link--active {
     background: var(--color-surface-soft);
     color: var(--color-interactive);
+    padding-left: 0.95rem;
   }
 
-  .dropdown__link svg,
-  .contact-button svg {
-    width: 1.1rem;
-    height: 1.1rem;
+  .dropdown__link--active .dropdown__link-title {
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+
+  .dropdown__link-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.18rem;
+  }
+
+  .dropdown__link-title {
+    font-size: 0.875rem;
+    font-weight: 650;
+    line-height: 1.3;
+  }
+
+  .dropdown__link-desc {
+    font-size: 0.75rem;
+    color: var(--color-muted);
+    line-height: 1.4;
+  }
+
+  .dropdown__link-icon {
+    width: 1rem;
+    height: 1rem;
     flex: 0 0 auto;
     fill: none;
     stroke: currentColor;
     stroke-width: 1.6;
     stroke-linecap: round;
     stroke-linejoin: round;
+    opacity: 0.4;
+    transition: transform 160ms ease, opacity 160ms ease;
   }
 
-  .desktop-actions {
-    display: flex;
-    flex: 0 0 auto;
-    align-items: center;
-    gap: 0.75rem;
+  .dropdown__link:hover .dropdown__link-icon {
+    opacity: 1;
+    transform: translateX(3px);
   }
 
-  .contact-button {
-    display: inline-flex;
-    min-height: 3rem;
-    align-items: center;
-    justify-content: center;
-    gap: 0.65rem;
-    padding: 0.75rem 1.15rem;
-    border-radius: 999px;
-    background: var(--color-interactive);
-    color: var(--color-surface);
-    font-size: 0.875rem;
-    font-weight: 700;
-    line-height: 1;
-    text-decoration: none;
-    white-space: nowrap;
-    transition:
-      filter 180ms ease,
-      transform 180ms ease;
+  /* ── Mobile Layout (< 64rem) ── */
+  @media (max-width: 63.99rem) {
+    .site-header__inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .desktop-nav--left,
+    .desktop-nav-group--right {
+      display: none !important;
+    }
+
+    .site-header__center {
+      justify-content: flex-start;
+    }
+
+    .mobile-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .site-header[data-homepage='true']:not([data-scrolled]) .menu-toggle {
+      background: rgba(5, 7, 34, 0.45);
+      border-color: rgba(255, 255, 255, 0.28);
+      color: #ffffff;
+      backdrop-filter: blur(8px);
+    }
   }
 
-  .contact-button:hover {
-    filter: brightness(1.08);
-    transform: translateY(-1px);
+  @media (min-width: 64rem) {
+    .mobile-actions {
+      display: none !important;
+    }
   }
 
+  /* ── Hamburger Menu Toggle ── */
   .menu-toggle {
     position: relative;
     display: inline-flex;
@@ -642,19 +1031,25 @@ const companyLinks = [
     transform: translateY(-0.33rem) rotate(-45deg);
   }
 
+  /* ── Mobile Panel Drawer ── */
   .mobile-panel {
     position: fixed;
-    z-index: -1;
-    top: var(--header-height);
+    z-index: 999;
+    top: var(--header-height-initial);
     right: 0;
     left: 0;
-    max-height: calc(100svh - var(--header-height));
+    max-height: calc(100svh - var(--header-height-initial));
     overflow-y: auto;
     border-bottom: 1px solid var(--color-border);
     background: var(--color-surface);
     box-shadow: var(--shadow-menu);
     color: var(--color-text);
     overscroll-behavior: contain;
+  }
+
+  .site-header[data-scrolled] .mobile-panel {
+    top: var(--header-height-scrolled);
+    max-height: calc(100svh - var(--header-height-scrolled));
   }
 
   .mobile-panel__inner {
@@ -689,6 +1084,11 @@ const companyLinks = [
     text-align: left;
     text-decoration: none;
     cursor: pointer;
+  }
+
+  .mobile-panel__link--active {
+    color: var(--color-interactive);
+    font-weight: 700;
   }
 
   .mobile-disclosure__icon {
@@ -731,6 +1131,20 @@ const companyLinks = [
     color: var(--color-interactive);
   }
 
+  .mobile-link--overview {
+    color: var(--color-secondary) !important;
+    font-weight: 650 !important;
+    border-bottom: 1px dashed var(--color-border);
+    margin-bottom: 0.25rem;
+    padding-bottom: 0.6rem;
+  }
+
+  .mobile-link--active {
+    color: var(--color-interactive) !important;
+    font-weight: 700 !important;
+    background: var(--color-surface-soft);
+  }
+
   .mobile-panel__actions {
     display: grid;
     gap: 1rem;
@@ -748,20 +1162,45 @@ const companyLinks = [
     font-weight: 650;
   }
 
+  .contact-button {
+    display: inline-flex;
+    min-height: 3rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    padding: 0.75rem 1.15rem;
+    border-radius: 999px;
+    background: var(--color-interactive);
+    color: var(--color-surface);
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1;
+    text-decoration: none;
+    white-space: nowrap;
+    transition:
+      filter 180ms ease,
+      transform 180ms ease;
+  }
+
+  .contact-button:hover {
+    filter: brightness(1.08);
+    transform: translateY(-1px);
+  }
+
+  .contact-button svg {
+    width: 1.1rem;
+    height: 1.1rem;
+    flex: 0 0 auto;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
   .contact-button--mobile {
     width: 100%;
     min-height: 3.2rem;
-  }
-
-  @media (min-width: 64rem) {
-    .site-header__desktop {
-      display: flex;
-    }
-
-    .menu-toggle,
-    .mobile-panel {
-      display: none !important;
-    }
   }
 
   @media (max-width: 27rem) {
@@ -772,13 +1211,16 @@ const companyLinks = [
   }
 
   @media (prefers-reduced-motion: reduce) {
+    .site-header,
+    .brand__crop,
     .desktop-nav__control,
     .desktop-nav__link,
     .chevron,
     .dropdown__link,
     .contact-button,
     .menu-toggle__line,
-    .mobile-disclosure__icon path {
+    .mobile-disclosure__icon path,
+    .dropdown {
       transition: none;
     }
   }

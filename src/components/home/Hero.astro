@@ -1,5 +1,6 @@
-<div class="hero">
+<div class="hero" data-hero>
   <video
+    id="hero-background-video"
     class="hero__video"
     autoplay
     muted
@@ -10,33 +11,94 @@
   >
     <source src="/homepage.mp4" type="video/mp4" />
   </video>
+  <div class="hero__top-shade" aria-hidden="true"></div>
   <div class="hero__shade" aria-hidden="true"></div>
   <div class="hero__signature">
     <p class="hero__eyebrow">
       <span>KOREA</span>
-      <span class="hero__eyebrow-line separator-line" aria-hidden="true">
-        <svg viewBox="0 0 44 2" fill="none" preserveAspectRatio="none">
-          <line x1="0" y1="1" x2="44" y2="1" stroke="#CD2E3A" stroke-width="2" stroke-linecap="round" />
-        </svg>
-      </span>
+      <span class="hero__eyebrow-line" aria-hidden="true"></span>
       <span>GLOBAL</span>
     </p>
     <h1 class="hero__tagline">Connecting Korea to Global Partners</h1>
   </div>
+  <button
+    class="hero__motion"
+    type="button"
+    data-video-toggle
+    data-state="paused"
+    aria-controls="hero-background-video"
+    aria-label="Resume background video"
+    hidden
+  >
+    <svg class="hero__pause-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3v10M11 3v10" /></svg>
+    <svg class="hero__play-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="m5 3 8 5-8 5Z" /></svg>
+    <span data-video-label>Resume</span>
+  </button>
+  <span class="sr-only" data-video-status aria-live="polite"></span>
 </div>
+
+<script>
+  const setupHeroVideo = () => {
+    const hero = document.querySelector<HTMLElement>('[data-hero]');
+    const video = hero?.querySelector<HTMLVideoElement>('video');
+    const button = hero?.querySelector<HTMLButtonElement>('[data-video-toggle]');
+    const label = button?.querySelector<HTMLElement>('[data-video-label]');
+    const status = hero?.querySelector<HTMLElement>('[data-video-status]');
+    if (!hero || !video || !button || !label || !status || hero.dataset.ready === 'true') return;
+    hero.dataset.ready = 'true';
+
+    const sync = () => {
+      const paused = video.paused;
+      button.dataset.state = paused ? 'paused' : 'playing';
+      button.setAttribute('aria-label', paused ? 'Resume background video' : 'Pause background video');
+      label.textContent = paused ? 'Resume' : 'Pause';
+    };
+    const play = async (explicit = false) => {
+      status.textContent = '';
+      try {
+        await video.play();
+      } catch {
+        if (explicit) status.textContent = 'The background video could not start. Please try again.';
+      }
+      sync();
+    };
+
+    video.muted = true;
+    video.autoplay = true;
+    void play();
+
+    video.addEventListener('play', sync);
+    video.addEventListener('pause', sync);
+    button.addEventListener('click', () => {
+      if (video.paused) {
+        void play(true);
+      } else {
+        video.autoplay = false;
+        video.pause();
+      }
+    });
+    video.addEventListener('error', () => {
+      button.disabled = true;
+      status.textContent = 'The background video is unavailable.';
+      sync();
+    });
+    sync();
+    button.hidden = false;
+  };
+  setupHeroVideo();
+  document.addEventListener('astro:page-load', setupHeroVideo);
+</script>
 
 <style>
   .hero {
     position: relative;
     width: 100%;
-    height: calc(100svh - var(--header-height));
-    /* Offset the fixed header; together, header and hero fill one small viewport. */
-    margin: var(--header-height) 0 0;
+    height: 100svh;
+    margin: 0;
     padding: 0;
     overflow: hidden;
     background: #050722;
   }
-
   .hero__video {
     position: absolute;
     z-index: 0;
@@ -45,181 +107,105 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* Favor the upper skyline while allowing full-bleed edge cropping. */
-    object-position: 50% 25%;
+    /* The tower is at ~46% of the source width; retain its tip on wide screens. */
+    object-position: 50% 15%;
   }
-
-  @media (max-width: 47.99rem) {
-    .hero__video {
-      object-position: 62% 25%;
-    }
+  .hero__top-shade {
+    position: absolute;
+    z-index: 1;
+    inset: 0 0 auto;
+    height: clamp(6.5rem, 16svh, 11rem);
+    background: linear-gradient(180deg, rgba(5, 7, 34, 0.65) 0%, rgba(5, 7, 34, 0.25) 50%, transparent 100%);
+    pointer-events: none;
   }
-
   .hero__shade {
     position: absolute;
     z-index: 1;
     inset: auto 0 0;
-    height: 48%;
-    background: linear-gradient(
-      to bottom,
-      rgba(5, 7, 34, 0),
-      rgba(5, 7, 34, 0.12) 40%,
-      rgba(5, 7, 34, 0.42)
-    );
+    height: 55%;
+    background: linear-gradient(to bottom, rgba(5, 7, 34, 0), rgba(5, 7, 34, 0.2) 40%, rgba(5, 7, 34, 0.66));
     pointer-events: none;
   }
-
   .hero__signature {
     position: absolute;
     z-index: 2;
-    left: clamp(24px, 5vw, 96px);
-    bottom: max(clamp(32px, 8vh, 96px), env(safe-area-inset-bottom, 0px));
-    width: 100%;
-    max-width: clamp(320px, 46vw, 720px);
+    left: max(var(--gutter), calc((100% - var(--container)) / 2));
+    bottom: max(clamp(2rem, 6svh, 4.5rem), env(safe-area-inset-bottom, 0px));
+    width: min(46rem, 75%);
     animation: hero-signature-enter 650ms cubic-bezier(0.22, 1, 0.36, 1) both;
   }
-
   .hero__eyebrow {
     display: inline-flex;
     align-items: center;
-    gap: clamp(0.75rem, 1vw, 1rem); /* 12–16px */
+    gap: 0.875rem;
     margin: 0 0 1.125rem;
-    color: rgba(255, 255, 255, 0.92);
-    font-size: clamp(1rem, 0.4vw + 0.9rem, 1.125rem); /* 16-18px desktop */
+    color: rgba(255, 255, 255, 0.94);
+    font-size: 0.875rem;
     font-weight: 600;
     letter-spacing: 0.18em;
     line-height: 1;
-    text-transform: uppercase;
   }
-
-  .hero__eyebrow-line,
-  .separator-line {
-    display: inline-flex !important;
-    align-items: center !important;
-    width: clamp(2.25rem, 2.8vw, 3rem) !important; /* 36–48px desktop */
-    height: 2px !important;
-    min-width: 36px;
-    min-height: 2px;
-    flex: 0 0 auto !important;
-    background-color: #cd2e3a !important;
-    border-radius: 1px;
-    vertical-align: middle;
-  }
-
-  .hero__eyebrow-line svg,
-  .separator-line svg {
-    display: block;
-    width: 100%;
-    height: 2px;
-  }
-
+  .hero__eyebrow-line { width: 2.5rem; height: 2px; flex: 0 0 auto; background: #cd2e3a; }
   .hero__tagline {
     margin: 0;
     color: #fff;
-    font-size: clamp(3.5rem, 4.3vw, 4.5rem); /* 56-72px desktop */
+    font-size: clamp(3rem, 4.5vw, 4.5rem);
     font-weight: 600;
-    letter-spacing: -0.03em;
-    line-height: 1.05;
+    letter-spacing: -0.035em;
+    line-height: 1.06;
     text-wrap: balance;
-    text-shadow: 0 2px 20px rgba(5, 7, 34, 0.4);
+    text-shadow: 0 2px 16px rgba(5, 7, 34, 0.32);
   }
-
-  @keyframes hero-signature-enter {
-    from {
-      opacity: 0;
-      transform: translateY(14px);
-    }
-
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  .hero__motion {
+    position: absolute;
+    z-index: 3;
+    right: max(var(--gutter), calc((100% - var(--container)) / 2));
+    bottom: max(clamp(2rem, 6svh, 4.5rem), env(safe-area-inset-bottom, 0px));
+    display: inline-flex;
+    min-height: 2.75rem;
+    padding: 0.625rem 0.875rem;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 0.5rem;
+    color: #fff;
+    background: rgba(5, 7, 34, 0.84);
+    font: inherit;
+    font-size: 0.75rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 180ms ease;
   }
-
-  /* Tablet */
+  .hero__motion[hidden] { display: none; }
+  .hero__motion:hover { background: #0b1033; }
+  .hero__motion:focus-visible { outline: 3px solid #fff; outline-offset: 4px; }
+  .hero__motion svg { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .hero__motion[data-state='playing'] .hero__play-icon,
+  .hero__motion[data-state='paused'] .hero__pause-icon { display: none; }
+  @keyframes hero-signature-enter { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
   @media (max-width: 63.99rem) {
-    .hero__eyebrow {
-      font-size: clamp(0.875rem, 1.2vw + 0.6rem, 1rem); /* 14-16px tablet */
-      margin-bottom: 1rem;
-      gap: 0.8125rem; /* ~13px */
-    }
-
-    .hero__eyebrow-line,
-    .separator-line {
-      width: 2.125rem !important; /* ~34px tablet */
-      min-width: 30px;
-    }
-
-    .hero__tagline {
-      font-size: clamp(2.625rem, 5.2vw, 3.25rem); /* 42-52px tablet */
-      line-height: 1.06;
-    }
+    .hero__video { object-position: 47% 20%; }
+    .hero__signature { width: min(40rem, 88%); }
+    .hero__tagline { font-size: clamp(2.5rem, 5.5vw, 3.25rem); }
+    .hero__motion { top: 1.25rem; bottom: auto; }
   }
-
-  /* Mobile */
   @media (max-width: 39.99rem) {
-    .hero__signature {
-      left: 20px;
-      right: 20px;
-      width: auto;
-      max-width: calc(100% - 40px);
-      bottom: max(36px, env(safe-area-inset-bottom, 0px));
-    }
-
-    .hero__eyebrow {
-      font-size: clamp(0.8125rem, 2.5vw, 0.875rem); /* 13-14px mobile */
-      margin-bottom: 0.75rem;
-      gap: 0.75rem; /* 12px */
-    }
-
-    .hero__eyebrow-line,
-    .separator-line {
-      width: 1.875rem !important; /* 30px mobile */
-      min-width: 24px;
-    }
-
-    .hero__tagline {
-      font-size: clamp(2rem, 7.8vw, 2.5rem); /* 32-40px mobile */
-      line-height: 1.08;
-    }
+    /* Intentional portrait crop: the old 62% placed Lotte Tower off the left edge. */
+    .hero__video { object-position: 45% 20%; }
+    .hero__signature { left: var(--gutter); right: var(--gutter); width: auto; bottom: max(2.25rem, env(safe-area-inset-bottom, 0px)); }
+    .hero__tagline { font-size: clamp(2rem, 8.4vw, 2.5rem); }
+    .hero__eyebrow { font-size: 0.75rem; gap: 0.75rem; }
+    .hero__eyebrow-line { width: 2rem; }
+    .hero__motion { top: 1rem; }
   }
-
-  /* Short-height displays */
-  @media (max-height: 45rem) {
-    .hero__signature {
-      bottom: max(1.75rem, env(safe-area-inset-bottom, 0px));
-    }
-
-    .hero__eyebrow {
-      margin-bottom: 0.625rem;
-      font-size: 0.875rem;
-    }
-
-    .hero__tagline {
-      font-size: clamp(2.125rem, 6vh, 3rem);
-      line-height: 1.06;
-    }
-  }
-
   @media (max-height: 34rem) {
-    .hero__signature {
-      bottom: max(1.25rem, env(safe-area-inset-bottom, 0px));
-    }
-
-    .hero__eyebrow {
-      margin-bottom: 0.5rem;
-      font-size: 0.8125rem;
-    }
-
-    .hero__tagline {
-      font-size: clamp(1.75rem, 7vh, 2.25rem);
-      line-height: 1.08;
-    }
+    .hero__signature { bottom: 1.25rem; width: min(38rem, 75%); }
+    .hero__tagline { font-size: clamp(1.625rem, 6svh, 2.25rem); }
+    .hero__eyebrow { font-size: 0.75rem; margin-bottom: 0.625rem; }
+    .hero__motion { top: 1rem; bottom: auto; }
   }
-
   @media (prefers-reduced-motion: reduce) {
-    .hero__signature {
-      animation: none;
-    }
+    .hero__signature { animation: none; }
+    .hero__motion { transition: none; }
   }
 </style>

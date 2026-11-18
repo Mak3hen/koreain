@@ -1,0 +1,27 @@
+<section class="final-cta" aria-labelledby="conversation-title">
+  <div class="container final-cta__inner">
+    <div>
+      <h2 id="conversation-title" class="section-title">Start a conversation</h2>
+      <p class="section-copy">
+        Talk with KoreaIN about opportunities connecting Korea and international markets.
+      </p>
+    </div>
+    <a class="final-cta__link" href="/contact">
+      <span>Contact Us</span>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+    </a>
+  </div>
+</section>
+
+<style>
+  .final-cta { padding-block: clamp(3.5rem, 6vw, 5.5rem); background: var(--color-surface); }
+  .final-cta__inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem 4rem; }
+  .final-cta .section-title { margin-bottom: 1rem; }
+  .final-cta .section-copy { max-width: 42rem; }
+  .final-cta__link { display: inline-flex; flex: 0 0 auto; min-height: 3.25rem; padding: 0.875rem 1.5rem; align-items: center; gap: 1.5rem; border: 1px solid transparent; border-radius: 0.75rem; background: #000e8a; color: #fff; font-size: 0.9375rem; font-weight: 600; transition: background-color 220ms ease; }
+  .final-cta__link:hover { background: #0047a0; }
+  .final-cta__link svg { width: 1.125rem; height: 1.125rem; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; transition: transform 220ms ease; }
+  .final-cta__link:is(:hover, :focus-visible) svg { transform: translateX(3px); }
+  @media (max-width: 47.99rem) { .final-cta__inner { flex-direction: column; align-items: flex-start; } }
+  @media (prefers-reduced-motion: reduce) { .final-cta__link, .final-cta__link svg { transition: none; } .final-cta__link:is(:hover, :focus-visible) svg { transform: none; } }
+</style>

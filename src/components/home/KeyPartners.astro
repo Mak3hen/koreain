@@ -1,0 +1,418 @@
+---
+interface Partner {
+  name: string;
+  logo: string;
+  width: number;
+  height: number;
+  category: string;
+  themeType: 'color' | 'monochrome' | 'hybrid';
+  hasTextLabel?: boolean;
+}
+
+const partners: Partner[] = [
+  {
+    name: 'Samsung',
+    logo: '/home/partners/samsung.webp',
+    width: 400,
+    height: 62,
+    category: 'Technology & Electronics',
+    themeType: 'color'
+  },
+  {
+    name: 'Hyundai Engineering & Construction',
+    logo: '/home/partners/hyundai-ec.webp',
+    width: 400,
+    height: 70,
+    category: 'Infrastructure & EPC',
+    themeType: 'color'
+  },
+  {
+    name: 'Hanwha',
+    logo: '/home/partners/hanwha.webp',
+    width: 400,
+    height: 111,
+    category: 'Energy & Aerospace',
+    themeType: 'hybrid'
+  },
+  {
+    name: 'Nice One Saudi',
+    logo: '/home/partners/nice-one.webp',
+    width: 400,
+    height: 140,
+    category: 'E-Commerce & Retail',
+    themeType: 'monochrome'
+  },
+  {
+    name: 'Saudi-South Korean Business Council',
+    logo: '/home/partners/saudi-korea-council.webp',
+    width: 263,
+    height: 160,
+    category: 'Bilateral Trade Council',
+    themeType: 'color'
+  },
+  {
+    name: 'Care Outlet',
+    logo: '/home/partners/care-outlet.webp',
+    width: 157,
+    height: 160,
+    category: 'Beauty & Personal Care',
+    themeType: 'color',
+    hasTextLabel: true
+  },
+  {
+    name: 'Wallan Trading Company',
+    logo: '/home/partners/wallan.webp',
+    width: 324,
+    height: 160,
+    category: 'Automotive & Mobility',
+    themeType: 'hybrid'
+  },
+  {
+    name: 'Kia / Aljabr',
+    logo: '/home/partners/aljabr.webp',
+    width: 252,
+    height: 160,
+    category: 'Mobility & Distribution',
+    themeType: 'monochrome'
+  },
+  {
+    name: 'Almajdouie',
+    logo: '/home/partners/almajdouie.webp',
+    width: 400,
+    height: 131,
+    category: 'Logistics & Automotive',
+    themeType: 'monochrome'
+  },
+  {
+    name: 'Al-Falah Cars Group',
+    logo: '/home/partners/al-falah.webp',
+    width: 400,
+    height: 82,
+    category: 'Automotive Distribution',
+    themeType: 'monochrome'
+  },
+  {
+    name: 'Arabio',
+    logo: '/home/partners/arabio.webp',
+    width: 400,
+    height: 118,
+    category: 'Biopharmaceuticals',
+    themeType: 'monochrome'
+  }
+];
+---
+
+<section class="section partners" id="partners" aria-labelledby="partners-title">
+  <div class="container">
+    <div class="partners__header">
+      <div class="partners__intro">
+        <h2 id="partners-title" class="section-title">Key Partners & Strategic Alliances</h2>
+        <p class="section-copy partners__copy">
+          Bridging Korean market leaders with established institutions and commercial pioneers across Saudi Arabia and the wider Middle East.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="partners__carousel" data-partners-carousel data-duration={partners.length * 5.2}>
+    <div
+      class="partners__viewport"
+      id="partners-viewport"
+      role="region"
+      aria-label="Partners marquee"
+      tabindex="0"
+      data-partners-viewport
+    >
+      {[-1, 0, 1].map((copyIndex) => (
+        <ul
+          class:list={['partners__track', { 'partners__track--clone': copyIndex !== 0 }]}
+          aria-hidden={copyIndex !== 0 ? 'true' : undefined}
+          inert={copyIndex !== 0 ? true : undefined}
+          data-partners-track={copyIndex === 0 ? '' : undefined}
+        >
+          {partners.map((partner, idx) => (
+            <li class="partners__item" data-partner-name={partner.name} data-index={idx + 1}>
+              <div class="partner-card">
+                <div class="partner-card__content">
+                  <div class="partner-card__stage">
+                    <img
+                      src={partner.logo}
+                      alt={copyIndex === 0 ? `${partner.name} logo` : ''}
+                      width={partner.width}
+                      height={partner.height}
+                      loading="lazy"
+                      decoding="async"
+                      draggable="false"
+                      class:list={[
+                        'partner-card__img',
+                        `partner-card__img--${partner.themeType}`,
+                        { 'partner-card__img--emblem': partner.hasTextLabel }
+                      ]}
+                    />
+                    {partner.hasTextLabel && (
+                      <span class="partner-card__name-badge">{partner.name}</span>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      ))}
+    </div>
+  </div>
+
+  <div class="container">
+      <div class="partners__toolbar" role="region" aria-label="Partner carousel controls">
+        <div class="partners__actions">
+          <button
+            class="partners__btn partners__btn--toggle"
+            type="button"
+            data-partners-toggle
+            aria-label="Pause partners carousel"
+            aria-controls="partners-viewport"
+            disabled
+          >
+            <span class="partners__icon partners__icon--pause" aria-hidden="true">
+              <svg viewBox="0 0 16 16"><path d="M4.5 3v10M11.5 3v10"></path></svg>
+            </span>
+            <span class="partners__icon partners__icon--play" aria-hidden="true">
+              <svg viewBox="0 0 16 16"><path d="M5 3.5l8 4.5-8 4.5V3.5z"></path></svg>
+            </span>
+            <span class="partners__btn-label" data-partners-label>Pause</span>
+          </button>
+
+          <button
+            class="partners__btn partners__btn--nav"
+            type="button"
+            data-partners-prev
+            aria-label="Previous partner"
+            aria-controls="partners-viewport"
+            disabled
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M19 12H5M12 19l-7-7 7-7"></path>
+            </svg>
+          </button>
+
+          <button
+            class="partners__btn partners__btn--nav"
+            type="button"
+            data-partners-next
+            aria-label="Next partner"
+            aria-controls="partners-viewport"
+            disabled
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+  </div>
+
+  <p class="sr-only" role="status" aria-live="polite" aria-atomic="true" data-partners-status></p>
+</section>
+
+<script>
+  function setupPartnersCarousel() {
+    for (const carousel of document.querySelectorAll<HTMLElement>('[data-partners-carousel]')) {
+      const section = carousel.closest<HTMLElement>('.partners');
+      const viewport = carousel.querySelector<HTMLElement>('[data-partners-viewport]');
+      const track = carousel.querySelector<HTMLElement>('[data-partners-track]');
+      const toggle = section?.querySelector<HTMLButtonElement>('[data-partners-toggle]');
+      const previous = section?.querySelector<HTMLButtonElement>('[data-partners-prev]');
+      const next = section?.querySelector<HTMLButtonElement>('[data-partners-next]');
+      const status = section?.querySelector<HTMLElement>('[data-partners-status]');
+      const label = toggle?.querySelector<HTMLElement>('[data-partners-label]');
+      if (!viewport || !track || !toggle || !previous || !next || !label || carousel.dataset.initialized === 'true') continue;
+      carousel.dataset.initialized = 'true';
+      toggle.dataset.state = 'playing';
+      const items = [...track.querySelectorAll<HTMLElement>('.partners__item')];
+      const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+      const duration = Number(carousel.dataset.duration);
+      // Only an explicit Pause persists. Briefly let native swipe inertia settle.
+      const resumeDelay = 180;
+      let cycle = 0, step = 0, position = 0, written = 0, speed = 0;
+      let frame = 0, lastTime = 0, resumeAt = 0, announceTimer = 0;
+      let paused = false, inView = false;
+      let pointer: { id: number; type: string; x: number; position: number } | null = null;
+      let tween: { from: number; to: number; start: number } | null = null;
+
+      const wrap = (value: number) => cycle + ((value % cycle) + cycle) % cycle;
+      const write = (value: number) => {
+        if (!cycle) return;
+        position = wrap(value);
+        viewport.scrollLeft = position;
+        written = viewport.scrollLeft;
+      };
+      const announce = () => {
+        if (!cycle || !step || !status) return;
+        const index = Math.floor((((position % cycle) + cycle) % cycle) / step) % items.length;
+        status.textContent = `${items[index].dataset.partnerName}. Partner ${index + 1} of ${items.length}.`;
+      };
+      const canAutoScroll = () => !paused && !pointer;
+      const schedule = () => {
+        if (!frame && inView && !document.hidden && (tween || canAutoScroll())) frame = requestAnimationFrame(tick);
+      };
+      function tick(now: number) {
+        frame = 0;
+        const elapsed = lastTime ? Math.min((now - lastTime) / 1000, .05) : 0;
+        lastTime = now;
+        if (tween) {
+          const progress = Math.min((now - tween.start) / 420, 1);
+          write(tween.from + (tween.to - tween.from) * (1 - Math.pow(1 - progress, 3)));
+          if (progress === 1) { tween = null; resumeAt = now; announce(); }
+        } else if (canAutoScroll() && now >= resumeAt && cycle) {
+          const targetSpeed = cycle / duration;
+          speed = Math.min(targetSpeed, speed + targetSpeed * elapsed / .4);
+          write(position + speed * elapsed);
+        } else { speed = 0; }
+        schedule();
+      }
+      const stopFrame = () => { cancelAnimationFrame(frame); frame = 0; lastTime = 0; speed = 0; };
+      const hold = () => { speed = 0; resumeAt = performance.now() + resumeDelay; };
+      const measure = () => {
+        const width = track.getBoundingClientRect().width;
+        if (!width || Math.abs(width - cycle) < .1) return;
+        const progress = cycle ? (((position % cycle) + cycle) % cycle) / cycle : 0;
+        cycle = width;
+        step = items[0].getBoundingClientRect().width;
+        tween = null;
+        write(cycle * (1 + progress));
+        speed = 0;
+        schedule();
+      };
+      const move = (direction: number) => {
+        hold();
+        if (reducedMotion.matches) { write(position + direction * step); announce(); }
+        else { tween = { from: position, to: position + direction * step, start: performance.now() }; schedule(); }
+      };
+      toggle.addEventListener('click', () => {
+        paused = !paused;
+        label.textContent = paused ? 'Resume' : 'Pause';
+        toggle.dataset.state = paused ? 'paused' : 'playing';
+        toggle.setAttribute('aria-label', paused ? 'Resume partners carousel' : 'Pause partners carousel');
+        if (paused) { tween = null; stopFrame(); }
+        else { resumeAt = 0; schedule(); }
+      });
+      previous.addEventListener('click', () => move(-1));
+      next.addEventListener('click', () => move(1));
+      viewport.addEventListener('keydown', (event) => {
+        if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+        event.preventDefault();
+        move(event.key === 'ArrowLeft' ? -1 : 1);
+      });
+      viewport.addEventListener('scroll', () => {
+        const actual = viewport.scrollLeft;
+        if (Math.abs(actual - written) < .75) return; // Ignore our own animation frames.
+        position = actual;
+        tween = null;
+        hold();
+        // Native touch scrolling/inertia uses the outer copies as a generous buffer.
+        if (actual < step || actual > viewport.scrollWidth - viewport.clientWidth - step) write(actual);
+        clearTimeout(announceTimer);
+        announceTimer = window.setTimeout(announce, 180);
+        schedule();
+      }, { passive: true });
+      viewport.addEventListener('pointerdown', (event) => {
+        if (!event.isPrimary || event.button !== 0) return;
+        pointer = { id: event.pointerId, type: event.pointerType, x: event.clientX, position };
+        tween = null;
+        hold();
+      }, { passive: true });
+      viewport.addEventListener('pointermove', (event) => {
+        if (!pointer || pointer.type !== 'mouse' || pointer.id !== event.pointerId) return;
+        const distance = event.clientX - pointer.x;
+        if (Math.abs(distance) < 4 && !viewport.hasPointerCapture(event.pointerId)) return;
+        viewport.setPointerCapture(event.pointerId);
+        viewport.classList.add('is-dragging');
+        write(pointer.position - distance);
+        event.preventDefault();
+      });
+      const endPointer = (event: PointerEvent) => {
+        if (!pointer || pointer.id !== event.pointerId) return;
+        pointer = null;
+        viewport.classList.remove('is-dragging');
+        hold();
+        clearTimeout(announceTimer);
+        announceTimer = window.setTimeout(announce, 180);
+        schedule();
+      };
+      window.addEventListener('pointerup', endPointer, { passive: true });
+      window.addEventListener('pointercancel', endPointer, { passive: true });
+      document.addEventListener('visibilitychange', () => { stopFrame(); if (!document.hidden) { hold(); schedule(); } });
+      const observer = new IntersectionObserver(([entry]) => {
+        inView = entry.isIntersecting;
+        if (inView) schedule(); else stopFrame();
+      });
+      observer.observe(viewport);
+      new ResizeObserver(measure).observe(track);
+      measure();
+      for (const button of [toggle, previous, next]) button.disabled = false;
+    }
+  }
+  setupPartnersCarousel();
+  document.addEventListener('astro:page-load', setupPartnersCarousel);
+</script>
+
+<style>
+  .partners {
+    position: relative;
+    overflow: hidden;
+    background: #070d2c;
+    color: #f7f8fc;
+    padding-block: clamp(4rem, 6vw, 6rem) 2.5rem;
+    border-block: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .partners__header { margin-bottom: clamp(2.5rem, 5vw, 5rem); }
+  .partners__intro { display: grid; grid-template-columns: 1.4fr 1fr; column-gap: clamp(2rem, 6vw, 6rem); align-items: end; }
+  .partners .section-title { margin: 0; max-width: 20ch; font-size: clamp(2.5rem, 4.5vw, 4rem); line-height: 1.06; color: #f7f8fc; }
+  .partners__copy { margin: 0; max-width: 27rem; font-size: 1.125rem; line-height: 1.8; color: #bdc6df; }
+  .partners__toolbar { display: flex; align-items: center; justify-content: flex-start; gap: 1rem; padding-top: 2rem; }
+  .partners__actions { display: flex; align-items: center; gap: 0.5rem; }
+  .partners__btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: 3rem; padding: 0.625rem; border: 1px solid rgba(166, 184, 255, 0.3); border-radius: 0; background: transparent; color: #f7f8fc; font: inherit; font-size: 0.8125rem; cursor: pointer; transition: color 180ms ease, border-color 180ms ease; }
+  .partners__btn--nav { width: 3.25rem; padding: 0; }
+  .partners__btn--toggle { min-width: 5.875rem; }
+  .partners__btn:disabled { opacity: 0.45; cursor: default; }
+  .partners__btn svg { width: 1.125rem; height: 1.125rem; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .partners__btn:hover { color: #070d2c; background: #a6b8ff; border-color: #a6b8ff; }
+  .partners__btn:focus-visible { outline: 2px solid #a6b8ff; outline-offset: 3px; }
+  .partners__icon { display: inline-flex; }
+  .partners__icon--play { display: none; }
+  .partners__btn--toggle[data-state='paused'] .partners__icon--pause { display: none; }
+  .partners__btn--toggle[data-state='paused'] .partners__icon--play { display: inline-flex; }
+  /* One continuous light rail preserves the supplied brands' original colours. */
+  .partners__carousel { container-type: inline-size; width: min(100%, 1760px); margin-inline: auto; background: #f4f6fa; border-block: 1px solid #dce1ed; }
+  .partners__viewport { display: flex; overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain; padding-block: 0.75rem; scrollbar-width: none; user-select: none; cursor: grab; touch-action: pan-x pan-y pinch-zoom; }
+  .partners__viewport::-webkit-scrollbar { display: none; }
+  .partners__viewport.is-dragging { cursor: grabbing; }
+  .partners__viewport:focus-visible { outline: 3px solid #0047a0; outline-offset: -5px; }
+  .partners__track { display: flex; flex: 0 0 auto; width: max-content; list-style: none; margin: 0; padding: 0; }
+  /* Equal track intervals keep the existing next/previous logic exact; artwork keeps its own proportions. */
+  .partners__item { flex: 0 0 29cqw; width: 29cqw; min-width: 0; padding-inline: 14px; }
+  .partner-card { height: clamp(12rem, 19cqw, 18rem); }
+  .partner-card__content { display: flex; flex-direction: column; height: 100%; }
+  .partner-card__stage { display: flex; flex: 1; align-items: center; justify-content: center; gap: 1rem; min-height: 0; }
+  .partner-card__img { display: block; width: auto; height: auto; max-width: 100%; max-height: 7rem; object-fit: contain; }
+  .partner-card__img--emblem { max-width: 6rem; max-height: 6rem; }
+  .partner-card__name-badge { font-size: clamp(1.125rem, 1.5vw, 1.375rem); font-weight: 650; letter-spacing: -0.03em; color: #0a1230; white-space: nowrap; }
+  /* This supplied mark is white; a single-colour presentation keeps it legible on the rail. */
+  [data-partner-name='Almajdouie'] .partner-card__img { filter: brightness(0); }
+  @media (max-width: 68.75rem) {
+    .partners__item { flex-basis: 38cqw; width: 38cqw; }
+  }
+  @media (max-width: 63.99rem) {
+    .partners__intro { grid-template-columns: 1fr; gap: 1.5rem; }
+    .partners__copy { max-width: 40rem; }
+  }
+  @media (max-width: 47.99rem) {
+    .partners__intro { grid-template-columns: 1fr; gap: 1rem; }
+    .partners__copy { font-size: 1rem; }
+    .partners__item { flex-basis: 82cqw; width: 82cqw; padding-inline: 10px; }
+    .partner-card { height: 12rem; }
+    .partner-card__img { max-height: 6rem; }
+    .partner-card__img--emblem { max-width: 5rem; max-height: 5rem; }
+  }
+  @media (prefers-reduced-motion: reduce) { .partners__btn { transition: none; } }
+</style>

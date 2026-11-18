@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Footer from '../components/global/Footer.astro';
 import Header from '../components/global/Header.astro';
+import interFont from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
 
 interface SocialImage {
   src: string;
@@ -44,6 +45,7 @@ const socialImageUrl = new URL(socialImage.src, productionOrigin);
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="preload" href={interFont} as="font" type="font/woff2" crossorigin="anonymous" />
     <meta name="theme-color" content="#F5F7FB" data-theme-color />
     <script is:inline>
       (() => {
@@ -80,8 +82,8 @@ const socialImageUrl = new URL(socialImage.src, productionOrigin);
       <meta property="og:image:secure_url" content={socialImageUrl.href} />
     )}
     {socialImage.type && <meta property="og:image:type" content={socialImage.type} />}
-    {socialImage.width && <meta property="og:image:width" content={socialImage.width} />}
-    {socialImage.height && <meta property="og:image:height" content={socialImage.height} />}
+    {socialImage.width && <meta property="og:image:width" content={String(socialImage.width)} />}
+    {socialImage.height && <meta property="og:image:height" content={String(socialImage.height)} />}
     <meta property="og:image:alt" content={socialImage.alt} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
