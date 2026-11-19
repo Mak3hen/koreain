@@ -11,6 +11,7 @@ const isConsultationActive = currentPath === '/business-areas/consultation';
 const isBeautyActive = currentPath === '/business-areas/beauty';
 const isServicesActive =
   currentPath === '/business-areas' ||
+  currentPath === '/business-areas/kbeauty-oem-odm' ||
   currentPath === '/business-areas/investment' ||
   currentPath === '/business-areas/artificial-intelligence' ||
   currentPath === '/business-areas/automotive';
@@ -18,6 +19,11 @@ const isContactActive = currentPath === '/contact' || currentPath.startsWith('/c
 
 // Other branches for Services dropdown (excluding Consultation & Beauty which are top-level on the right)
 const otherBranches = [
+  {
+    title: 'K-Beauty OEM/ODM',
+    href: '/business-areas/kbeauty-oem-odm',
+    desc: 'Turnkey cosmetics formulation, ISO 22716 GMP & HALAL'
+  },
   {
     title: 'Investment',
     href: '/business-areas/investment',
@@ -133,7 +139,7 @@ const otherBranches = [
             <div class="dropdown dropdown--services" id="services-menu" hidden>
               <div class="dropdown__bridge" aria-hidden="true"></div>
               <div class="dropdown__header">
-                <a href="/business-areas" class="dropdown__header-link">All 5 Sectors &rarr;</a>
+                <a href="/business-areas" class="dropdown__header-link">All Business Areas &rarr;</a>
               </div>
               <ul class="dropdown__list">
                 {otherBranches.map((branch) => (
@@ -243,7 +249,7 @@ const otherBranches = [
                 class:list={['mobile-link--overview', { 'mobile-link--active': currentPath === '/business-areas' }]}
                 href="/business-areas"
               >
-                Overview — All 5 Sectors &rarr;
+                Overview — All Business Areas &rarr;
               </a>
             </li>
             {otherBranches.map((branch) => (

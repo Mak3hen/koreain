@@ -122,16 +122,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               Seoul 06158, Republic of Korea
             </address>
             <div class="office-card__channels">
-              <p><strong>Email:</strong> seoul@korea-in.com</p>
+              <p><strong>Email:</strong> <a href="mailto:korea@korea-in.com">korea@korea-in.com</a></p>
               <p><strong>Hours:</strong> Mon–Fri, 09:00–18:00 KST (GMT+9)</p>
-            </div>
-            <!-- Black Placeholder Box for Office Photography -->
-            <div class="black-placeholder black-placeholder--small" aria-label="Seoul office placeholder">
-              <div class="black-placeholder__content">
-                <span class="black-placeholder__dot"></span>
-                <span class="black-placeholder__tag">Visual Placeholder</span>
-                <p class="black-placeholder__note">Seoul Headquarters Photography — Pending</p>
-              </div>
             </div>
           </div>
 
@@ -144,16 +136,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               Riyadh 12213, Kingdom of Saudi Arabia
             </address>
             <div class="office-card__channels">
-              <p><strong>Email:</strong> riyadh@korea-in.com</p>
+              <p><strong>Email:</strong> <a href="mailto:info@korea-in.com">info@korea-in.com</a></p>
               <p><strong>Hours:</strong> Sun–Thu, 09:00–18:00 AST (GMT+3)</p>
-            </div>
-            <!-- Black Placeholder Box for Riyadh Office Photography -->
-            <div class="black-placeholder black-placeholder--small" aria-label="Riyadh office placeholder">
-              <div class="black-placeholder__content">
-                <span class="black-placeholder__dot"></span>
-                <span class="black-placeholder__tag">Visual Placeholder</span>
-                <p class="black-placeholder__note">Riyadh Strategic Office Photography — Pending</p>
-              </div>
             </div>
           </div>
 
@@ -165,12 +149,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 <a href="mailto:info@korea-in.com">info@korea-in.com</a>
               </li>
               <li>
-                <span>Investment &amp; Capital:</span>
-                <a href="mailto:investment@korea-in.com">investment@korea-in.com</a>
+                <span>Korea Operations:</span>
+                <a href="mailto:korea@korea-in.com">korea@korea-in.com</a>
               </li>
               <li>
-                <span>Partnerships &amp; Councils:</span>
-                <a href="mailto:partnerships@korea-in.com">partnerships@korea-in.com</a>
+                <span>Leadership Office:</span>
+                <a href="mailto:yaser@korea-in.com">yaser@korea-in.com</a>
               </li>
             </ul>
           </div>
@@ -402,49 +386,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     color: var(--color-text);
   }
 
-  .black-placeholder--small {
-    aspect-ratio: 16 / 7;
-    margin-top: 1.25rem;
-    border-radius: var(--radius-sm);
+  .office-card__channels a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 180ms ease;
   }
 
-  .black-placeholder {
-    width: 100%;
-    background: #000000;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .black-placeholder__content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 0.5rem;
-    padding: 1rem;
-  }
-
-  .black-placeholder__dot {
-    width: 0.45rem;
-    height: 0.45rem;
-    border-radius: 50%;
-    background: var(--color-accent);
-  }
-
-  .black-placeholder__tag {
-    font-size: 0.6875rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.6);
-  }
-
-  .black-placeholder__note {
-    font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.4);
-    margin: 0;
+  .office-card__channels a:hover {
+    color: var(--color-secondary);
   }
 
   .direct-channels-card {

@@ -42,8 +42,8 @@ const areaDetails = [
     href: '/business-areas/investment',
     tag: 'Strategic Capital',
     description: 'Mobilizing cross-border capital, sovereign wealth funds, and venture investments between Korea, Saudi Arabia, the GCC, and global financial hubs.',
-    image: '',
-    isPlaceholder: true,
+    image: '/home/business-areas/investment.webp',
+    isPlaceholder: false,
     keyMetrics: 'Venture Co-Investment • Sovereign Advisory • FDI SPVs'
   },
   {
@@ -117,12 +117,22 @@ const areaDetails = [
                   <h2 class="sector-row__title">{area.title}</h2>
                   <p class="sector-row__desc">{area.description}</p>
                   <p class="sector-row__metrics">{area.keyMetrics}</p>
-                  <a href={area.href} class="arrow-link sector-row__link">
-                    <span>Explore {area.title} Details</span>
-                    <svg viewBox="0 0 20 20" aria-hidden="true">
-                      <path d="M4 10h11M11 5l5 5-5 5" />
-                    </svg>
-                  </a>
+                  <div class="sector-row__links">
+                    <a href={area.href} class="arrow-link sector-row__link">
+                      <span>Explore {area.title} Details</span>
+                      <svg viewBox="0 0 20 20" aria-hidden="true">
+                        <path d="M4 10h11M11 5l5 5-5 5" />
+                      </svg>
+                    </a>
+                    {area.slug === 'beauty' && (
+                      <a href="/business-areas/kbeauty-oem-odm" class="arrow-link sector-row__link sector-row__link--sub">
+                        <span>Dedicated K-Beauty OEM/ODM Portal</span>
+                        <svg viewBox="0 0 20 20" aria-hidden="true">
+                          <path d="M4 10h11M11 5l5 5-5 5" />
+                        </svg>
+                      </a>
+                    )}
+                  </div>
                 </div>
               </article>
             ))
@@ -131,36 +141,24 @@ const areaDetails = [
       </div>
     </section>
 
-    <!-- Cross-Sector Synergy Stage with Black Rectangle -->
-    <section class="section synergy-section">
+    <!-- Bottom CTA: Have a Cross-Sector Project in Mind? -->
+    <section class="closing-cta" aria-labelledby="cta-heading">
       <div class="container">
-        <div class="black-placeholder" aria-label="Cross-sector synergy placeholder">
-          <div class="black-placeholder__content">
-            <span class="black-placeholder__dot"></span>
-            <span class="black-placeholder__tag">Visual Placeholder</span>
-            <p class="black-placeholder__note">Cross-Sector Bilateral Convergence Matrix — Photography Pending</p>
+        <div class="closing-cta__box">
+          <div class="closing-cta__text">
+            <h2 id="cta-heading" class="closing-cta__title">
+              Have a Cross-Sector Project in Mind?
+            </h2>
+            <p class="closing-cta__lead">
+              KoreaIN integrates multiple practice areas to structure multi-faceted joint ventures, cross-border investments, and technology procurement.
+            </p>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Bottom CTA -->
-    <section class="section section-cta">
-      <div class="container cta-card">
-        <div class="cta-card__body">
-          <h2 class="cta-card__title">Have a Cross-Sector Project in Mind?</h2>
-          <p class="cta-card__copy">
-            KoreaIN integrates multiple practice areas to support multi-faceted joint ventures, FDI establishments, and technology procurement.
-          </p>
-          <div class="cta-card__actions">
-            <a href="/contact" class="button button--primary">
-              <span>Initiate Strategic Discussion</span>
-              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <div class="closing-cta__action">
+            <a href="/contact" class="closing-cta__btn">
+              <span>Start a Conversation</span>
+              <svg class="cta-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <path d="M4 10h11M11 5l5 5-5 5" />
               </svg>
-            </a>
-            <a href="/about" class="button button--secondary">
-              <span>Learn About Our Company</span>
             </a>
           </div>
         </div>
@@ -344,8 +342,24 @@ const areaDetails = [
     margin-bottom: 1.75rem;
   }
 
+  .sector-row__links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
   .sector-row__link {
     font-size: 0.9375rem;
+  }
+
+  .sector-row__link--sub {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+  }
+
+  .sector-row__link--sub:hover {
+    color: var(--color-primary);
   }
 
   .sector-row__link svg {
@@ -356,113 +370,83 @@ const areaDetails = [
     fill: none;
   }
 
-  /* Synergy Section */
-  .black-placeholder {
-    width: 100%;
-    aspect-ratio: 21 / 8;
-    background: #000000;
-    border-radius: var(--radius-lg);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+  /* Closing CTA Section (Amorepacific Clean & Sober Style) */
+  .closing-cta {
+    padding-block: clamp(5rem, 8vw, 7.5rem);
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .closing-cta__box {
     display: flex;
     align-items: center;
-    justify-content: center;
-    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+    justify-content: space-between;
+    gap: 3rem;
   }
 
-  .black-placeholder__content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 0.75rem;
-    padding: 2rem;
-  }
-
-  .black-placeholder__dot {
-    width: 0.6rem;
-    height: 0.6rem;
-    border-radius: 50%;
-    background: var(--color-accent);
-    box-shadow: 0 0 12px var(--color-accent);
-  }
-
-  .black-placeholder__tag {
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.6);
-    border: 1px dashed rgba(255, 255, 255, 0.25);
-    padding: 0.35rem 0.85rem;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.05);
-  }
-
-  .black-placeholder__note {
-    font-size: 0.875rem;
-    color: rgba(255, 255, 255, 0.45);
-    margin: 0;
-    max-width: 26rem;
-  }
-
-  /* CTA Banner */
-  .cta-card {
-    background: #050722;
-    color: #f7f8fc;
-    border-radius: var(--radius-xl);
-    padding: clamp(3rem, 6vw, 5rem);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .cta-card::after {
-    content: '';
-    position: absolute;
-    top: -20%;
-    right: -10%;
-    width: 32rem;
-    height: 32rem;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(0, 71, 160, 0.45) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .cta-card__body {
+  .closing-cta__text {
     max-width: 44rem;
-    position: relative;
-    z-index: 2;
   }
 
-
-  .cta-card__title {
-    font-size: clamp(2rem, 3.8vw, 3rem);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    color: #ffffff;
-    margin-bottom: 1.25rem;
+  .closing-cta__title {
+    margin: 0 0 0.85rem;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 1.15;
+    color: var(--color-text);
   }
 
-  .cta-card__copy {
-    font-size: 1.1rem;
-    color: #c3cadb;
+  .closing-cta__lead {
+    margin: 0;
+    font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+    color: var(--color-muted);
     line-height: 1.7;
-    margin-bottom: 2rem;
   }
 
-  .cta-card__actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
+  .closing-cta__action {
+    flex-shrink: 0;
   }
 
-  .cta-card__actions .button--secondary {
-    background: rgba(255, 255, 255, 0.1);
+  .closing-cta__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 1rem 1.85rem;
+    background: var(--color-primary);
     color: #ffffff;
-    border-color: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    transition: background-color 220ms ease, transform 220ms ease, box-shadow 220ms ease;
+    box-shadow: 0 4px 14px rgba(0, 14, 138, 0.16);
   }
 
-  .cta-card__actions .button--secondary:hover {
-    background: rgba(255, 255, 255, 0.18);
+  .closing-cta__btn:hover {
+    background: var(--color-secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 14, 138, 0.25);
+  }
+
+  .cta-arrow {
+    width: 18px;
+    height: 18px;
+    transition: transform 220ms ease;
+  }
+
+  .closing-cta__btn:hover .cta-arrow {
+    transform: translateX(4px);
+  }
+
+  @media (max-width: 1023px) {
+    .closing-cta__box {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2rem;
+    }
   }
 
   @media (max-width: 63.99rem) {

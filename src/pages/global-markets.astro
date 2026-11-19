@@ -1,566 +1,1192 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const markets = [
+  { name: 'Asia', map: 'asia' },
+  { name: 'Middle East', map: 'middle-east' },
+  { name: 'North Africa', map: 'north-africa' },
+  { name: 'Europe', map: 'europe' },
+  { name: 'North America', map: 'north-america' }
+];
+
+const corridors = [
+  {
+    id: 'east-asia',
+    number: '01',
+    region: 'East Asia',
+    title: 'East Asia',
+    subtitle: 'The Korean Innovation Engine',
+    bgImage: '/home/markets/export_1-1600.webp',
+    desc: 'Headquartered in Seoul, KoreaIN operates at the center of South Korea’s industrial and venture ecosystem. We connect leading conglomerates, technology pioneers, and certified manufacturers with international capital and demand.',
+    actionText: 'Explore Business Areas',
+    actionHref: '/business-areas'
+  },
+  {
+    id: 'middle-east',
+    number: '02',
+    region: 'Middle East',
+    title: 'Middle East & GCC',
+    subtitle: 'Saudi Vision 2030 & Regional Hubs',
+    bgImage: '/home/markets/global_2-1600.webp',
+    desc: 'With a dedicated anchor in Saudi Arabia, we translate bilateral agreements into operational joint ventures, localization of industrial know-how, and enduring commercial partnerships across Riyadh and the GCC.',
+    actionText: 'Contact Us',
+    actionHref: '/contact'
+  },
+  {
+    id: 'global-corridors',
+    number: '03',
+    region: 'Global Reach',
+    title: 'Global Corridors',
+    subtitle: 'Cross-Border Supply Chains & Expansion',
+    bgImage: '/home/markets/global_3-1600.webp',
+    desc: 'Extending beyond the bilateral axis, we structure multi-regional trade corridors connecting Korean manufacturing with high-growth partners in Europe, North America, and North Africa.',
+    actionText: 'Inquire Now',
+    actionHref: '/contact'
+  }
+];
+
+const navItems = [
+  { id: 'cover', label: 'Overview' },
+  { id: 'network', label: 'Bilateral Network' },
+  { id: 'east-asia', label: 'East Asia' },
+  { id: 'middle-east', label: 'Middle East' },
+  { id: 'global-corridors', label: 'Global Corridors' },
+  { id: 'contact', label: 'Contact' }
+];
 ---
 
 <BaseLayout
   title="Global Markets & Bilateral Reach | KoreaIN"
-  description="Explore KoreaIN's international reach—connecting South Korea with Saudi Arabia, the Middle East, and global high-growth economic corridors."
+  description="Explore KoreaIN's international reach—connecting South Korea with Saudi Arabia, the Middle East, and global high-growth economic corridors with clean, spacious elegance."
 >
-  <main id="main-content" class="page-markets">
-    <!-- Hero Section -->
-    <header class="page-hero">
-      <div class="container">
+  <main id="main-content" class="markets-portal">
+    <!-- Floating Side Dot Navigation (Amorepacific style) -->
+    <nav class="local-nav" aria-label="Global Markets navigation">
+      <ul class="local-nav-list">
+        {navItems.map((item, index) => (
+          <li class={index === 0 ? 'is-current' : ''} data-target={item.id}>
+            <a href={`#${item.id}`} class="local-nav-link" aria-label={item.label}>
+              <span class="nav-tooltip">{item.label}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- 1. Hero Cover (Grand Visuel) -->
+    <header id="cover" class="cover" aria-labelledby="cover-title">
+      <div class="cover-spacer">
+        <div
+          class="cover-bg"
+          id="coverBg"
+          style="background-image: url('/home/markets/global_1-1600.webp');"
+        ></div>
+        <div class="cover-overlay"></div>
+      </div>
+
+      <div class="container cover-content" id="coverContent">
         <nav class="breadcrumbs" aria-label="Breadcrumb">
           <ol>
             <li><a href="/">Home</a></li>
-            <li><span aria-hidden="true">/</span></li>
             <li aria-current="page">Global Markets</li>
           </ol>
         </nav>
 
-        <div class="page-hero__grid">
-          <div class="page-hero__text">
-            <h1 class="page-title">From South Korea to Global Growth Corridors</h1>
-            <p class="page-lead">
-              KoreaIN creates a transparent, high-trust pathway between Korean industrial and technological leadership and fast-transforming international markets, with a dedicated bilateral anchor in Saudi Arabia and the GCC.
-            </p>
-            <div class="hero-actions">
-              <a href="/contact" class="button button--primary">
-                <span>Inquire About Market Entry</span>
-                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                  <path d="M4 10h11M11 5l5 5-5 5" />
-                </svg>
-              </a>
-              <a href="/business-areas" class="button button--secondary">
-                <span>Explore Sectors</span>
-              </a>
-            </div>
-          </div>
-
-          <div class="page-hero__stats">
-            <div class="stat-card">
-              <span class="stat-card__number">Seoul</span>
-              <span class="stat-card__label">Headquarters &amp; Korean Ecosystem Hub</span>
-            </div>
-            <div class="stat-card">
-              <span class="stat-card__number">Riyadh</span>
-              <span class="stat-card__label">GCC &amp; Saudi Vision 2030 Anchor</span>
-            </div>
-            <div class="stat-card">
-              <span class="stat-card__number">6 GCC Nations</span>
-              <span class="stat-card__label">Active Regional Distribution Reach</span>
-            </div>
-            <div class="stat-card">
-              <span class="stat-card__number">Global</span>
-              <span class="stat-card__label">Cross-Border Trade Corridors</span>
-            </div>
-          </div>
-        </div>
+        <h1 id="cover-title" class="cover-h">Global Markets</h1>
+        <p class="cover-desc">
+          Anchored by a direct bilateral bridge between South Korea and Saudi Arabia, KoreaIN connects Korean industrial innovation to the world’s most dynamic growth markets.
+        </p>
       </div>
+
+      <!-- Animated Mouse Scroll Indicator -->
+      <a href="#network" class="cover-mouse" id="coverMouse" aria-label="Scroll to next section">
+        <span class="mouse-icon"></span>
+        <span class="mouse-text">Scroll</span>
+      </a>
     </header>
 
-    <!-- Map Stage & Visual Stage -->
-    <section class="section map-section">
+    <!-- 2. Bilateral Network Section (Alternance Blanc) -->
+    <section id="network" class="network-section" aria-labelledby="network-heading">
       <div class="container">
-        <div class="market-geography-card">
-          <div class="market-geography-header">
-            <div>
-              <h2 class="market-geography-title">The Bilateral Vector</h2>
+        <div class="network-intro">
+          <h2 id="network-heading" class="section-title">
+            From Korea.<br /><span>To the world.</span>
+          </h2>
+          <p class="section-lead">
+            A permanent commercial corridor linking Seoul and Riyadh, branching into high-growth markets across five continents.
+          </p>
+        </div>
+
+        <!-- Primary Bilateral Axis (South Korea ⇄ Saudi Arabia) -->
+        <div class="market-network" role="group" aria-label="Connections from South Korea and Saudi Arabia to global markets">
+          <div class="bilateral-axis">
+            <!-- South Korea Hub -->
+            <div class="hub-node hub-node--korea">
+              <div class="hub-node__image-wrap">
+                <img
+                  src="/home/markets/korea-graph.webp"
+                  alt="South Korea"
+                  width="140"
+                  height="180"
+                  loading="lazy"
+                  decoding="async"
+                  class="hub-node__image"
+                />
+              </div>
+              <div class="hub-node__content">
+                <span class="hub-node__city">Seoul</span>
+                <h3 class="hub-node__title">South Korea</h3>
+              </div>
             </div>
-            <span class="market-badge">Seoul ↔ Riyadh Corridor</span>
+
+            <!-- Direct Connector Bridge -->
+            <div class="bilateral-bridge" aria-hidden="true">
+              <span class="bilateral-bridge__badge">Direct Axis ⇄</span>
+              <div class="bilateral-bridge__line"></div>
+              <div class="bilateral-bridge__core"></div>
+            </div>
+
+            <!-- Saudi Arabia Hub -->
+            <div class="hub-node hub-node--saudi">
+              <div class="hub-node__image-wrap">
+                <img
+                  src="/home/markets/saudi-graph.webp"
+                  alt="Saudi Arabia"
+                  width="180"
+                  height="135"
+                  loading="lazy"
+                  decoding="async"
+                  class="hub-node__image"
+                />
+              </div>
+              <div class="hub-node__content">
+                <span class="hub-node__city">Riyadh</span>
+                <h3 class="hub-node__title">Saudi Arabia</h3>
+              </div>
+            </div>
           </div>
 
-          <!-- Dynamic SVG Map Silhouette -->
-          <div class="market-geography" aria-hidden="true">
-            <svg class="market-geography__desktop" viewBox="0 0 800 500" fill="none" focusable="false">
-              <defs>
-                <mask id="markets-region" maskUnits="userSpaceOnUse" x="0" y="0" width="800" height="500" style="mask-type: alpha">
-                  <image href="/home/markets/middle-east.svg" x="-40" y="45" width="510" height="340" />
-                </mask>
-                <mask id="markets-korea" maskUnits="userSpaceOnUse" x="0" y="0" width="800" height="500" style="mask-type: alpha">
-                  <image href="/home/markets/south-korea.svg" x="425" y="0" width="320" height="400" />
-                </mask>
-                <mask id="markets-saudi" maskUnits="userSpaceOnUse" x="0" y="0" width="800" height="500" style="mask-type: alpha">
-                  <image href="/home/markets/saudi-arabia.svg" x="65" y="225" width="285" height="244" />
-                </mask>
-              </defs>
-              <rect width="800" height="500" fill="#24395b" mask="url(#markets-region)" />
-              <path d="M210 342C275 118 455 85 610 168" stroke="#769cdc" stroke-width="2" stroke-dasharray="6 4" />
-              <rect width="800" height="500" fill="#3868aa" mask="url(#markets-saudi)" />
-              <rect width="800" height="500" fill="#9dbfff" mask="url(#markets-korea)" />
-              <circle cx="210" cy="342" r="14" stroke="#a8c5f6" stroke-width="1.5" />
-              <circle cx="210" cy="342" r="6" fill="#f7f8fc" />
-              <circle cx="610" cy="168" r="18" stroke="#f7f8fc" stroke-width="1.5" />
-              <circle cx="610" cy="168" r="7" fill="#000e8a" stroke="#f7f8fc" stroke-width="2" />
-              <path d="M610 188V315H674M210 357V474H114" stroke="#718ab0" stroke-width="1" />
+          <!-- Network Trunk Line -->
+          <div class="network-trunk" aria-hidden="true"></div>
+
+          <!-- 5 Continent Cards -->
+          <ul class="market-cards">
+            {markets.map((market) => (
+              <li class="market-card">
+                <div class="market-card-body">
+                  <div class="market-map">
+                    <img
+                      src={`/home/markets/${market.map}.svg`}
+                      alt={market.name}
+                      width="240"
+                      height="160"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <h3 class="market-name">{market.name}</h3>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Regional Showcase Panels (Alternance Grand Visuel / Blanc) -->
+    <div class="corridors-container">
+      {corridors.map((corridor) => (
+        <section id={corridor.id} class="corridor-panel" aria-labelledby={`${corridor.id}-title`}>
+          <!-- Visual Banner (Harmonized Height, Clear Photo Visibility) -->
+          <div class="corridor-banner" style={`background-image: url('${corridor.bgImage}');`}>
+            <div class="corridor-banner__overlay"></div>
+            <div class="corridor-deco" aria-hidden="true"></div>
+
+            <div class="container corridor-title-wrap">
+              <span class="corridor-number">{corridor.number}</span>
+              <h2 id={`${corridor.id}-title` as any} class="corridor-title">
+                {corridor.title}
+              </h2>
+            </div>
+          </div>
+
+          <!-- Content Drawer (Clean White Surface) -->
+          <div class="corridor-drawer">
+            <div class="container">
+              <div class="corridor-content">
+                <div class="content-left">
+                  <h3 class="content-subtitle">{corridor.subtitle}</h3>
+                  <p class="content-desc">{corridor.desc}</p>
+                </div>
+
+                <div class="content-right">
+                  <a href={corridor.actionHref} class="corridor-cta">
+                    <span>{corridor.actionText}</span>
+                    <svg class="cta-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                      <path d="M4 10h11M11 5l5 5-5 5" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      ))}
+    </div>
+
+    <!-- 4. Closing CTA (Sober & Spacious) -->
+    <section id="contact" class="closing-cta" aria-labelledby="cta-heading">
+      <div class="container">
+        <div class="closing-cta__box">
+          <div class="closing-cta__text">
+            <h2 id="cta-heading" class="closing-cta__title">Bring the Next Opportunity Closer</h2>
+            <p class="closing-cta__lead">
+              Let’s explore what we can build between South Korea and your market.
+            </p>
+          </div>
+          <a href="/contact" class="corridor-cta corridor-cta--primary">
+            <span>Start a Conversation</span>
+            <svg class="cta-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M4 10h11M11 5l5 5-5 5" />
             </svg>
-          </div>
-        </div>
-
-        <!-- Black Rectangle Placeholder for International Presence -->
-        <div class="black-placeholder" aria-label="Regional offices placeholder">
-          <div class="black-placeholder__content">
-            <span class="black-placeholder__dot"></span>
-            <span class="black-placeholder__tag">Visual Placeholder</span>
-            <p class="black-placeholder__note">Regional Operations Hubs &amp; Bilateral Trade Delegations — Pending Photography</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Regional Nodes -->
-    <section class="section nodes-section">
-      <div class="container">
-        <header class="section-header">
-          <h2 class="section-title">Core Regional Ecosystems</h2>
-          <p class="section-copy">
-            We focus operational resources where bilateral synergies yield the highest commercial velocity.
-          </p>
-        </header>
-
-        <div class="nodes-grid">
-          <article class="node-card">
-            <div class="node-card__header">
-              <span class="node-card__location">East Asia</span>
-              <h3 class="node-card__title">South Korea</h3>
-              <p class="node-card__role">Home Base &amp; Technological Innovation Engine</p>
-            </div>
-            <div class="node-card__body">
-              <p>
-                Headquartered in Seoul, KoreaIN maintains daily operational proximity with leading Korean conglomerates, venture technology incubators, public research institutions, and certified manufacturing laboratories.
-              </p>
-              <ul class="node-card__list">
-                <li>Direct access to KOSDAQ &amp; tech venture leadership</li>
-                <li>Semiconductor, AI, and mobility supplier networks</li>
-                <li>Liaison with Korean trade councils and export bodies</li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="node-card">
-            <div class="node-card__header">
-              <span class="node-card__location">Middle East</span>
-              <h3 class="node-card__title">Kingdom of Saudi Arabia</h3>
-              <p class="node-card__role">Anchor Transformation Market &amp; Giga-Projects</p>
-            </div>
-            <div class="node-card__body">
-              <p>
-                As an affiliated participant in the Saudi-Korea Business Council, KoreaIN bridges Korean advanced technology with the Vision 2030 industrial diversification framework across Riyadh, Jeddah, and the Eastern Province.
-              </p>
-              <ul class="node-card__list">
-                <li>Giga-project infrastructure &amp; smart city solutions</li>
-                <li>Commercial joint ventures with Saudi family conglomerates</li>
-                <li>SFDA compliance and national distribution agreements</li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="node-card">
-            <div class="node-card__header">
-              <span class="node-card__location">Gulf Region</span>
-              <h3 class="node-card__title">Wider GCC &amp; Arab Markets</h3>
-              <p class="node-card__role">Regional Distribution &amp; Capital Corridors</p>
-            </div>
-            <div class="node-card__body">
-              <p>
-                Extending bilateral impact across the United Arab Emirates, Qatar, Kuwait, Bahrain, and Oman—facilitating cross-border retail distribution, regional headquarters setups, and institutional co-investments.
-              </p>
-              <ul class="node-card__list">
-                <li>Regional e-commerce &amp; pharmacy chain placement</li>
-                <li>Free zone incorporation &amp; logistics routing</li>
-                <li>Sovereign and institutional LP syndication</li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="node-card">
-            <div class="node-card__header">
-              <span class="node-card__location">Worldwide</span>
-              <h3 class="node-card__title">Global Expansion Corridors</h3>
-              <p class="node-card__role">Selective International Collaborations</p>
-            </div>
-            <div class="node-card__body">
-              <p>
-                Collaborating with strategic partners across Europe, Southeast Asia, and North America to support multi-regional tech transfers and bilateral supply chain resiliency.
-              </p>
-              <ul class="node-card__list">
-                <li>Tripartite trade structuring (Korea - GCC - Global)</li>
-                <li>International intellectual property licensing</li>
-                <li>Global institutional investor relationships</li>
-              </ul>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Bottom CTA -->
-    <section class="section section-cta">
-      <div class="container cta-card">
-        <div class="cta-card__body">
-          <h2 class="cta-card__title">Ready to Expand Across Our Corridors?</h2>
-          <p class="cta-card__copy">
-            Speak with our international advisory team to design your cross-border roadmap between Korea and global markets.
-          </p>
-          <div class="cta-card__actions">
-            <a href="/contact" class="button button--primary">
-              <span>Contact Global Desk</span>
-              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                <path d="M4 10h11M11 5l5 5-5 5" />
-              </svg>
-            </a>
-            <a href="/business-areas" class="button button--secondary">
-              <span>View Business Areas</span>
-            </a>
-          </div>
+          </a>
         </div>
       </div>
     </section>
   </main>
 </BaseLayout>
 
+<script is:inline>
+  // ============================================================================
+  // Amorepacific Animation & Scroll Engine for Global Markets
+  // ============================================================================
+  document.addEventListener('DOMContentLoaded', () => {
+    const cover = document.getElementById('cover');
+    const coverBg = document.getElementById('coverBg');
+    const coverContent = document.getElementById('coverContent');
+    const coverMouse = document.getElementById('coverMouse');
+    const panels = Array.from(document.querySelectorAll('.corridor-panel'));
+    const network = document.getElementById('network');
+    const contact = document.getElementById('contact');
+    const navItems = Array.from(document.querySelectorAll('.local-nav-list li'));
+
+    // 1. Hero Cover Entrance & Mousemove Parallax
+    if (cover && coverBg) {
+      coverBg.classList.add('is-loaded');
+
+      if (window.matchMedia('(min-width: 1024px)').matches) {
+        cover.addEventListener('mousemove', (e) => {
+          const rect = cover.getBoundingClientRect();
+          const x = (e.clientX - rect.width / 2) / (rect.width / 2);
+          const y = (e.clientY - rect.height / 2) / (rect.height / 2);
+          coverBg.style.transform = `scale(1.05) translate(${x * -18}px, ${y * -12}px)`;
+        });
+
+        cover.addEventListener('mouseleave', () => {
+          coverBg.style.transform = 'scale(1) translate(0, 0)';
+        });
+      }
+    }
+
+    // 2. Cover Content Scroll Fade-Out
+    const handleScrollFade = () => {
+      const scrollY = window.scrollY;
+      const fadeThreshold = window.innerHeight * 0.45;
+
+      if (coverContent) {
+        const opacity = Math.max(0, 1 - scrollY / fadeThreshold);
+        const translateY = scrollY * 0.32;
+        coverContent.style.opacity = opacity.toFixed(2);
+        coverContent.style.transform = `translateY(${translateY.toFixed(1)}px)`;
+      }
+
+      if (coverMouse) {
+        coverMouse.style.opacity = Math.max(0, 1 - scrollY / (fadeThreshold * 0.5)).toFixed(2);
+      }
+    };
+
+    window.addEventListener('scroll', handleScrollFade, { passive: true });
+
+    // 3. Section Scrollspy & Panel Animation
+    const allObserved = [cover, network, ...panels, contact].filter(Boolean);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const targetId = entry.target.id;
+            entry.target.classList.add('is-active');
+
+            navItems.forEach((li) => {
+              if (li.getAttribute('data-target') === targetId) {
+                li.classList.add('is-current');
+              } else {
+                li.classList.remove('is-current');
+              }
+            });
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: '-15% 0px -25% 0px',
+        threshold: 0.15
+      }
+    );
+
+    allObserved.forEach((el) => observer.observe(el));
+
+    // 4. Smooth Anchor Link Scrolling
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener('click', (e) => {
+        const href = anchor.getAttribute('href');
+        if (!href || href === '#') return;
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  });
+</script>
+
 <style>
-  .page-hero {
-    padding-top: calc(var(--header-height) + clamp(2.5rem, 5vw, 4rem));
-    padding-bottom: clamp(3rem, 5vw, 4.5rem);
-    background: var(--color-surface);
-    border-bottom: 1px solid var(--color-border);
+  /* ==========================================================================
+     Global Markets - Amorepacific-Inspired Clean & Sober Design
+     ========================================================================== */
+
+  .markets-portal {
+    position: relative;
+    background: var(--color-bg);
+  }
+
+  /* --------------------------------------------------------------------------
+     1. Floating Side Dot Navigation (.local-nav)
+     -------------------------------------------------------------------------- */
+  .local-nav {
+    display: none;
+    position: fixed;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 60;
+    background: rgba(11, 16, 51, 0.45);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 9999px;
+    padding: 1rem 0.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  }
+
+  @media (min-width: 1024px) {
+    .local-nav {
+      display: block;
+    }
+  }
+
+  .local-nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .local-nav-list li {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+  }
+
+  .local-nav-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+  }
+
+  .local-nav-link::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    transition: all 280ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .local-nav-link:hover::before {
+    background: #ffffff;
+    transform: scale(1.35);
+  }
+
+  .local-nav-list li.is-current .local-nav-link::before {
+    width: 11px;
+    height: 11px;
+    background: transparent;
+    border: 2px solid #ffffff;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    transform: scale(1);
+  }
+
+  .nav-tooltip {
+    position: absolute;
+    right: 2.25rem;
+    top: 50%;
+    transform: translateY(-50%) translateX(6px);
+    background: #0b1033;
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    padding: 0.35rem 0.75rem;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 220ms ease, transform 220ms ease;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  }
+
+  .local-nav-link:hover .nav-tooltip {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+
+  /* --------------------------------------------------------------------------
+     2. Hero Cover Section (.cover) - Harmonized Height & Photo Visibility
+     -------------------------------------------------------------------------- */
+  .cover {
+    position: relative;
+    height: clamp(480px, 64vh, 580px);
+    min-height: 480px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #ffffff;
+    overflow: hidden;
+  }
+
+  .cover-spacer {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .cover-bg {
+    position: absolute;
+    inset: -20px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: scale(1.06) translateX(25px);
+    opacity: 0.85;
+    transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.2s ease;
+    will-change: transform;
+  }
+
+  .cover-bg.is-loaded {
+    transform: scale(1) translateX(0);
+    opacity: 1;
+  }
+
+  /* Subtle overlay: allows photo to be clearly visible */
+  .cover-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(5, 7, 34, 0.45) 0%,
+      rgba(5, 7, 34, 0.3) 50%,
+      rgba(5, 7, 34, 0.65) 100%
+    );
+  }
+
+  .cover-content {
+    position: relative;
+    z-index: 2;
+    max-width: 62rem;
+    padding-top: var(--header-height);
+    transition: opacity 150ms linear, transform 150ms linear;
+    will-change: opacity, transform;
   }
 
   .breadcrumbs {
     margin-bottom: 2rem;
+    animation: fadeInText 0.8s ease backwards 0.2s;
   }
 
   .breadcrumbs ol {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.5rem;
+    gap: 0.75rem;
+    list-style: none;
     padding: 0;
     margin: 0;
-    list-style: none;
     font-size: 0.8125rem;
-    color: var(--color-muted);
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .breadcrumbs li + li::before {
+    content: '/';
+    margin-right: 0.75rem;
+    opacity: 0.4;
   }
 
   .breadcrumbs a {
-    color: var(--color-muted);
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
     transition: color 180ms ease;
   }
 
   .breadcrumbs a:hover {
-    color: var(--color-interactive);
+    color: #ffffff;
   }
 
   .breadcrumbs [aria-current="page"] {
-    color: var(--color-text);
-    font-weight: 600;
+    color: #ffffff;
+    font-weight: 500;
   }
 
-  .page-hero__grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.9fr);
-    gap: clamp(2.5rem, 5vw, 5rem);
-    align-items: end;
-  }
-
-  .page-title {
-    font-size: clamp(2.25rem, 4.5vw, 3.75rem);
-    font-weight: 700;
+  .cover-h {
+    margin: 0 0 1.5rem;
+    font-size: clamp(3rem, 6.5vw, 5.5rem);
+    font-weight: 400;
+    line-height: 1.02;
     letter-spacing: -0.04em;
-    line-height: 1.08;
-    color: var(--color-text);
-    margin-bottom: 1.5rem;
-  }
-
-  .page-lead {
-    font-size: clamp(1.05rem, 1.4vw, 1.25rem);
-    line-height: 1.7;
-    color: var(--color-muted);
-    max-width: 44rem;
-    margin-bottom: 2rem;
-  }
-
-  .hero-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .hero-actions svg {
-    width: 1.15rem;
-    height: 1.15rem;
-  }
-
-  .page-hero__stats {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-  }
-
-  .stat-card {
-    padding: 1.5rem;
-    background: var(--color-bg);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 8rem;
-  }
-
-  .stat-card__number {
-    font-size: clamp(1.25rem, 2vw, 1.65rem);
-    font-weight: 750;
-    letter-spacing: -0.02em;
-    color: var(--color-primary);
-  }
-
-  .stat-card__label {
-    font-size: 0.8125rem;
-    color: var(--color-muted);
-    line-height: 1.4;
-  }
-
-  /* Map Section */
-  .map-section {
-    padding-top: clamp(2.5rem, 4.5vw, 4rem);
-    padding-bottom: clamp(2.5rem, 4.5vw, 4rem);
-  }
-
-  .market-geography-card {
-    background: #080b2a;
-    border-radius: var(--radius-xl);
-    padding: clamp(2.5rem, 5vw, 4rem);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
-    margin-bottom: 3.5rem;
-  }
-
-  .market-geography-header {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem;
-    margin-bottom: 2.5rem;
-  }
-
-
-  .market-geography-title {
-    font-size: clamp(1.75rem, 3.2vw, 2.5rem);
-    font-weight: 700;
     color: #ffffff;
-    margin: 0.5rem 0 0;
-    letter-spacing: -0.025em;
+    text-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+    text-wrap: balance;
+    animation: fadeInText 0.9s cubic-bezier(0.16, 1, 0.3, 1) backwards 0.4s;
   }
 
-  .market-badge {
-    font-size: 0.8125rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #a6b8ff;
-    padding: 0.5rem 1.25rem;
-    border-radius: 999px;
-    border: 1px solid rgba(166, 184, 255, 0.35);
-    background: rgba(166, 184, 255, 0.08);
-  }
-
-  .market-geography {
-    width: 100%;
-    max-width: 58rem;
-    margin: 0 auto;
-  }
-
-  .market-geography svg {
-    width: 100%;
-    height: auto;
-  }
-
-  .black-placeholder {
-    width: 100%;
-    aspect-ratio: 21 / 8;
-    background: #000000;
-    border-radius: var(--radius-lg);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
-  }
-
-  .black-placeholder__content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 0.75rem;
-    padding: 2rem;
-  }
-
-  .black-placeholder__dot {
-    width: 0.6rem;
-    height: 0.6rem;
-    border-radius: 50%;
-    background: var(--color-accent);
-    box-shadow: 0 0 12px var(--color-accent);
-  }
-
-  .black-placeholder__tag {
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.6);
-    border: 1px dashed rgba(255, 255, 255, 0.25);
-    padding: 0.35rem 0.85rem;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.05);
-  }
-
-  .black-placeholder__note {
-    font-size: 0.875rem;
-    color: rgba(255, 255, 255, 0.45);
+  .cover-desc {
     margin: 0;
-    max-width: 26rem;
+    font-size: clamp(1.125rem, 1.5vw, 1.35rem);
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.92);
+    max-width: 48rem;
+    font-weight: 300;
+    text-wrap: pretty;
+    animation: fadeInText 0.9s cubic-bezier(0.16, 1, 0.3, 1) backwards 0.6s;
   }
 
-  /* Nodes Section */
-  .section-header {
-    max-width: 44rem;
-    margin-bottom: clamp(2.5rem, 5vw, 4rem);
-  }
-
-  .nodes-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 2rem;
-  }
-
-  .node-card {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    padding: clamp(2rem, 3.5vw, 2.75rem);
-    box-shadow: var(--shadow-card);
-    transition: transform 220ms ease, border-color 220ms ease;
-  }
-
-  .node-card:hover {
-    transform: translateY(-3px);
-    border-color: color-mix(in srgb, var(--color-secondary) 40%, var(--color-border));
-  }
-
-  .node-card__location {
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--color-secondary);
-    display: block;
-    margin-bottom: 0.5rem;
-  }
-
-  .node-card__title {
-    font-size: clamp(1.4rem, 2.2vw, 1.85rem);
-    font-weight: 700;
-    letter-spacing: -0.025em;
-    color: var(--color-text);
-    margin-bottom: 0.35rem;
-  }
-
-  .node-card__role {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--color-primary);
-    margin-bottom: 1.25rem;
-  }
-
-  .node-card__body p {
-    font-size: 0.95rem;
-    line-height: 1.65;
-    color: var(--color-muted);
-    margin-bottom: 1.5rem;
-  }
-
-  .node-card__list {
-    padding-left: 1.2rem;
-    margin: 0;
-    color: var(--color-text);
-    font-size: 0.875rem;
-    line-height: 1.7;
-  }
-
-  /* CTA Banner */
-  .cta-card {
-    background: #050722;
-    color: #f7f8fc;
-    border-radius: var(--radius-xl);
-    padding: clamp(3rem, 6vw, 5rem);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .cta-card::after {
-    content: '';
-    position: absolute;
-    top: -20%;
-    right: -10%;
-    width: 32rem;
-    height: 32rem;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(0, 71, 160, 0.45) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .cta-card__body {
-    max-width: 44rem;
-    position: relative;
-    z-index: 2;
-  }
-
-  .cta-card__title {
-    font-size: clamp(2rem, 3.8vw, 3rem);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    color: #ffffff;
-    margin-bottom: 1.25rem;
-  }
-
-  .cta-card__copy {
-    font-size: 1.1rem;
-    color: #c3cadb;
-    line-height: 1.7;
-    margin-bottom: 2rem;
-  }
-
-  .cta-card__actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .cta-card__actions .button--secondary {
-    background: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-    border-color: rgba(255, 255, 255, 0.2);
-  }
-
-  .cta-card__actions .button--secondary:hover {
-    background: rgba(255, 255, 255, 0.18);
-  }
-
-  @media (max-width: 63.99rem) {
-    .page-hero__grid,
-    .nodes-grid {
-      grid-template-columns: 1fr;
+  @keyframes fadeInText {
+    0% {
+      opacity: 0;
+      transform: translateY(22px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 
-  @media (max-width: 39.99rem) {
-    .page-hero__stats {
+  /* Mouse Scroll Indicator */
+  .cover-mouse {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.75);
+    transition: color 200ms ease, opacity 200ms ease;
+    animation: fadeInText 1s ease backwards 1s;
+  }
+
+  .cover-mouse:hover {
+    color: #ffffff;
+  }
+
+  .mouse-icon {
+    width: 22px;
+    height: 36px;
+    border: 1.8px solid rgba(255, 255, 255, 0.65);
+    border-radius: 12px;
+    position: relative;
+  }
+
+  .mouse-icon::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    width: 3.5px;
+    height: 7px;
+    background: #ffffff;
+    border-radius: 2px;
+    transform: translateX(-50%);
+    animation: mouseWheel 2s infinite cubic-bezier(0.65, 0, 0.35, 1);
+  }
+
+  .mouse-text {
+    font-size: 0.6875rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  @keyframes mouseWheel {
+    0% {
+      transform: translate(-50%, 0);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(-50%, 14px);
+      opacity: 0;
+    }
+  }
+
+  /* --------------------------------------------------------------------------
+     3. Bilateral Network Section (White Surface - Clean & Sober)
+     -------------------------------------------------------------------------- */
+  .network-section {
+    padding-block: clamp(4.5rem, 7vw, 6.5rem);
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .network-intro {
+    display: grid;
+    grid-template-columns: 1fr 1.25fr;
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: end;
+    margin-bottom: clamp(3rem, 5vw, 4.5rem);
+  }
+
+  .section-title {
+    margin: 0;
+    font-size: clamp(2.25rem, 3.8vw, 3.5rem);
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: -0.04em;
+    color: var(--color-text);
+  }
+
+  .section-title span {
+    color: var(--color-primary);
+  }
+
+  .section-lead {
+    margin: 0;
+    font-size: clamp(1.05rem, 1.4vw, 1.225rem);
+    line-height: 1.75;
+    color: var(--color-muted);
+    text-wrap: pretty;
+  }
+
+  /* Network Grid & Axis */
+  .market-network {
+    position: relative;
+  }
+
+  .bilateral-axis {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(18px, 4vw, 50px);
+    max-width: 820px;
+    margin-inline: auto;
+  }
+
+  .hub-node {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 16px 26px 16px 20px;
+    background: #09102c;
+    border: 1px solid rgba(141, 164, 255, 0.2);
+    border-radius: 4px;
+    color: #ffffff;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+    transition: transform 220ms ease, border-color 220ms ease;
+  }
+
+  .hub-node:hover {
+    transform: translateY(-2px);
+    border-color: rgba(141, 164, 255, 0.45);
+  }
+
+  .hub-node__image-wrap {
+    width: 60px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .hub-node__image {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .hub-node__content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hub-node__city {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #8da4ff;
+  }
+
+  .hub-node__title {
+    font-size: clamp(1.25rem, 1.6vw, 1.6rem);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    margin: 2px 0 0;
+    color: #ffffff;
+  }
+
+  .bilateral-bridge {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 120px;
+    max-width: 200px;
+  }
+
+  .bilateral-bridge__badge {
+    position: absolute;
+    top: -24px;
+    padding: 3px 10px;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #ffffff;
+    background: #0b1436;
+    border: 1px solid rgba(141, 164, 255, 0.35);
+    border-radius: 9999px;
+    white-space: nowrap;
+  }
+
+  .bilateral-bridge__line {
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #4c82ff 0%, #34d399 100%);
+  }
+
+  .bilateral-bridge__core {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 0 10px #34d399;
+  }
+
+  .network-trunk {
+    width: 1px;
+    height: 48px;
+    background: var(--color-border);
+    margin-inline: auto;
+  }
+
+  /* 5 Continent Cards */
+  .market-cards {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 20px;
+    list-style: none;
+    margin: 36px 0 0;
+    padding: 0;
+  }
+
+  .market-cards::before {
+    content: '';
+    position: absolute;
+    top: -36px;
+    left: calc((100% - 20px * 4) / 10);
+    right: calc((100% - 20px * 4) / 10);
+    height: 1px;
+    background: var(--color-border);
+  }
+
+  .market-card {
+    position: relative;
+    min-width: 0;
+  }
+
+  .market-card::before {
+    content: '';
+    position: absolute;
+    top: -36px;
+    left: 50%;
+    width: 1px;
+    height: 36px;
+    background: var(--color-border);
+  }
+
+  .market-card-body {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 16px 20px;
+    background: #0a112f;
+    color: #ffffff;
+    border: 1px solid rgba(141, 164, 255, 0.16);
+    border-radius: 4px;
+    transition: background-color 220ms ease, border-color 220ms ease, transform 220ms ease;
+  }
+
+  .market-card-body:hover {
+    background: #0f1a44;
+    border-color: rgba(141, 164, 255, 0.45);
+    transform: translateY(-3px);
+  }
+
+  .market-map {
+    display: grid;
+    place-items: center;
+    border-bottom: 1px solid rgba(141, 164, 255, 0.12);
+    padding-bottom: 16px;
+    min-height: 120px;
+  }
+
+  .market-map img {
+    max-width: 100%;
+    height: auto;
+    max-height: 110px;
+    object-fit: contain;
+    transition: transform 300ms ease;
+  }
+
+  .market-card-body:hover .market-map img {
+    transform: scale(1.05);
+  }
+
+  .market-name {
+    margin: 16px 0 0;
+    font-size: clamp(1.1rem, 1.3vw, 1.35rem);
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+  }
+
+  /* --------------------------------------------------------------------------
+     4. Regional Showcase Panels (Harmonized Height & Alternance Image / Blanc)
+     -------------------------------------------------------------------------- */
+  .corridors-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .corridor-panel {
+    position: relative;
+    width: 100%;
+  }
+
+  /* Visual Banner Header (Harmonized, Clean Visibility) */
+  .corridor-banner {
+    position: relative;
+    height: clamp(300px, 38vh, 420px);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  /* Light, balanced gradient overlay so the photo shines through */
+  .corridor-banner__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(5, 7, 34, 0.52) 0%,
+      rgba(5, 7, 34, 0.32) 55%,
+      rgba(5, 7, 34, 0.15) 100%
+    );
+  }
+
+  /* Amorepacific Signature Horizontal Accent Line */
+  .corridor-deco {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: clamp(40px, 8vw, 110px);
+    height: 1px;
+    background: rgba(255, 255, 255, 0.45);
+    z-index: 2;
+  }
+
+  .corridor-deco::after {
+    content: '';
+    position: absolute;
+    right: -4px;
+    top: -3px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.85);
+  }
+
+  .corridor-title-wrap {
+    position: relative;
+    z-index: 3;
+    padding-left: clamp(55px, 10vw, 130px);
+  }
+
+  .corridor-number {
+    display: block;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: #a6b8ff;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+  }
+
+  .corridor-title {
+    margin: 0;
+    font-size: clamp(2.35rem, 5vw, 4.25rem);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    color: #ffffff;
+    text-shadow: 0 4px 25px rgba(0, 0, 0, 0.45);
+    text-wrap: balance;
+  }
+
+  /* Content Drawer (Clean White Surface) */
+  .corridor-drawer {
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    padding-block: clamp(2.75rem, 4.5vw, 4.25rem);
+  }
+
+  .corridor-content {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: center;
+  }
+
+  .content-subtitle {
+    margin: 0 0 0.85rem;
+    font-size: clamp(1.35rem, 1.85vw, 1.85rem);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    color: var(--color-text);
+  }
+
+  .content-desc {
+    margin: 0;
+    font-size: clamp(1.05rem, 1.3vw, 1.1875rem);
+    line-height: 1.75;
+    color: var(--color-muted);
+    max-width: 52rem;
+    text-wrap: pretty;
+  }
+
+  .content-right {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  /* Short & Crisp CTA Button */
+  .corridor-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 1rem 1.85rem;
+    background: var(--color-primary);
+    color: #ffffff;
+    border-radius: 4px;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    transition: background-color 220ms ease, transform 220ms ease, box-shadow 220ms ease;
+    box-shadow: 0 4px 14px rgba(0, 14, 138, 0.16);
+  }
+
+  .corridor-cta:hover {
+    background: var(--color-secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 14, 138, 0.25);
+  }
+
+  .cta-arrow {
+    width: 18px;
+    height: 18px;
+    transition: transform 220ms ease;
+  }
+
+  .corridor-cta:hover .cta-arrow {
+    transform: translateX(4px);
+  }
+
+  /* --------------------------------------------------------------------------
+     5. Closing Section (Spacious & Clean)
+     -------------------------------------------------------------------------- */
+  .closing-cta {
+    padding-block: clamp(5rem, 8vw, 7.5rem);
+    background: var(--color-surface);
+  }
+
+  .closing-cta__box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+  }
+
+  .closing-cta__title {
+    margin: 0 0 0.85rem;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    color: var(--color-text);
+  }
+
+  .closing-cta__lead {
+    margin: 0;
+    font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+    color: var(--color-muted);
+    line-height: 1.7;
+    max-width: 42rem;
+  }
+
+  /* --------------------------------------------------------------------------
+     Responsive Adaptations
+     -------------------------------------------------------------------------- */
+  @media (max-width: 1023px) {
+    .network-intro {
       grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .market-cards {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .market-cards::before {
+      display: none;
+    }
+
+    .market-card::before {
+      display: none;
+    }
+
+    .market-card:last-child {
+      grid-column: 1 / -1;
+      max-width: calc(50% - 8px);
+      margin-inline: auto;
+    }
+
+    .corridor-content {
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+    }
+
+    .closing-cta__box {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2rem;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .cover {
+      height: auto;
+      min-height: auto;
+      padding-top: calc(var(--header-height) + 2rem);
+      padding-bottom: 4rem;
+    }
+
+    .bilateral-axis {
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .bilateral-bridge {
+      width: 100%;
+      height: 36px;
+      min-width: auto;
+    }
+
+    .bilateral-bridge__line {
+      width: 2px;
+      height: 100%;
+    }
+
+    .bilateral-bridge__badge {
+      top: 50%;
+      left: calc(50% + 20px);
+      transform: translateY(-50%);
+    }
+
+    .market-cards {
+      grid-template-columns: 1fr;
+    }
+
+    .market-card:last-child {
+      max-width: 100%;
+    }
+
+    .corridor-banner {
+      height: 260px;
+    }
+
+    .corridor-deco {
+      width: 32px;
+    }
+
+    .corridor-title-wrap {
+      padding-left: 45px;
+    }
+
+    .corridor-cta {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cover-bg,
+    .corridor-banner,
+    .corridor-cta,
+    .cta-arrow,
+    .local-nav-link::before {
+      transition: none !important;
+      transform: none !important;
+    }
+
+    .mouse-icon::before {
+      animation: none !important;
     }
   }
 </style>

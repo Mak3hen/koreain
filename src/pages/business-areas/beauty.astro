@@ -82,11 +82,21 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           </div>
         </div>
 
-        <div class="black-placeholder" aria-label="Laboratory formulation placeholder">
-          <div class="black-placeholder__content">
-            <span class="black-placeholder__dot"></span>
-            <span class="black-placeholder__tag">Visual Placeholder</span>
-            <p class="black-placeholder__note">Cosmetic Formulation &amp; Certified Cleanroom Laboratory — Pending Selection</p>
+        <div class="visual-card">
+          <figure class="visual-figure">
+            <img
+              src="/home/business-areas/beauty-secondary.webp"
+              alt="High-efficacy cosmetic formulation laboratory, clinical research, and bio-skincare."
+              width="960"
+              height="640"
+              loading="lazy"
+              decoding="async"
+              class="visual-img"
+            />
+          </figure>
+          <div class="visual-caption">
+            <span class="visual-caption__tag">Bio-Formulation</span>
+            <p>High-efficacy clinical skincare &amp; certified cleanroom research</p>
           </div>
         </div>
       </div>
@@ -133,6 +143,12 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
               <li>Eco-friendly and sustainable packaging sourcing</li>
               <li>Small batch prototyping and industrial scale production</li>
             </ul>
+            <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--color-border);">
+              <a href="/business-areas/kbeauty-oem-odm" style="display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; font-weight: 600; color: var(--color-accent); text-decoration: none;">
+                <span>Dedicated OEM/ODM Portal</span>
+                <span aria-hidden="true">&rarr;</span>
+              </a>
+            </div>
           </article>
 
           <article class="pillar-card">
@@ -353,54 +369,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     margin: 0.4rem 0 0;
     font-size: 0.9rem;
     color: var(--color-muted);
-  }
-
-  .black-placeholder {
-    width: 100%;
-    aspect-ratio: 16 / 10;
-    background: #000000;
-    border-radius: var(--radius-lg);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
-  }
-
-  .black-placeholder__content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 0.75rem;
-    padding: 2rem;
-  }
-
-  .black-placeholder__dot {
-    width: 0.6rem;
-    height: 0.6rem;
-    border-radius: 50%;
-    background: var(--color-accent);
-    box-shadow: 0 0 12px var(--color-accent);
-  }
-
-  .black-placeholder__tag {
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.6);
-    border: 1px dashed rgba(255, 255, 255, 0.25);
-    padding: 0.35rem 0.85rem;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.05);
-  }
-
-  .black-placeholder__note {
-    font-size: 0.875rem;
-    color: rgba(255, 255, 255, 0.45);
-    margin: 0;
-    max-width: 22rem;
   }
 
   /* Split Overview */

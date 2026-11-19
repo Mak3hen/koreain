@@ -1,0 +1,2671 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const navItems = [
+  { id: 'cover', label: 'Overview' },
+  { id: 'vision-mission', label: '01 Vision & Mission' },
+  { id: 'competencies', label: '02 Core Competencies' },
+  { id: 'categories', label: '03 Product Portfolio' },
+  { id: 'formulation', label: '04 Formulation Science' },
+  { id: 'process', label: '05 6-Step Development' },
+  { id: 'why-koreain', label: '06 Why KoreaIN' },
+  { id: 'global-reach', label: '07 Global Adaptation' },
+  { id: 'certifications', label: '08 Certifications & QC' },
+  { id: 'ceo-message', label: '09 Leadership' },
+  { id: 'contact', label: '10 Start Your Line' }
+];
+
+const competencies = [
+  {
+    idx: '01',
+    title: 'Advanced R&D & Formulation',
+    lead: 'Pioneering cleanroom cosmetic chemistry, bio-active stabilization, and targeted delivery systems.',
+    points: [
+      'Anhydrous and waterless concentrated skincare formulations',
+      'Proprietary biomimetic emulsions and micro-droplet delivery',
+      'Stabilization of sensitive actives (Vitamin C, Retinol, Peptides)',
+      'Micro-encapsulated delivery systems for targeted active release',
+      'Accelerated thermal stability and preservative challenge testing'
+    ]
+  },
+  {
+    idx: '02',
+    title: 'Natural & Functional Bio-Actives',
+    lead: 'Ethically sourced botanical ingredients, clean bio-actives, and proven dermatological efficacy.',
+    points: [
+      'Korean Panax Ginseng with saponin bio-enrichment',
+      'Jeju Island organic green tea water and antioxidant polyphenols',
+      'Pearl extract for luminous skin radiance',
+      'Centella Asiatica (Cica) for skin barrier repair',
+      'Raw material safety documentation and efficacy reports'
+    ]
+  },
+  {
+    idx: '03',
+    title: 'GMP-Certified Manufacturing',
+    lead: 'Cleanroom manufacturing facilities operating to ISO 22716 Good Manufacturing Practice.',
+    points: [
+      'ISO 22716 certified cleanroom environments (Class 10k & 100k)',
+      'Modern automated compounding and precision filling lines',
+      'Batch traceability and raw material documentation',
+      'Multi-stage quality control: heavy metals, microbiology & drop testing',
+      'Compounding capacity scaling from pilot batches to high-volume production'
+    ]
+  },
+  {
+    idx: '04',
+    title: 'Global Regulatory & Certifications',
+    lead: 'Turnkey market authorization across North America, Europe, the Middle East, and Asia.',
+    points: [
+      'US FDA compliance, product listing, and MoCRA readiness',
+      'European Union CPNP registration and safety reports',
+      'Saudi SFDA and UAE ESMA cosmetic registration dossiers',
+      'Certified Vegan verification (Eve Vegan & The Vegan Society)',
+      'Recognized HALAL certification (alcohol-free & dedicated lines)'
+    ]
+  },
+  {
+    idx: '05',
+    title: 'Full-Service Turnkey OEM/ODM',
+    lead: 'End-to-end brand stewardship from white-paper concept to finished, palletized retail goods.',
+    points: [
+      'Packaging sourcing: airless bottles, glass droppers, luxury jars',
+      'Sustainable materials: PCR plastics, refillable containers, FSC cartons',
+      'Brand design alignment, typography, and luxury finishing',
+      'Primary container compatibility and formula interaction testing',
+      'Secondary box engineering and barcode verification'
+    ]
+  },
+  {
+    idx: '06',
+    title: 'Reliable Global Logistics',
+    lead: 'Cold-chain distribution ensuring formulation integrity from Seoul to global destinations.',
+    points: [
+      'Temperature-monitored warehousing and containerized transit',
+      'Export customs handling and documentation clearance',
+      'Air express sampling and sea freight container consolidation',
+      'Established distribution corridors to Saudi Arabia, UAE, EU, and USA',
+      'Post-delivery monitoring and reorder forecasting'
+    ]
+  }
+];
+
+const developmentSteps = [
+  {
+    step: '01',
+    title: 'Consultation & Strategy',
+    desc: 'We define your brand vision, target demographic, competitive benchmarks, formula specifications, packaging aesthetics, unit economics, and launch milestones.'
+  },
+  {
+    step: '02',
+    title: 'R&D & Sampling',
+    desc: 'Our cosmetic chemists develop bespoke formulations. Initial bench samples are delivered within 2-3 weeks for sensory evaluation, scent tuning, and texture refinement.'
+  },
+  {
+    step: '03',
+    title: 'Packaging & Design',
+    desc: 'Selection of primary containers (airless pumps, glass droppers, luxury treatment jars, PCR materials), luxury finishing, and drop-test compatibility verification.'
+  },
+  {
+    step: '04',
+    title: 'Regulatory & Certifications',
+    desc: 'Compilation of the Product Information File (PIF), safety assessments, MSDS generation, and turnkey submission to US FDA, EU CPNP, Saudi SFDA, or HALAL bodies.'
+  },
+  {
+    step: '05',
+    title: 'GMP Manufacturing & QC',
+    desc: 'ISO 22716 cleanroom compounding and automated filling. Every batch passes heavy metal, microbial, physical stability, and fill-weight clearance tests.'
+  },
+  {
+    step: '06',
+    title: 'Logistics & Post-Launch',
+    desc: 'Temperature-controlled packing, export customs handling, international shipping, warehouse delivery, reorder planning, and continuous formula lifecycle updates.'
+  }
+];
+
+const whyChooseKoreaIn = [
+  {
+    idx: '01',
+    title: 'One-Stop Turnkey Solution',
+    desc: 'Full consolidation from chemistry to packaging eliminates fragmented vendor overhead, cutting development time by over 40%.'
+  },
+  {
+    idx: '02',
+    title: 'Deep Regulatory Mastery',
+    desc: 'In-house regulatory desks directly handle US FDA MoCRA, EU CPNP, Saudi SFDA, and HALAL certifications without third-party bottlenecks.'
+  },
+  {
+    idx: '03',
+    title: 'Trend-Driven Speed',
+    desc: 'Direct immersion in Seoul’s fast-moving beauty culture allows your brand to adopt viral K-beauty innovations months ahead of global competitors.'
+  },
+  {
+    idx: '04',
+    title: 'Bespoke Custom Formulations',
+    desc: 'Every formulation is engineered from scratch for your brand’s unique positioning. We never offer commoditized off-the-shelf white labels.'
+  },
+  {
+    idx: '05',
+    title: 'Agile Scalability & MOQs',
+    desc: 'Flexible initial minimum order quantities tailored for emerging indie prestige brands, scaling seamlessly to multi-million unit retail runs.'
+  },
+  {
+    idx: '06',
+    title: 'Collaborative Partnership',
+    desc: 'Transparent pricing, open lab communication, and dedicated account leadership focused on building your enduring brand equity.'
+  }
+];
+
+const regionalAdaptations = [
+  {
+    region: 'Middle East & Saudi Arabia',
+    badge: 'Riyadh & GCC Formulation Desk',
+    lead: 'Engineered specifically for extreme arid and high-heat desert environments.',
+    points: [
+      'Thermal stability verified up to 45°C–50°C without phase separation or sweating',
+      'Sweat-resistant, non-comedogenic hydration that does not clog pores in dust or heat',
+      'Skin barrier defense and soothing relief against sun exposure and dry winds',
+      '100% SFDA & ESMA compliant dossiers and dedicated HALAL certified production lines'
+    ]
+  },
+  {
+    region: 'European Union',
+    badge: 'Brussels & Paris Regulatory Alignment',
+    lead: 'Formulated in total compliance with the world’s strictest cosmetic safety standards.',
+    points: [
+      'Full conformity with EC Cosmetics Regulation 1223/2009',
+      'Zero microplastics, clean preservative systems, and screened natural fragrances',
+      'Comprehensive Cosmetic Product Safety Report (CPSR) signed by safety assessors',
+      'Turnkey European CPNP notification and Responsible Person (RP) assistance'
+    ]
+  },
+  {
+    region: 'United States & North America',
+    badge: 'FDA MoCRA Ready',
+    lead: 'Clean, trendsetting formulations aligned with major US retail credentialing.',
+    points: [
+      'Full compliance with the Modernization of Cosmetics Regulation Act (MoCRA)',
+      'Clinical efficacy substantiation and dermatological safety verification',
+      'Conformity with Sephora Clean, Ulta Conscious Beauty, and Credo standards',
+      'Facility registration and cosmetic product listing handled directly by our team'
+    ]
+  },
+  {
+    region: 'Southeast Asia',
+    badge: 'Tropical Climate Formulations',
+    lead: 'Weightless textures tailored for high-humidity and tropical urban climates.',
+    points: [
+      'Ultralight water-burst and aqueous gel textures with instant absorption',
+      'Sebum-control, mattifying botanical actives that combat oily shine in humidity',
+      'Broad-spectrum invisible UV protection leaving zero white cast or stickiness',
+      'Formulations optimized for ASEAN cosmetic directive standards'
+    ]
+  }
+];
+
+const certificationStandards = [
+  {
+    title: 'ISO 22716 Good Manufacturing Practice',
+    category: 'Manufacturing Standard',
+    desc: 'Cleanroom production strictly adhering to international ISO 22716 cosmetic GMP guidelines.',
+    points: [
+      'Cleanroom manufacturing environments (Class 10,000 & 100,000)',
+      'Modern automated compounding, precision filling, and packaging lines',
+      'Electronic Batch Production Records ensuring raw material traceability',
+      'Stringent in-process quality controls and final batch release testing'
+    ]
+  },
+  {
+    title: 'Global Regulatory Dossiers',
+    category: 'Market Compliance',
+    desc: 'Turnkey registration and compliance dossiers compliant with international cosmetic authorities.',
+    points: [
+      'US FDA compliance, cosmetic facility registration & MoCRA listing',
+      'European Union CPNP notification and Cosmetic Product Safety Reports (CPSR)',
+      'Saudi SFDA (eCosma) and UAE ESMA registration dossiers and Certificate of Conformity',
+      'Bilingual Arabic/English labeling compliance for Middle Eastern markets'
+    ]
+  },
+  {
+    title: 'HALAL Certification',
+    category: 'Religious & Ethical Standard',
+    desc: 'Audited production verifying 100% alcohol-free and pork-free formulations.',
+    points: [
+      'Dedicated cleanroom production lines with documented sanitization protocols',
+      'Strict raw material screening: 100% free from ethyl alcohol and animal derivatives',
+      'Certification alignment for Saudi Arabia, the GCC, and Southeast Asia'
+    ]
+  },
+  {
+    title: 'Vegan & Clean Formulation Verification',
+    category: 'Conscious Beauty',
+    desc: 'Plant-derived formulation integrity meeting leading international clean beauty standards.',
+    points: [
+      'Certified Vegan verification (Eve Vegan / The Vegan Society standards)',
+      'Formulated without parabens, sulfates, phthalates, or microplastics',
+      'Cruelty-free verification with zero animal testing'
+    ]
+  }
+];
+
+const qcTestingProcedures = [
+  {
+    num: '01',
+    title: 'Heavy Metal Testing',
+    desc: 'Screening for lead, arsenic, mercury, and cadmium to guarantee product purity and consumer safety.'
+  },
+  {
+    num: '02',
+    title: 'Microbiological Testing',
+    desc: 'Aerobic plate count, yeast, and mold testing verifying sanitary cleanroom conditions across every batch.'
+  },
+  {
+    num: '03',
+    title: 'Stability & Compatibility Testing',
+    desc: 'Multi-temperature accelerated thermal stability testing and formula-container compatibility studies.'
+  },
+  {
+    num: '04',
+    title: 'Leakage & Drop Testing',
+    desc: 'Packaging integrity validation, seal hermeticity, pump dispensing accuracy, and calibrated drop tests.'
+  }
+];
+---
+
+<BaseLayout
+  title="K-Beauty OEM/ODM Services | KoreaIN"
+  description="Specialized OEM/ODM skincare and bio-cosmetics manufacturing by KoreaIN. ISO 22716 GMP cleanrooms, advanced formulation R&D, bespoke packaging, and global regulatory compliance (FDA, CPNP, SFDA, HALAL)."
+>
+  <main id="main-content" class="oem-portal">
+    <!-- Floating Side Dot Navigation (Amorepacific .local-nav) -->
+    <nav class="local-nav" aria-label="OEM/ODM page navigation">
+      <ul class="local-nav-list">
+        {navItems.map((item, index) => (
+          <li class={index === 0 ? 'is-current' : ''} data-target={item.id}>
+            <a href={`#${item.id}`} class="local-nav-link" aria-label={item.label}>
+              <span class="nav-tooltip">{item.label}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- 1. Hero Cover (Full Viewport Cover with Parallax & Smooth Entrance) -->
+    <header id="cover" class="cover" aria-labelledby="cover-title">
+      <div class="cover-spacer">
+        <div
+          class="cover-bg"
+          id="coverBg"
+          style="background-image: url('/home/business-areas/beauty-odm-1-1600.webp');"
+        ></div>
+        <div class="cover-overlay"></div>
+      </div>
+
+      <div class="container cover-content" id="coverContent">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/business-areas">Services</a></li>
+            <li aria-current="page">K-Beauty OEM/ODM</li>
+          </ol>
+        </nav>
+
+        <h1 id="cover-title" class="cover-h">Premium Cosmetics OEM/ODM</h1>
+        <p class="cover-subtitle">Where Korean Innovation Meets Global Beauty Excellence</p>
+
+        <div class="cover-desc-group">
+          <p class="cover-lead">
+            Transform your beauty brand vision into reality with KoreaIN, where Korean innovation meets global excellence in cosmetics manufacturing.
+          </p>
+          <p class="cover-copy">
+            As your dedicated OEM/ODM partner, we deliver premium formulations, regulatory expertise, and comprehensive development services to bring your unique beauty products to market.
+          </p>
+          <p class="cover-copy">
+            From initial lab ideation and formulation chemistry to custom packaging, automated GMP compounding, and international regulatory clearance, we provide an agile, single-source engine for luxury and indie beauty brands worldwide.
+          </p>
+        </div>
+
+        <div class="cover-action">
+          <a href="#contact" class="btn-cover">
+            <span>Request Formulation Catalog</span>
+            <svg class="cta-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M4 10h11M11 5l5 5-5 5" />
+            </svg>
+          </a>
+          <a href="/contact" class="btn-cover btn-cover--secondary">
+            <span>Schedule a Consultation</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Animated Mouse Scroll Indicator -->
+      <a href="#vision-mission" class="cover-mouse" id="coverMouse" aria-label="Scroll to first section">
+        <span class="mouse-icon"></span>
+        <span class="mouse-text">Scroll</span>
+      </a>
+    </header>
+
+    <!-- Main Showcase Sections (Amorepacific Sub-section Choreography) -->
+    <div class="page-contents">
+
+      <!-- SECTION 01: Vision & Mission -->
+      <section
+        id="vision-mission"
+        class="sub-section sub-section-banner"
+        data-section-id="vision-mission"
+        aria-labelledby="vision-title"
+      >
+        <!-- High Cinematic Visual Banner -->
+        <div class="sub-section-header sub-section-header--tall" style="background-image: url('/home/business-areas/beauty-odm-2-1600.webp');">
+          <div class="sub-section-header__overlay"></div>
+          <div class="sub-section-deco" aria-hidden="true"></div>
+
+          <div class="sub-section-title-wrap">
+            <span class="sub-section-meta">
+              <span class="sub-section-number">01</span>
+              <span class="sub-section-category">Vision &amp; Mission</span>
+            </span>
+            <h2 id="vision-title" class="sub-section-h">
+              Empowering Beauty Brands<br />Through Korean Innovation
+            </h2>
+          </div>
+        </div>
+
+        <!-- Spacious Architectural Surface -->
+        <div class="sub-section-surface">
+          <div class="container">
+            <div class="editorial-layout">
+              <div class="editorial-lead-box">
+                <span class="practice-tag">Strategic Core</span>
+                <h3 class="editorial-headline">Global Leadership Grounded in Quality &amp; Trust</h3>
+                <blockquote class="editorial-quote">
+                  "Our vision is to be the global leader in cosmetics OEM/ODM, combining cutting-edge Korean innovation with world-class quality and trust, empowering beauty brands worldwide to realize their full creative and commercial potential."
+                </blockquote>
+              </div>
+
+              <div class="dual-core-grid">
+                <div class="core-card">
+                  <span class="core-card__idx">Vision</span>
+                  <h4 class="core-card__title">Global Benchmark of Beauty Innovation</h4>
+                  <p class="body-text">
+                    To pioneer the future of cosmetics manufacturing by seamlessly uniting Seoul’s rapid formulation breakthroughs with international quality assurance, sustainable chemistry, and enduring commercial value.
+                  </p>
+                </div>
+
+                <div class="core-card">
+                  <span class="core-card__idx">Mission</span>
+                  <h4 class="core-card__title">Tailored Performance &amp; Consumer-Centric Design</h4>
+                  <p class="body-text">
+                    Deliver high-performance, custom-crafted cosmetic solutions through advanced formulation science and regulatory expertise, while fostering sustainable practices, inclusive beauty, and flawless user experiences.
+                  </p>
+                </div>
+              </div>
+
+              <div class="surface-action-row">
+                <a href="#competencies" class="sub-section-more">
+                  <span>Explore Core Competencies</span>
+                  <svg class="more-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M10 4v11M5 11l5 5 5-5" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 02: Core Competencies (Keeps kbeauty_6.png) -->
+      <section
+        id="competencies"
+        class="sub-section sub-section-banner"
+        data-section-id="competencies"
+        aria-labelledby="competencies-title"
+      >
+        <div class="sub-section-header sub-section-header--tall" style="background-image: url('/home/business-areas/oem-lab-1600.webp');">
+          <div class="sub-section-header__overlay"></div>
+          <div class="sub-section-deco" aria-hidden="true"></div>
+
+          <div class="sub-section-title-wrap">
+            <span class="sub-section-meta">
+              <span class="sub-section-number">02</span>
+              <span class="sub-section-category">Core Competencies</span>
+            </span>
+            <h2 id="competencies-title" class="sub-section-h">
+              Six Pillars of<br />Manufacturing Excellence
+            </h2>
+          </div>
+        </div>
+
+        <div class="sub-section-surface">
+          <div class="container">
+            <div class="surface-intro">
+              <p class="lead-statement">
+                From initial raw material sourcing and custom formulation chemistry to automated compounding, packaging, and international export, KoreaIN operates as a unified, full-spectrum OEM/ODM partner.
+              </p>
+            </div>
+
+            <div class="competencies-grid">
+              {competencies.map((comp) => (
+                <article class="competency-card">
+                  <div class="competency-card__top">
+                    <span class="competency-idx">{comp.idx}</span>
+                    <h3 class="competency-title">{comp.title}</h3>
+                  </div>
+                  <p class="competency-lead">{comp.lead}</p>
+                  <ul class="competency-list">
+                    {comp.points.map((pt) => (
+                      <li>
+                        <svg class="check-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                          <path d="M3.5 8.5l3 3 6-7" />
+                        </svg>
+                        <span>{pt}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+
+            <div class="surface-action-row">
+              <a href="#categories" class="sub-section-more">
+                <span>Browse Product Categories</span>
+                <svg class="more-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M10 4v11M5 11l5 5 5-5" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 03: Comprehensive Product Portfolio (Skincare, Bio & Dermacosmetics) -->
+      <section
+        id="categories"
+        class="sub-section"
+        data-section-id="categories"
+        aria-labelledby="categories-title"
+      >
+        <div class="container section-title-block">
+          <span class="sub-section-meta">
+            <span class="sub-section-number">03</span>
+            <span class="sub-section-category">Product Portfolio</span>
+          </span>
+          <h2 id="categories-title" class="section-main-h">
+            Precision Formulations Across All Skincare Disciplines
+          </h2>
+          <p class="section-lead-copy">
+            We engineer bespoke skincare formulations tailored to your brand’s aesthetic, skin-feel benchmarks, target retail price, and regulatory markets.
+          </p>
+        </div>
+
+        <div class="container">
+          <!-- Prominent Visual Showcase (beauty_odm image) -->
+          <div class="categories-visual-banner-card">
+            <figure class="category-visual-banner-figure">
+              <img
+                src="/home/business-areas/beauty-odm-3-1200.webp"
+                alt="High-performance skincare laboratory bottles, droppers, and concentrated bio-serums."
+                width="1200"
+                height="675"
+                loading="lazy"
+                decoding="async"
+                class="category-visual-img"
+              />
+            </figure>
+            <div class="category-visual-banner-caption">
+              <span class="visual-badge">Clinical &amp; Botanical</span>
+              <h3 class="category-visual-title">High-Efficacy Dermacosmetics &amp; Skincare Formulations</h3>
+              <p>Active bio-serums, multi-layer lipid barrier creams, bio-fermented essences, and certified clean beauty solutions.</p>
+            </div>
+          </div>
+
+          <!-- 4 Detailed Skincare Category Breakdowns -->
+          <div class="categories-detail-grid">
+            <!-- 1. Serums & Ampoules -->
+            <article class="category-detail-card">
+              <div class="category-detail-header">
+                <span class="category-idx">01</span>
+                <h3 class="category-detail-title">Bio-Active Serums &amp; Ampoules</h3>
+              </div>
+              <p class="category-detail-lead">
+                Highly concentrated targeted treatments engineered for cellular hydration, radiance, and barrier recovery.
+              </p>
+              <div class="category-tags-list">
+                <div class="tag-row">
+                  <span class="tag-label">Active Complexes</span>
+                  <span class="tag-items">Multi-weight Hyaluronic Acid, encapsulated Pure Ascorbic Acid (Vitamin C), stabilized Retinol, and botanical Bakuchiol</span>
+                </div>
+                <div class="tag-row">
+                  <span class="tag-label">Skin Elasticity</span>
+                  <span class="tag-items">Biomimetic multi-peptide complexes, marine collagen boosters, and copper tripeptide firming elixirs</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- 2. Moisturizers & Emulsions -->
+            <article class="category-detail-card">
+              <div class="category-detail-header">
+                <span class="category-idx">02</span>
+                <h3 class="category-detail-title">Moisturizers &amp; Barrier Creams</h3>
+              </div>
+              <p class="category-detail-lead">
+                Formulations restoring the skin's lipid barrier while delivering lightweight, non-greasy absorption.
+              </p>
+              <div class="category-tags-list">
+                <div class="tag-row">
+                  <span class="tag-label">Barrier Restoration</span>
+                  <span class="tag-items">Ceramide lamellar barrier creams (Ceramides NP, AP, EOP), cholesterol-infused emulsions, and lipid recovery balms</span>
+                </div>
+                <div class="tag-row">
+                  <span class="tag-label">Climate Textures</span>
+                  <span class="tag-items">Cooling aqueous water-burst gel-creams, weightless daily hydration fluid emulsions, and overnight recovery balms</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- 3. Cleansers, Toners & Masks -->
+            <article class="category-detail-card">
+              <div class="category-detail-header">
+                <span class="category-idx">03</span>
+                <h3 class="category-detail-title">Cleansers, Toners &amp; Sheet Masks</h3>
+              </div>
+              <p class="category-detail-lead">
+                Dermatological preparation steps maintaining healthy skin pH and barrier equilibrium.
+              </p>
+              <div class="category-tags-list">
+                <div class="tag-row">
+                  <span class="tag-label">Cleansing Formats</span>
+                  <span class="tag-items">Melting sherbet cleansing balms, micellar cleansing waters, and low-pH amino acid gentle foaming washes</span>
+                </div>
+                <div class="tag-row">
+                  <span class="tag-label">Essences &amp; Masks</span>
+                  <span class="tag-items">Bio-fermented first essences, PHA gentle clarifying toners, bio-cellulose sheet masks, and cooling hydrogel eye patches</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- 4. Next-Gen Formats & Functional Lines -->
+            <article class="category-detail-card">
+              <div class="category-detail-header">
+                <span class="category-idx">04</span>
+                <h3 class="category-detail-title">Next-Gen Formats &amp; Certified Lines</h3>
+              </div>
+              <p class="category-detail-lead">
+                Sustainable, preservative-free formats and certified ethical lines meeting global consumer standards.
+              </p>
+              <div class="category-tags-list">
+                <div class="tag-row">
+                  <span class="tag-label">Innovative Formats</span>
+                  <span class="tag-items">Waterless solid face balms, powder-to-liquid active treatments, portable skincare stick balms, and single-dose biodegradable plant capsules</span>
+                </div>
+                <div class="tag-row">
+                  <span class="tag-label">Certified Profiles</span>
+                  <span class="tag-items">100% certified Vegan (Eve Vegan), hypoallergenic sensitive skin formulations (Cica complex), and certified alcohol-free HALAL production lines</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="surface-action-row">
+            <a href="#formulation" class="sub-section-more">
+              <span>Explore Formulation Science</span>
+              <svg class="more-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M10 4v11M5 11l5 5 5-5" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 04: Formulation & Texture Engineering Deep-Dive -->
+      <section
+        id="formulation"
+        class="sub-section sub-section-banner"
+        data-section-id="formulation"
+        aria-labelledby="formulation-title"
+      >
+        <div class="sub-section-header sub-section-header--tall" style="background-image: url('/home/business-areas/beauty-odm-4-1600.webp');">
+          <div class="sub-section-header__overlay"></div>
+          <div class="sub-section-deco" aria-hidden="true"></div>
+
+          <div class="sub-section-title-wrap">
+            <span class="sub-section-meta">
+              <span class="sub-section-number">04</span>
+              <span class="sub-section-category">Formulation Science</span>
+            </span>
+            <h2 id="formulation-title" class="sub-section-h">
+              Advanced Texture Engineering<br />&amp; Active Delivery Systems
+            </h2>
+          </div>
+        </div>
+
+        <div class="sub-section-surface">
+          <div class="container">
+            <div class="surface-intro">
+              <span class="practice-tag">Cosmetic Chemistry</span>
+              <h3 class="surface-headline">The Science of Unrivaled Sensory Pleasure</h3>
+              <p class="body-text">
+                K-Beauty is celebrated worldwide because Korean cosmetic chemists achieve what conventional laboratories cannot: marrying ultra-potent active ingredients with ethereal, breathable textures that absorb instantly into the skin.
+              </p>
+            </div>
+
+            <div class="science-grid">
+              <article class="science-card">
+                <span class="science-idx">01</span>
+                <h4 class="science-title">Multi-Layer Micro-Encapsulation</h4>
+                <p class="body-text">
+                  Delicate bio-actives such as Pure Ascorbic Acid (Vitamin C), stabilized Retinol, and multi-peptides are encased within biomimetic phospholipid liposomes. This shields them from light, oxidation, and heat, ensuring gradual, non-irritating release deep into the epidermis.
+                </p>
+              </article>
+
+              <article class="science-card">
+                <span class="science-idx">02</span>
+                <h4 class="science-title">Biocompatible Lamellar Emulsions</h4>
+                <p class="body-text">
+                  By mimicking the skin’s natural lipid bilayer structure (ceramides, cholesterol, fatty acids), our lamellar emulsions fuse instantly with compromised skin barriers. This provides instant moisture locking with zero greasy film, making it ideal even in high-humidity and high-heat climates.
+                </p>
+              </article>
+
+              <article class="science-card">
+                <span class="science-idx">03</span>
+                <h4 class="science-title">Low-Molecular Bio-Fermentation Science</h4>
+                <p class="body-text">
+                  Through specialized microbial bio-fermentation, complex botanical extracts are enzymatically cleaved into ultra-low-molecular bio-actives. This increases nutrient absorption depth, enhances antioxidant bioavailability, and significantly reduces formulation irritation potential.
+                </p>
+              </article>
+
+              <article class="science-card">
+                <span class="science-idx">04</span>
+                <h4 class="science-title">Anhydrous &amp; Waterless Active Stabilization</h4>
+                <p class="body-text">
+                  Engineered waterless formats eliminate the need for harsh synthetic preservatives. Sensitive vitamins and active botanicals remain dormant in anhydrous oil-serums, solid balms, or powder matrices until activated by natural skin moisture.
+                </p>
+              </article>
+            </div>
+
+            <div class="surface-action-row">
+              <a href="#process" class="sub-section-more">
+                <span>View Turnkey Development Process</span>
+                <svg class="more-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M10 4v11M5 11l5 5 5-5" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 05: 6-Step Turnkey Development Process -->
+      <section
+        id="process"
+        class="sub-section sub-section-banner"
+        data-section-id="process"
+        aria-labelledby="process-title"
+      >
+        <div class="sub-section-header sub-section-header--tall" style="background-image: url('/home/business-areas/beauty-odm-5-1600.webp');">
+          <div class="sub-section-header__overlay"></div>
+          <div class="sub-section-deco" aria-hidden="true"></div>
+
+          <div class="sub-section-title-wrap">
+            <span class="sub-section-meta">
+              <span class="sub-section-number">05</span>
+              <span class="sub-section-category">Development Journey</span>
+            </span>
+            <h2 id="process-title" class="sub-section-h">
+              The 6-Step Turnkey<br />OEM/ODM Process
+            </h2>
+          </div>
+        </div>
+
+        <div class="sub-section-surface">
+          <div class="container">
+            <div class="surface-intro">
+              <p class="lead-statement">
+                A predictable, transparent, and rigorous process engineered to take your product from white-paper concept to commercial retail shelves on time and within budget.
+              </p>
+            </div>
+
+            <div class="process-track">
+              {developmentSteps.map((step) => (
+                <div class="process-node">
+                  <div class="process-node__header">
+                    <span class="process-node__num">{step.step}</span>
+                    <h3 class="process-node__title">{step.title}</h3>
+                  </div>
+                  <p class="process-node__desc">{step.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            <div class="surface-action-row">
+              <a href="#why-koreain" class="sub-section-more">
+                <span>Why Partner With KoreaIN</span>
+                <svg class="more-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M10 4v11M5 11l5 5 5-5" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 06: Why Choose KoreaIN -->
+      <section
+        id="why-koreain"
+        class="sub-section"
+        data-section-id="why-koreain"
+        aria-labelledby="why-title"
+      >
+        <div class="container section-title-block">
+          <span class="sub-section-meta">
+            <span class="sub-section-number">06</span>
+            <span class="sub-section-category">Strategic Advantage</span>
+          </span>
+          <h2 id="why-title" class="section-main-h">
+            Why Global Brands Partner with KoreaIN
+          </h2>
+          <p class="section-lead-copy">
+            We operate as an extension of your own corporate team, combining Seoul’s formulation agility with international corporate governance and regulatory rigor.
+          </p>
+        </div>
+
+        <div class="container">
+          <div class="why-pillars-grid">
+            {whyChooseKoreaIn.map((pillar) => (
+              <article class="why-pillar-card">
+                <span class="why-idx">{pillar.idx}</span>
+                <h3 class="why-title">{pillar.title}</h3>
+                <p class="why-desc">{pillar.desc}</p>
+              </article>
+            ))}
+          </div>
+
+          <div class="surface-action-row">
+            <a href="#global-reach" class="sub-section-more">
+              <span>View Global Climate Adaptation</span>
+              <svg class="more-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M10 4v11M5 11l5 5 5-5" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 07: Global Footprint & Climate Adaptation -->
+      <section
+        id="global-reach"
+        class="sub-section sub-section-banner"
+        data-section-id="global-reach"
+        aria-labelledby="global-title"
+      >
+        <div class="sub-section-header sub-section-header--tall" style="background-image: url('/home/business-areas/beauty-odm-6-1600.webp');">
+          <div class="sub-section-header__overlay"></div>
+          <div class="sub-section-deco" aria-hidden="true"></div>
+
+          <div class="sub-section-title-wrap">
+            <span class="sub-section-meta">
+              <span class="sub-section-number">07</span>
+              <span class="sub-section-category">Global Reach</span>
+            </span>
+            <h2 id="global-title" class="sub-section-h">
+              Engineered for Global Climates<br />&amp; Regulatory Standards
+            </h2>
+          </div>
+        </div>
+
+        <div class="sub-section-surface">
+          <div class="container">
+            <div class="surface-intro">
+              <span class="practice-tag">Regional Formulation Desks</span>
+              <h3 class="surface-headline">Formulations Adapted to Local Consumer Demands</h3>
+              <p class="body-text">
+                A formulation optimized for Seoul’s moderate climate will behave differently under Riyadh’s summer heat or London’s winter humidity. We formulate specifically for your target geography’s climate conditions, regulatory laws, and consumer sensory preferences.
+              </p>
+            </div>
+
+            <div class="regional-grid">
+              {regionalAdaptations.map((reg) => (
+                <article class="regional-card">
+                  <span class="regional-badge">{reg.badge}</span>
+                  <h4 class="regional-title">{reg.region}</h4>
+                  <p class="regional-lead">{reg.lead}</p>
+                  <ul class="regional-list">
+                    {reg.points.map((pt) => (
+                      <li>
+                        <svg class="check-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                          <path d="M3.5 8.5l3 3 6-7" />
+                        </svg>
+                        <span>{pt}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+
+            <div class="surface-action-row">
+              <a href="#certifications" class="sub-section-more">
+                <span>Explore Certifications &amp; Quality Procedures</span>
+                <svg class="more-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M10 4v11M5 11l5 5 5-5" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 08: Certifications, Quality Assurance & Regulatory Procedures -->
+      <section
+        id="certifications"
+        class="sub-section"
+        data-section-id="certifications"
+        aria-labelledby="certifications-title"
+      >
+        <div class="container section-title-block">
+          <span class="sub-section-meta">
+            <span class="sub-section-number">08</span>
+            <span class="sub-section-category">Certifications &amp; Compliance</span>
+          </span>
+          <h2 id="certifications-title" class="section-main-h">
+            Quality Assurance, Testing &amp; Certification Framework
+          </h2>
+          <p class="section-lead-copy">
+            Every formulation and production run undergoes multi-stage laboratory validation conforming strictly to international cosmetic legislation and cleanroom manufacturing standards.
+          </p>
+        </div>
+
+        <div class="container">
+          <!-- 4 Core Certification Pillars -->
+          <div class="certifications-grid">
+            {certificationStandards.map((cert) => (
+              <article class="certification-card">
+                <span class="cert-category">{cert.category}</span>
+                <h3 class="cert-title">{cert.title}</h3>
+                <p class="cert-desc">{cert.desc}</p>
+                <ul class="cert-list">
+                  {cert.points.map((pt) => (
+                    <li>
+                      <svg class="check-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M3.5 8.5l3 3 6-7" />
+                      </svg>
+                      <span>{pt}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+
+          <!-- Quality Control & Testing Procedures Grid -->
+          <div class="qc-procedures-block">
+            <div class="qc-header">
+              <span class="practice-tag">Testing Protocols</span>
+              <h3 class="qc-block-title">Laboratory Quality Control Procedures</h3>
+              <p class="body-text">
+                Strict multi-parameter batch testing executed in our certified quality assurance laboratories prior to export clearance.
+              </p>
+            </div>
+
+            <div class="qc-procedures-grid">
+              {qcTestingProcedures.map((proc) => (
+                <div class="qc-proc-card">
+                  <div class="qc-proc-header">
+                    <span class="qc-proc-num">{proc.num}</span>
+                    <h4 class="qc-proc-title">{proc.title}</h4>
+                  </div>
+                  <p class="qc-proc-desc">{proc.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div class="surface-action-row">
+            <a href="#ceo-message" class="sub-section-more">
+              <span>Read Leadership Message</span>
+              <svg class="more-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M10 4v11M5 11l5 5 5-5" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 09: Founder & CEO Message -->
+      <section
+        id="ceo-message"
+        class="sub-section"
+        data-section-id="ceo-message"
+        aria-labelledby="ceo-title"
+      >
+        <div class="container">
+          <div class="ceo-architectural-card">
+            <h2 id="ceo-title" class="ceo-headline">
+              Founder &amp; CEO Message
+            </h2>
+
+            <blockquote class="ceo-quote">
+              "At KoreaIN, our OEM/ODM operations were established on a clear conviction: visionary beauty founders and global brand leaders deserve direct access to South Korea’s world-class cosmetic formulation chemistry without the traditional barriers of language, distance, or complex regulatory compliance.
+              <br /><br />
+              We unite Seoul’s laboratory innovation and GMP manufacturing discipline with rigorous global regulatory stewardship across the Middle East, Europe, and North America. When you partner with KoreaIN, you gain a dedicated technical co-creator committed to your brand’s lasting prestige, product quality, and commercial success."
+            </blockquote>
+
+            <div class="ceo-author-footer">
+              <div class="ceo-author-info">
+                <span class="ceo-name">Yaser Khalifa Alamoudi</span>
+                <span class="ceo-title-label">Founder &amp; Chief Executive Officer</span>
+                <span class="ceo-org">KoreaIN Company</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 10: Call to Action & Consultation Card -->
+      <section
+        id="contact"
+        class="sub-section closing-section"
+        data-section-id="contact"
+        aria-labelledby="closing-title"
+      >
+        <div class="container">
+          <div class="closing-card">
+            <div
+              class="closing-card__visual"
+              style="background-image: url('/home/business-areas/beauty-odm-7-1200.webp');"
+            >
+              <div class="closing-card__visual-overlay"></div>
+              <div class="closing-card__visual-content">
+                <span class="closing-visual-tag">KoreaIN OEM/ODM</span>
+                <h3 class="closing-visual-title">From Concept to Global Retail Shelf</h3>
+              </div>
+            </div>
+
+            <div class="closing-card__content">
+              <span class="closing-meta">Next Step</span>
+              <h2 id="closing-title" class="closing-title">
+                Start Your Signature Skincare Line
+              </h2>
+              <p class="closing-lead">
+                Whether you are an established international cosmetic house expanding into new skincare categories or an emerging indie brand preparing your debut launch, KoreaIN delivers the innovation, quality, and regulatory speed you need.
+              </p>
+
+              <!-- 3 Interactive Next Steps -->
+              <div class="next-steps-grid">
+                <div class="step-card">
+                  <span class="step-card__idx">01</span>
+                  <h4 class="step-card__title">Request Capabilities Catalog</h4>
+                  <p class="step-card__desc">Review full formulation portfolios, active ingredients, and minimum order quantities.</p>
+                </div>
+                <div class="step-card">
+                  <span class="step-card__idx">02</span>
+                  <h4 class="step-card__title">Sample Our Innovations</h4>
+                  <p class="step-card__desc">Experience lab-engineered textures, bio-serums, and barrier creams firsthand.</p>
+                </div>
+                <div class="step-card">
+                  <span class="step-card__idx">03</span>
+                  <h4 class="step-card__title">Schedule a Consultation</h4>
+                  <p class="step-card__desc">Meet with our cosmetic chemists and regulatory directors to align on your roadmap.</p>
+                </div>
+              </div>
+
+              <div class="closing-action">
+                <a href="/contact" class="btn-closing">
+                  <span>Discuss Your OEM/ODM Project</span>
+                  <svg class="cta-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M4 10h11M11 5l5 5-5 5" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</BaseLayout>
+
+<script is:inline>
+  // ============================================================================
+  // Amorepacific Animation & Scroll Engine for K-Beauty OEM/ODM Portal
+  // ============================================================================
+  document.addEventListener('DOMContentLoaded', () => {
+    const cover = document.getElementById('cover');
+    const coverBg = document.getElementById('coverBg');
+    const coverContent = document.getElementById('coverContent');
+    const coverMouse = document.getElementById('coverMouse');
+    const sections = Array.from(document.querySelectorAll('.sub-section, #cover, #contact'));
+    const navItems = Array.from(document.querySelectorAll('.local-nav-list li'));
+
+    // 1. Cover background smooth entrance & subtle mouse parallax
+    if (cover && coverBg) {
+      coverBg.classList.add('is-loaded');
+
+      if (window.matchMedia('(min-width: 1024px)').matches) {
+        cover.addEventListener('mousemove', (e) => {
+          const rect = cover.getBoundingClientRect();
+          const x = (e.clientX - rect.width / 2) / (rect.width / 2);
+          const y = (e.clientY - rect.height / 2) / (rect.height / 2);
+          coverBg.style.transform = `scale(1.05) translate(${x * -18}px, ${y * -12}px)`;
+        });
+
+        cover.addEventListener('mouseleave', () => {
+          coverBg.style.transform = 'scale(1) translate(0, 0)';
+        });
+      }
+    }
+
+    // 2. Cover scroll fade-out
+    const handleScrollFade = () => {
+      const scrollY = window.scrollY;
+      const fadeThreshold = window.innerHeight * 0.5;
+
+      if (coverContent) {
+        const opacity = Math.max(0, 1 - scrollY / fadeThreshold);
+        const translateY = scrollY * 0.3;
+        coverContent.style.opacity = opacity.toFixed(2);
+        coverContent.style.transform = `translateY(${translateY.toFixed(1)}px)`;
+      }
+
+      if (coverMouse) {
+        coverMouse.style.opacity = Math.max(0, 1 - scrollY / (fadeThreshold * 0.5)).toFixed(2);
+      }
+    };
+
+    window.addEventListener('scroll', handleScrollFade, { passive: true });
+
+    // 3. Section reveal & choreography observer
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-active');
+            const id = entry.target.id;
+            navItems.forEach((li) => {
+              if (li.getAttribute('data-target') === id) {
+                li.classList.add('is-current');
+              } else {
+                li.classList.remove('is-current');
+              }
+            });
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: '-20% 0px -30% 0px',
+        threshold: [0.1, 0.3]
+      }
+    );
+
+    sections.forEach((sec) => sectionObserver.observe(sec));
+
+    // 4. Smooth Anchor Scrolling
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener('click', (e) => {
+        const href = anchor.getAttribute('href');
+        if (!href || href === '#') return;
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  /* ==========================================================================
+     Amorepacific Exact Design Language (K-Beauty OEM/ODM Portal)
+     ========================================================================== */
+
+  .oem-portal {
+    position: relative;
+    background: var(--color-bg);
+  }
+
+  /* --------------------------------------------------------------------------
+     1. Floating Side Dot Navigation (.local-nav)
+     -------------------------------------------------------------------------- */
+  .local-nav {
+    display: none;
+    position: fixed;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 60;
+    background: rgba(11, 16, 51, 0.45);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 9999px;
+    padding: 1rem 0.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    transition: opacity 300ms ease;
+  }
+
+  @media (min-width: 1200px) {
+    .local-nav {
+      display: block;
+    }
+  }
+
+  .local-nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .local-nav-list li {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+  }
+
+  .local-nav-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+  }
+
+  .local-nav-link::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    transition: all 280ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .local-nav-link:hover::before {
+    background: #ffffff;
+    transform: scale(1.35);
+  }
+
+  .local-nav-list li.is-current .local-nav-link::before {
+    width: 11px;
+    height: 11px;
+    background: transparent;
+    border: 2px solid #ffffff;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    transform: scale(1);
+  }
+
+  .nav-tooltip {
+    position: absolute;
+    right: 2.25rem;
+    top: 50%;
+    transform: translateY(-50%) translateX(6px);
+    background: #0b1033;
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    padding: 0.35rem 0.75rem;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 240ms ease;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  }
+
+  .local-nav-link:hover .nav-tooltip {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+
+  /* --------------------------------------------------------------------------
+     2. Hero Cover Section (.cover)
+     -------------------------------------------------------------------------- */
+  .cover {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding-top: clamp(6.5rem, 12vh, 9rem);
+    padding-bottom: clamp(5rem, 10vh, 7rem);
+    color: #ffffff;
+  }
+
+  .cover-spacer {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  .cover-bg {
+    position: absolute;
+    inset: -20px;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    transform: scale(1.08);
+    opacity: 0;
+    transition: opacity 1200ms cubic-bezier(0.16, 1, 0.3, 1), transform 1600ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .cover-bg.is-loaded {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .cover-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(7, 11, 38, 0.65) 0%,
+      rgba(7, 11, 38, 0.75) 55%,
+      rgba(7, 11, 38, 0.92) 100%
+    );
+  }
+
+  .cover-content {
+    position: relative;
+    z-index: 2;
+    max-width: 58rem;
+    margin-inline: auto;
+    text-align: left;
+    transition: opacity 300ms ease, transform 300ms ease;
+  }
+
+  .cover .breadcrumbs ol {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    list-style: none;
+    margin: 0 0 1.75rem 0;
+    padding: 0;
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.72);
+  }
+
+  .cover .breadcrumbs a {
+    color: rgba(255, 255, 255, 0.72);
+    text-decoration: none;
+    transition: color 200ms ease;
+  }
+
+  .cover .breadcrumbs a:hover {
+    color: #ffffff;
+  }
+
+  .cover-h {
+    font-family: var(--font-serif, "Playfair Display", Georgia, serif);
+    font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+    margin: 0 0 1rem 0;
+  }
+
+  .cover-subtitle {
+    font-size: clamp(1.15rem, 2vw, 1.45rem);
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0 0 2.25rem 0;
+  }
+
+  .cover-desc-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+    max-width: 50rem;
+    margin-bottom: 2.75rem;
+  }
+
+  .cover-lead {
+    font-size: clamp(1.0625rem, 1.4vw, 1.25rem);
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 400;
+    margin: 0;
+  }
+
+  .cover-copy {
+    font-size: clamp(0.9375rem, 1.1vw, 1.0625rem);
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+  }
+
+  .cover-action {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-cover {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    background: #ffffff;
+    color: #0b1033;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    border-radius: 9999px;
+    transition: all 260ms cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+  }
+
+  .btn-cover:hover {
+    background: #eef2ff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  }
+
+  .btn-cover--secondary {
+    background: transparent;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow: none;
+  }
+
+  .btn-cover--secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #ffffff;
+    color: #ffffff;
+  }
+
+  .cta-arrow {
+    width: 18px;
+    height: 18px;
+    transition: transform 240ms ease;
+  }
+
+  .btn-cover:hover .cta-arrow {
+    transform: translateX(4px);
+  }
+
+  /* Animated Scroll Down Indicator */
+  .cover-mouse {
+    position: absolute;
+    bottom: 2.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: opacity 300ms ease;
+  }
+
+  .cover-mouse:hover {
+    color: #ffffff;
+  }
+
+  .mouse-icon {
+    width: 20px;
+    height: 32px;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    border-radius: 12px;
+    position: relative;
+  }
+
+  .mouse-icon::after {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3px;
+    height: 6px;
+    background: #ffffff;
+    border-radius: 2px;
+    animation: mouseWheel 1.8s ease-in-out infinite;
+  }
+
+  @keyframes mouseWheel {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+    50% {
+      opacity: 0.2;
+      transform: translate(-50%, 10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+  }
+
+  /* --------------------------------------------------------------------------
+     3. High Cinematic Visual Banners (.sub-section-header--tall)
+     -------------------------------------------------------------------------- */
+  .sub-section-banner {
+    position: relative;
+    padding-top: 0;
+  }
+
+  .sub-section-header--tall {
+    position: relative;
+    width: 100%;
+    height: clamp(540px, 68vh, 760px);
+    min-height: 520px;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-inline: clamp(1.5rem, 6vw, 6rem);
+    overflow: hidden;
+  }
+
+  .sub-section-header__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(7, 11, 38, 0.58) 0%,
+      rgba(7, 11, 38, 0.45) 50%,
+      rgba(7, 11, 38, 0.78) 100%
+    );
+    z-index: 1;
+  }
+
+  .sub-section-deco {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.45);
+    z-index: 2;
+    transition: width 1100ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .sub-section.is-active .sub-section-deco {
+    width: clamp(2rem, 8vw, 8rem);
+  }
+
+  .sub-section-title-wrap {
+    position: relative;
+    z-index: 3;
+    max-width: 52rem;
+    color: #ffffff;
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 900ms cubic-bezier(0.16, 1, 0.3, 1) 200ms, transform 900ms cubic-bezier(0.16, 1, 0.3, 1) 200ms;
+  }
+
+  .sub-section.is-active .sub-section-title-wrap {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .sub-section-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.8125rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1rem;
+  }
+
+  .sub-section-number {
+    font-family: var(--font-serif, "Playfair Display", Georgia, serif);
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: #8fa2ff;
+  }
+
+  .sub-section-h {
+    font-family: var(--font-serif, "Playfair Display", Georgia, serif);
+    font-size: clamp(2rem, 4.2vw, 3.75rem);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+    margin: 0;
+  }
+
+  /* --------------------------------------------------------------------------
+     4. Architectural Surface & Content
+     -------------------------------------------------------------------------- */
+  .sub-section-surface {
+    position: relative;
+    background: var(--color-bg);
+    padding-block: clamp(4.5rem, 9vh, 7.5rem);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .surface-intro {
+    max-width: 52rem;
+    margin-bottom: clamp(3rem, 6vh, 4.5rem);
+  }
+
+  .lead-statement {
+    font-size: clamp(1.2rem, 1.8vw, 1.45rem);
+    line-height: 1.55;
+    color: var(--color-text-primary);
+    font-weight: 400;
+    margin: 0 0 1rem 0;
+  }
+
+  .body-text {
+    font-size: clamp(0.9375rem, 1.1vw, 1.0625rem);
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+
+  .practice-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-accent, #000e8a);
+    background: rgba(0, 14, 138, 0.08);
+    padding: 0.3rem 0.75rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+
+  :global([data-theme="dark"]) .practice-tag {
+    color: #8fa2ff;
+    background: rgba(143, 162, 255, 0.12);
+  }
+
+  /* Section Title Block (for non-banner sections) */
+  .section-title-block {
+    padding-top: clamp(4.5rem, 8vh, 6.5rem);
+    padding-bottom: 2.5rem;
+  }
+
+  .section-main-h {
+    font-family: var(--font-serif, "Playfair Display", Georgia, serif);
+    font-size: clamp(2rem, 3.8vw, 3.25rem);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--color-text-primary);
+    margin: 0.5rem 0 1rem 0;
+  }
+
+  .section-lead-copy {
+    font-size: clamp(1.0625rem, 1.3vw, 1.25rem);
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    max-width: 48rem;
+    margin: 0;
+  }
+
+  /* Section 01: Vision & Mission Layout */
+  .editorial-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+  }
+
+  .editorial-lead-box {
+    max-width: 52rem;
+  }
+
+  .editorial-headline {
+    font-family: var(--font-serif, "Playfair Display", Georgia, serif);
+    font-size: clamp(1.65rem, 2.5vw, 2.25rem);
+    font-weight: 400;
+    line-height: 1.25;
+    color: var(--color-text-primary);
+    margin: 0 0 1.25rem 0;
+  }
+
+  .editorial-quote {
+    font-size: clamp(1.125rem, 1.5vw, 1.35rem);
+    line-height: 1.6;
+    color: var(--color-text-primary);
+    border-left: 2px solid var(--color-accent, #000e8a);
+    padding-left: 1.5rem;
+    margin: 0;
+    font-style: italic;
+  }
+
+  :global([data-theme="dark"]) .editorial-quote {
+    border-left-color: #8fa2ff;
+  }
+
+  .dual-core-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+
+  .core-card {
+    background: var(--color-surface, #ffffff);
+    border: 1px solid var(--color-border);
+    padding: clamp(2rem, 3.5vw, 2.75rem);
+    border-radius: 8px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03);
+  }
+
+  .core-card__idx {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-accent, #000e8a);
+    margin-bottom: 0.75rem;
+  }
+
+  :global([data-theme="dark"]) .core-card__idx {
+    color: #8fa2ff;
+  }
+
+  .core-card__title {
+    font-family: var(--font-serif, "Playfair Display", Georgia, serif);
+    font-size: clamp(1.25rem, 1.8vw, 1.55rem);
+    font-weight: 500;
+    color: var(--color-text-primary);
+    margin: 0 0 1rem 0;
+  }
+
+  /* Section 02: Competencies Grid (6 Pillars) */
+  .competencies-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .competency-card {
+    background: var(--color-surface, #ffffff);
+    border: 1px solid var(--color-border);
+    padding: clamp(2rem, 3vw, 2.5rem);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 260ms ease, box-shadow 260ms ease;
+  }
+
+  .competency-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+  }
+
+  .competency-card__top {
+    margin-bottom: 1rem;
+  }
+
+  .competency-idx {
+    font-family: var(--font-serif, "Playfair Display", Georgia, serif);
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--color-accent, #000e8a);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  :global([data-theme="dark"]) .competency-idx {
+    color: #8fa2ff;
+  }
+
+  .competency-title {
+    font-family: var(--font-serif, "Playfair Display", Georgia, serif);
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  .competency-lead {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+    margin: 0 0 1.25rem 0;
+  }
+
+  .competency-list {
+    list-style: none;
+    margin: 0;
+    padding: 1.25rem 0 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .competency-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--color-text-primary);
+  }
+
+  .check-icon {
+    width: 14px;
+    height: 14px;
+    color: var(--color-accent, #000e8a);
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+
+  :global([data-theme="dark"]) .check-icon {
+    color: #8fa2ff;
+  }
+
+  /* Section 03: Product Categories Banner Card */
+  .categories-visual-banner-card {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--color-surface, #ffffff);
+    border: 1px solid var(--color-border);
+    margin-bottom: 3.5rem;
+  }
+
+  .category-visual-banner-figure {
+    position: relative;
+    width: 100%;
+    height: clamp(320px, 45vh, 480px);
+    margin: 0;
+    overflow: hidden;
+  }
+
+  .category-visual-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .categories-visual-banner-card:hover .category-visual-img {
+    transform: scale(1.03);
+  }
+
+  .category-visual-banner-caption {
+    padding: 2rem clamp(1.5rem, 4vw, 3rem);
+  }
+
+  .visual-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-accent, #000e8a);
+    margin-bottom: 0.5rem;
+  }
+
+  :global([data-theme="dark"]) .visual-badge {
+    color: #8fa2ff;
+  }
+
+  .category-visual-title {
+    font-family: var(--font-serif, "Playfair Display", Georgia, serif);
+    font-size: clamp(1.35rem, 2vw, 1.8rem);
+    font-weight: 500;
+    color: var(--color-text-primary);
+    margin: 0 0 0.5rem 0;
+  }
+
+  .category-visual-banner-caption p {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+
+  .categories-detail-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .category-detail-card {
+    background: var(--color-surface, #ffffff);
+    border: 1px solid var(--color-border);
+    padding: clamp(2rem, 3vw, 2.5rem);
+    border-radius: 8px;
+  }
+
+  .category-detail-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .category-idx {
+    font-family: var(--font-serif, "Playfair Display", Georgia, serif);
+    font-size: 1.35rem;
+    color: var(--color-accent, #000e8a);
+    font-weight: 400;
+  }
+
+  :global([data-theme="dark"]) .category-idx {
+    color: #8fa2ff;
+  }
+
+  .category-detail-title {
+    font-family: var(--font-serif, "Playfair Display", Georgia, serif);
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    margin: 0;
+  }
+
+  .category-detail-lead {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+    margin: 0 0 1.25rem 0;
+  }
+
+  .category-tags-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border-top: 1px solid var(--color-border);
+    padding-top: 1.25rem;
+  }
+
+  .tag-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .tag-label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    letter-spacing: 0.04em;
+  }
+
+  .tag-items {
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: var(--color-text-secondary);
+  }
+
+  /* Section 04: Formulation Science Grid */
+  .science-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.25rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .science-card {
+    background: var(--color-surface, #ffffff);
+    border: 1px solid var(--color-border);
+    padding: clamp(2rem, 3vw, 2.5rem);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .science-idx {
+    font-family: var(--font-serif, "Playfair Display", Georgia, serif);
+    font-size: 1.5rem;
+    color: var(--color-accent, #000e8a);
+    margin-bottom: 0.75rem;
+  }
+
+  :global([data-theme="dark"]) .science-idx {
+    color: #8fa2ff;
+  }
+
+  .science-title {
+    font-family: var(--font-serif, "Playfair Display", Georgia, serif);
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    margin: 0 0 1rem 0;
+    line-height: 1.3;
+  }
+
+  /* Section 05: 6-Step Turnkey Process */
+  .process-track {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .process-node {
+    background: var(--color-surface, #ffffff);
+    border: 1px solid var(--color-border);
+    padding: clamp(2rem, 3vw, 2.5rem);
+    border-radius: 8px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .process-node__header {
+    display: flex;
+    align-items: baseline;
+    gap: 0.85rem;
+    margin-bottom: 1rem;
+  }
+
+  .process-node__num {
+    font-family: var(--font-serif, "Playfair Display", Georgia, serif);
+    font-size: 1.65rem;
+    font-weight: 400;
+    color: var(--color-accent, #000e8a);
+  }
+
+  :global([data-theme="dark"]) .process-node__num {
+    color: #8fa2ff;
+  }
+
+  .process-node__title {
+    font-family: var(--font-serif, "Playfair Display", Georgia, serif);
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    margin: 0;
+  }
+
+  .process-node__desc {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+
+  /* Section 06: Why Choose KoreaIN */
+  .why-pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .why-pillar-card {
+    background: var(--color-surface, #ffffff);
+    border: 1px solid var(--color-border);
+    padding: clamp(2rem, 3vw, 2.5rem);
+    border-radius: 8px;
+  }
+
+  .why-idx {
+    font-family: var(--font-serif, "Playfair Display", Georgia, serif);
+    font-size: 1.35rem;
+    color: var(--color-accent, #000e8a);
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  :global([data-theme="dark"]) .why-idx {
+    color: #8fa2ff;
+  }
+
+  .why-title {
+    font-family: var(--font-serif, "Playfair Display", Georgia, serif);
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    margin: 0 0 0.85rem 0;
+    line-height: 1.3;
+  }
+
+  .why-desc {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+
+  /* Section 07: Regional Grid */
+  .regional-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.25rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .regional-card {
+    background: var(--color-surface, #ffffff);
+    border: 1px solid var(--color-border);
+    padding: clamp(2rem, 3.5vw, 2.75rem);
+    border-radius: 8px;
+  }
+
+  .regional-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-accent, #000e8a);
+    margin-bottom: 0.75rem;
+  }
+
+  :global([data-theme="dark"]) .regional-badge {
+    color: #8fa2ff;
+  }
+
+  .regional-title {
+    font-family: var(--font-serif, "Playfair Display", Georgia, serif);
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    margin: 0 0 0.75rem 0;
+  }
+
+  .regional-lead {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+    margin: 0 0 1.25rem 0;
+  }
+
+  .regional-list {
+    list-style: none;
+    margin: 0;
+    padding: 1.25rem 0 0 0;
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .regional-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: var(--color-text-primary);
+  }
+
+  /* Section 08: Certifications Grid */
+  .certifications-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.25rem;
+    margin-bottom: 4rem;
+  }
+
+  .certification-card {
+    background: var(--color-surface, #ffffff);
+    border: 1px solid var(--color-border);
+    padding: clamp(2rem, 3.5vw, 2.75rem);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cert-category {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-accent, #000e8a);
+    margin-bottom: 0.65rem;
+  }
+
+  :global([data-theme="dark"]) .cert-category {
+    color: #8fa2ff;
+  }
+
+  .cert-title {
+    font-family: var(--font-serif, "Playfair Display", Georgia, serif);
+    font-size: 1.45rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    margin: 0 0 0.75rem 0;
+    line-height: 1.3;
+  }
+
+  .cert-desc {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+    margin: 0 0 1.25rem 0;
+  }
+
+  .cert-list {
+    list-style: none;
+    margin: 0;
+    padding: 1.25rem 0 0 0;
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .cert-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: var(--color-text-primary);
+  }
+
+  /* QC Procedures Block */
+  .qc-procedures-block {
+    background: var(--color-surface, #ffffff);
+    border: 1px solid var(--color-border);
+    padding: clamp(2.5rem, 5vw, 4rem);
+    border-radius: 8px;
+    margin-bottom: 3.5rem;
+  }
+
+  .qc-header {
+    max-width: 50rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .qc-block-title {
+    font-family: var(--font-serif, "Playfair Display", Georgia, serif);
+    font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+    font-weight: 400;
+    color: var(--color-text-primary);
+    margin: 0.5rem 0 0.75rem 0;
+  }
+
+  .qc-procedures-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .qc-proc-card {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    padding: 1.5rem;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .qc-proc-header {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .qc-proc-num {
+    font-family: var(--font-serif, "Playfair Display", Georgia, serif);
+    font-size: 1.25rem;
+    color: var(--color-accent, #000e8a);
+  }
+
+  :global([data-theme="dark"]) .qc-proc-num {
+    color: #8fa2ff;
+  }
+
+  .qc-proc-title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 0;
+  }
+
+  .qc-proc-desc {
+    font-size: 0.8125rem;
+    line-height: 1.55;
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+
+  /* Section 09: CEO Message Card */
+  .ceo-architectural-card {
+    background: var(--color-surface, #ffffff);
+    border: 1px solid var(--color-border);
+    padding: clamp(2.5rem, 5vw, 4.5rem);
+    border-radius: 8px;
+    max-width: 58rem;
+    margin-inline: auto;
+    margin-block: clamp(3rem, 6vh, 5rem);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.03);
+    text-align: center;
+  }
+
+  .ceo-headline {
+    font-family: var(--font-serif, "Playfair Display", Georgia, serif);
+    font-size: clamp(2rem, 3.6vw, 3.25rem);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--color-text-primary);
+    text-align: center;
+    margin: 0 0 2.5rem 0;
+  }
+
+  .ceo-quote {
+    font-size: clamp(1.0625rem, 1.4vw, 1.25rem);
+    line-height: 1.8;
+    color: var(--color-text-primary);
+    border-left: none;
+    padding-left: 0;
+    margin: 0 auto 2rem auto;
+    font-style: italic;
+    text-align: center;
+    max-width: 48rem;
+  }
+
+  .ceo-author-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid var(--color-border);
+    padding-top: 2rem;
+  }
+
+  .ceo-author-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    text-align: center;
+  }
+
+  .ceo-name {
+    font-family: var(--font-serif, "Playfair Display", Georgia, serif);
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .ceo-title-label {
+    font-size: 0.875rem;
+    color: var(--color-text-primary);
+    font-weight: 500;
+  }
+
+  .ceo-org {
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+  }
+
+  /* Section 10: Closing Card */
+  .closing-section {
+    padding-block: clamp(4rem, 8vh, 6.5rem);
+  }
+
+  .closing-card {
+    display: grid;
+    grid-template-columns: 42% 58%;
+    background: var(--color-surface, #ffffff);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.05);
+  }
+
+  .closing-card__visual {
+    position: relative;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: flex-end;
+    padding: clamp(2rem, 3.5vw, 3rem);
+    min-height: 28rem;
+  }
+
+  .closing-card__visual-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(7, 11, 38, 0.3) 0%,
+      rgba(7, 11, 38, 0.82) 100%
+    );
+  }
+
+  .closing-card__visual-content {
+    position: relative;
+    z-index: 2;
+    color: #ffffff;
+  }
+
+  .closing-visual-tag {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #8fa2ff;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .closing-visual-title {
+    font-family: var(--font-serif, "Playfair Display", Georgia, serif);
+    font-size: clamp(1.4rem, 2vw, 1.85rem);
+    font-weight: 400;
+    line-height: 1.25;
+    margin: 0;
+    color: #ffffff;
+  }
+
+  .closing-card__content {
+    padding: clamp(2.5rem, 5vw, 4rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .closing-meta {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-accent, #000e8a);
+    margin-bottom: 0.75rem;
+  }
+
+  :global([data-theme="dark"]) .closing-meta {
+    color: #8fa2ff;
+  }
+
+  .closing-title {
+    font-family: var(--font-serif, "Playfair Display", Georgia, serif);
+    font-size: clamp(1.85rem, 2.8vw, 2.65rem);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--color-text-primary);
+    margin: 0 0 1rem 0;
+  }
+
+  .closing-lead {
+    font-size: clamp(0.9375rem, 1.1vw, 1.0625rem);
+    line-height: 1.65;
+    color: var(--color-text-secondary);
+    margin: 0 0 2rem 0;
+  }
+
+  .next-steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .step-card {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    padding: 1.25rem;
+    border-radius: 6px;
+  }
+
+  .step-card__idx {
+    font-family: var(--font-serif, "Playfair Display", Georgia, serif);
+    font-size: 1.125rem;
+    color: var(--color-accent, #000e8a);
+    display: block;
+    margin-bottom: 0.35rem;
+  }
+
+  :global([data-theme="dark"]) .step-card__idx {
+    color: #8fa2ff;
+  }
+
+  .step-card__title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 0 0 0.35rem 0;
+    line-height: 1.3;
+  }
+
+  .step-card__desc {
+    font-size: 0.78125rem;
+    color: var(--color-text-secondary);
+    line-height: 1.45;
+    margin: 0;
+  }
+
+  .btn-closing {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.95rem 2rem;
+    background: var(--color-accent, #000e8a);
+    color: #ffffff;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    border-radius: 9999px;
+    align-self: flex-start;
+    transition: all 260ms cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 14px rgba(0, 14, 138, 0.2);
+  }
+
+  .btn-closing:hover {
+    background: #000b66;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 14, 138, 0.3);
+  }
+
+  :global([data-theme="dark"]) .btn-closing {
+    background: #8fa2ff;
+    color: #070b26;
+  }
+
+  :global([data-theme="dark"]) .btn-closing:hover {
+    background: #aab8ff;
+  }
+
+  /* Section More Arrow Link */
+  .surface-action-row {
+    display: flex;
+    align-items: center;
+    margin-top: 1.5rem;
+  }
+
+  .sub-section-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-accent, #000e8a);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: gap 200ms ease, color 200ms ease;
+  }
+
+  :global([data-theme="dark"]) .sub-section-more {
+    color: #8fa2ff;
+  }
+
+  .sub-section-more:hover {
+    color: var(--color-primary);
+  }
+
+  .more-arrow {
+    width: 18px;
+    height: 18px;
+    transition: transform 220ms ease;
+  }
+
+  .sub-section-more:hover .more-arrow {
+    transform: translateY(3px);
+  }
+
+  /* Desktop Card Alignment & Harmonization */
+  @media (min-width: 1024px) {
+    .competency-title {
+      min-height: 3.5rem;
+    }
+
+    .competency-lead {
+      min-height: 3.1rem;
+    }
+
+    .category-detail-title {
+      min-height: 2rem;
+    }
+
+    .category-detail-lead {
+      min-height: 3rem;
+    }
+
+    .regional-title {
+      min-height: 2.2rem;
+    }
+
+    .regional-lead {
+      min-height: 3rem;
+    }
+
+    .cert-title {
+      min-height: 3.8rem;
+    }
+
+    .cert-desc {
+      min-height: 3.1rem;
+    }
+  }
+
+  /* --------------------------------------------------------------------------
+     Responsive Adaptations (Amorepacific style)
+     -------------------------------------------------------------------------- */
+  @media (max-width: 1199px) {
+    .competencies-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .process-track {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .why-pillars-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .certifications-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .qc-procedures-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .sub-section-header--tall {
+      position: relative;
+      height: 440px;
+      padding: 3rem 1.5rem;
+      background-attachment: scroll !important;
+    }
+
+    .sub-section-title-wrap {
+      position: relative;
+      left: auto;
+      top: auto;
+      transform: none;
+      opacity: 1;
+    }
+
+    .sub-section-deco {
+      display: none;
+    }
+
+    .dual-core-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .categories-detail-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .science-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .regional-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .certifications-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .qc-procedures-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .closing-card {
+      grid-template-columns: 1fr;
+    }
+
+    .closing-card__visual {
+      min-height: 20rem;
+      height: clamp(260px, 40vh, 360px);
+    }
+
+    .next-steps-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .cover {
+      height: auto;
+      min-height: 100vh;
+      padding-block: clamp(6rem, 12vh, 8rem) 5rem;
+    }
+
+    .competencies-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .process-track {
+      grid-template-columns: 1fr;
+    }
+
+    .why-pillars-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .qc-procedures-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .qc-procedures-block {
+      padding: 1.75rem 1.25rem;
+    }
+  }
+</style>
