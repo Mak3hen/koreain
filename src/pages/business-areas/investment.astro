@@ -61,24 +61,27 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       </div>
     </header>
 
-    <!-- Visual Showcase -->
-    <section class="section visual-section">
+    <!-- Panoramic Showcase (Replacing the Card Look) -->
+    <section class="section visual-section" aria-label="Strategic Capital Showcase">
       <div class="container">
-        <div class="visual-card visual-card--hero">
-          <figure class="visual-figure">
+        <div class="panoramic-showcase">
+          <div class="panoramic-showcase__media">
             <img
-              src="/home/business-areas/investment.webp"
-              alt="Modern financial district corporate skyscrapers and investment headquarters."
-              width="960"
-              height="640"
+              src="/home/business-areas/invest-5-1600.webp"
+              alt="Modern financial district corporate skyscrapers and investment headquarters in Seoul."
+              width="1920"
+              height="1080"
               loading="lazy"
               decoding="async"
-              class="visual-img"
+              class="panoramic-img"
             />
-          </figure>
-          <div class="visual-caption">
-            <span class="visual-caption__tag">Strategic Capital</span>
-            <p>Bilateral capital deployment &amp; financial district enterprise in Seoul</p>
+            <div class="panoramic-overlay" aria-hidden="true"></div>
+            <div class="panoramic-caption">
+              <div class="panoramic-info">
+                <span class="panoramic-eyebrow">Strategic Capital Deployment</span>
+                <p class="panoramic-headline">Seoul Financial Headquarters &amp; Cross-Border Scale</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -86,6 +89,17 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
     <!-- Strategic Narrative -->
     <section class="section strategic-overview">
+      <!-- Discreet Cloud Trademark Watermark -->
+      <div class="cloud-trademark-decor cloud-trademark-decor--left" aria-hidden="true">
+        <svg viewBox="0 0 500 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M120 210c-38 0-70-26-70-60 0-31 25-57 58-60 6-40 45-72 92-72 25 0 48 9 64 24 17-35 55-58 100-58 58 0 106 41 110 94 25 4 44 25 44 50 0 29-25 52-56 52H120z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M180 210c0-26 22-48 50-48 18 0 34 9 43 24 11-21 34-36 60-36 36 0 64 26 68 60" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M85 160c-18 0-33-13-33-30 0-16 13-28 30-30 3-20 23-36 46-36 12 0 24 4 32 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M220 85c22-30 60-38 90-22s38 52 22 75-52 38-75 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="270" cy="115" r="4" fill="currentColor"/>
+        </svg>
+      </div>
+
       <div class="container">
         <div class="split-overview">
           <div class="split-overview__lead">
@@ -103,150 +117,432 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       </div>
     </section>
 
-    <!-- Core Pillars -->
-    <section class="section pillars-section">
-      <div class="container">
-        <header class="section-header">
-          <h2 class="section-title">Core Investment Pillars</h2>
-          <p class="section-copy">
-            Tailored financial advisory and cross-border structuring built for institutional allocators and corporate venture arms.
-          </p>
-        </header>
+    <!-- Floating Side Dot Navigation -->
+    <nav class="local-nav" aria-label="Page Sections Navigation">
+      <ul class="local-nav-list">
+        <li data-target="pillars">
+          <a href="#pillars" class="local-nav-link" aria-label="Jump to Core Pillars">
+            <span class="nav-dot"></span>
+            <span class="nav-tooltip">Core Pillars</span>
+          </a>
+        </li>
+        <li data-target="verticals">
+          <a href="#verticals" class="local-nav-link" aria-label="Jump to Allocation Verticals">
+            <span class="nav-dot"></span>
+            <span class="nav-tooltip">Allocation Verticals</span>
+          </a>
+        </li>
+        <li data-target="execution">
+          <a href="#execution" class="local-nav-link" aria-label="Jump to Diligence Lifecycle">
+            <span class="nav-dot"></span>
+            <span class="nav-tooltip">Execution Lifecycle</span>
+          </a>
+        </li>
+        <li data-target="contact">
+          <a href="#contact" class="local-nav-link" aria-label="Jump to Contact KoreaIN">
+            <span class="nav-dot"></span>
+            <span class="nav-tooltip">Start Conversation</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
 
-        <div class="pillars-grid">
-          <article class="pillar-card">
-            <div class="pillar-card__index">01</div>
-            <h3 class="pillar-card__title">Cross-Border Venture Co-Investment</h3>
-            <p class="pillar-card__copy">
-              Direct access and syndicate participation in Korea's most promising Series A through Pre-IPO technology companies across AI, robotics, biotechnology, and mobility.
-            </p>
-            <ul class="pillar-card__list">
-              <li>Proprietary deal flow screening</li>
-              <li>Bilateral LP/GP co-investment vehicles</li>
-              <li>Technology transfer feasibility</li>
-            </ul>
-          </article>
+    <!-- Sub-Section 01: Core Investment Pillars (Photographic Banner + Open Editorial Layout) -->
+    <section
+      id="pillars"
+      class="sub-section sub-section-banner"
+      data-section-id="pillars"
+      aria-labelledby="pillars-title"
+    >
+      <div class="sub-section-header sub-section-header--tall" style="background-image: url('/home/business-areas/invest-1-1600.webp');">
+        <div class="sub-section-header__overlay"></div>
+        <div class="sub-section-deco" aria-hidden="true"></div>
 
-          <article class="pillar-card">
-            <div class="pillar-card__index">02</div>
-            <h3 class="pillar-card__title">Sovereign &amp; Institutional Advisory</h3>
-            <p class="pillar-card__copy">
-              Strategic counsel for sovereign wealth entities, state-backed funds, and regional family offices establishing direct exposure to Korean industrial leadership.
-            </p>
-            <ul class="pillar-card__list">
-              <li>Vision 2030 priority alignment</li>
-              <li>Industrial joint venture origination</li>
-              <li>Sovereign portfolio diversification</li>
-            </ul>
-          </article>
+        <div class="sub-section-title-wrap">
+          <span class="sub-section-meta">
+            <span class="sub-section-number">01</span>
+            <span class="sub-section-category">Institutional Strategy</span>
+          </span>
+          <h2 id="pillars-title" class="sub-section-h">
+            Core Investment<br />Pillars
+          </h2>
+        </div>
+      </div>
 
-          <article class="pillar-card">
-            <div class="pillar-card__index">03</div>
-            <h3 class="pillar-card__title">M&amp;A &amp; Strategic Buyouts</h3>
-            <p class="pillar-card__copy">
-              Executing discreet, high-value mergers, majority acquisitions, and corporate carve-outs between Korean enterprises and international strategic buyers.
-            </p>
-            <ul class="pillar-card__list">
-              <li>Target commercial diligence</li>
-              <li>Cultural &amp; regulatory negotiation</li>
-              <li>Post-transaction integration roadmap</li>
-            </ul>
-          </article>
+      <div class="sub-section-surface">
+        <!-- Discreet Cloud Trademark Watermark -->
+        <div class="cloud-trademark-decor" aria-hidden="true">
+          <svg viewBox="0 0 500 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M120 210c-38 0-70-26-70-60 0-31 25-57 58-60 6-40 45-72 92-72 25 0 48 9 64 24 17-35 55-58 100-58 58 0 106 41 110 94 25 4 44 25 44 50 0 29-25 52-56 52H120z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M180 210c0-26 22-48 50-48 18 0 34 9 43 24 11-21 34-36 60-36 36 0 64 26 68 60" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M85 160c-18 0-33-13-33-30 0-16 13-28 30-30 3-20 23-36 46-36 12 0 24 4 32 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M220 85c22-30 60-38 90-22s38 52 22 75-52 38-75 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="270" cy="115" r="4" fill="currentColor"/>
+          </svg>
+        </div>
 
-          <article class="pillar-card">
-            <div class="pillar-card__index">04</div>
-            <h3 class="pillar-card__title">Fund Structuring &amp; Regulatory Alignment</h3>
-            <p class="pillar-card__copy">
-              Navigating the intricacies of cross-border financial regulations, foreign direct investment (FDI) guidelines in Korea, and capital repatriation protocols.
+        <div class="container">
+          <div class="surface-intro">
+            <span class="surface-badge">Bilateral Mandate</span>
+            <p class="lead-statement">
+              Tailored financial advisory, proprietary co-investment syndication, and sovereign-grade structuring built for institutional allocators, venture funds, and corporate venture arms.
             </p>
-            <ul class="pillar-card__list">
-              <li>Cross-border tax &amp; compliance advisory</li>
-              <li>SPV and fund domicile optimization</li>
-              <li>Government liaison (FDI incentives)</li>
-            </ul>
-          </article>
+            <p class="body-text">
+              KoreaIN bridges tier-1 Korean deep-tech innovation directly with cross-border capital, eliminating execution risk through local presence in Seoul and Riyadh.
+            </p>
+          </div>
+
+          <!-- Pure Amorepacific Editorial Grid (Zero Boxed Cards) -->
+          <div class="pillars-editorial-grid">
+            <article class="pillar-editorial-item">
+              <div class="editorial-meta">
+                <span class="editorial-idx">01</span>
+                <span class="editorial-tag">Venture Capital</span>
+              </div>
+              <h3 class="editorial-title">Cross-Border Venture Co-Investment</h3>
+              <p class="editorial-desc">
+                Direct access and syndicate participation in Korea's most promising Series A through Pre-IPO technology companies across AI, robotics, biotechnology, and mobility.
+              </p>
+              <ul class="editorial-list">
+                <li>Proprietary deal flow screening &amp; founder diligence</li>
+                <li>Bilateral LP/GP co-investment vehicles</li>
+                <li>Technology transfer &amp; localization feasibility</li>
+              </ul>
+            </article>
+
+            <article class="pillar-editorial-item">
+              <div class="editorial-meta">
+                <span class="editorial-idx">02</span>
+                <span class="editorial-tag">Sovereign Advisory</span>
+              </div>
+              <h3 class="editorial-title">Sovereign &amp; Institutional Advisory</h3>
+              <p class="editorial-desc">
+                Strategic counsel for sovereign wealth entities, state-backed funds, and regional family offices establishing direct exposure to Korean industrial leadership.
+              </p>
+              <ul class="editorial-list">
+                <li>Vision 2030 priority &amp; industrial alignment</li>
+                <li>Industrial joint venture (JV) origination</li>
+                <li>Sovereign portfolio diversification &amp; FDI liaison</li>
+              </ul>
+            </article>
+
+            <article class="pillar-editorial-item">
+              <div class="editorial-meta">
+                <span class="editorial-idx">03</span>
+                <span class="editorial-tag">Corporate M&amp;A</span>
+              </div>
+              <h3 class="editorial-title">M&amp;A &amp; Strategic Buyouts</h3>
+              <p class="editorial-desc">
+                Executing discreet, high-value mergers, majority acquisitions, and corporate carve-outs between Korean enterprises and international strategic buyers.
+              </p>
+              <ul class="editorial-list">
+                <li>Target commercial, legal &amp; technical diligence</li>
+                <li>Cultural negotiation &amp; valuation modeling</li>
+                <li>Post-transaction integration &amp; governance roadmap</li>
+              </ul>
+            </article>
+
+            <article class="pillar-editorial-item">
+              <div class="editorial-meta">
+                <span class="editorial-idx">04</span>
+                <span class="editorial-tag">Fund Structuring</span>
+              </div>
+              <h3 class="editorial-title">Fund Structuring &amp; Regulatory Alignment</h3>
+              <p class="editorial-desc">
+                Navigating the intricacies of cross-border financial regulations, Foreign Direct Investment (FDI) guidelines in Korea, and capital repatriation protocols.
+              </p>
+              <ul class="editorial-list">
+                <li>Cross-border tax &amp; compliance advisory</li>
+                <li>SPV and fund domicile optimization</li>
+                <li>Korean government liaison &amp; capital repatriation</li>
+              </ul>
+            </article>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Investment Verticals & Secondary Visual -->
-    <section class="section verticals-section">
-      <div class="container">
-        <header class="section-header">
-          <h2 class="section-title">High-Growth Allocation Verticals</h2>
-          <p class="section-copy">
-            We focus capital deployment where Korea holds definitive global competitive advantages.
-          </p>
-        </header>
+    <!-- Sub-Section 02: High-Growth Allocation Verticals (Photographic Banner + Asymmetric Split Editorial) -->
+    <section
+      id="verticals"
+      class="sub-section sub-section-banner"
+      data-section-id="verticals"
+      aria-labelledby="verticals-title"
+    >
+      <div class="sub-section-header sub-section-header--tall" style="background-image: url('/home/business-areas/invest-2-1600.webp');">
+        <div class="sub-section-header__overlay"></div>
+        <div class="sub-section-deco" aria-hidden="true"></div>
 
-        <div class="verticals-grid">
-          <div class="vertical-item">
-            <span class="vertical-item__icon">✦</span>
-            <h4>Artificial Intelligence &amp; Semiconductors</h4>
-            <p>Generative AI enterprise infrastructure, NPU hardware, cognitive robotics, and smart fab equipment.</p>
-          </div>
-          <div class="vertical-item">
-            <span class="vertical-item__icon">✦</span>
-            <h4>Electric Mobility &amp; Energy Storage</h4>
-            <p>Next-generation battery chemistry, EV component ecosystems, power electronics, and charging networks.</p>
-          </div>
-          <div class="vertical-item">
-            <span class="vertical-item__icon">✦</span>
-            <h4>Advanced Bio-Cosmetics &amp; Health</h4>
-            <p>High-efficacy skincare formulas, clinical peptide technology, medical aesthetics, and regenerative devices.</p>
-          </div>
-          <div class="vertical-item">
-            <span class="vertical-item__icon">✦</span>
-            <h4>Smart Infrastructure &amp; Green Tech</h4>
-            <p>Hydrogen distribution systems, digital twin urban modeling, and modular construction engineering.</p>
-          </div>
+        <div class="sub-section-title-wrap">
+          <span class="sub-section-meta">
+            <span class="sub-section-number">02</span>
+            <span class="sub-section-category">Sector Focus</span>
+          </span>
+          <h2 id="verticals-title" class="sub-section-h">
+            High-Growth<br />Strategic Verticals
+          </h2>
+        </div>
+      </div>
+
+      <div class="sub-section-surface">
+        <!-- Discreet Cloud Trademark Watermark -->
+        <div class="cloud-trademark-decor cloud-trademark-decor--left" aria-hidden="true">
+          <svg viewBox="0 0 500 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M120 210c-38 0-70-26-70-60 0-31 25-57 58-60 6-40 45-72 92-72 25 0 48 9 64 24 17-35 55-58 100-58 58 0 106 41 110 94 25 4 44 25 44 50 0 29-25 52-56 52H120z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M180 210c0-26 22-48 50-48 18 0 34 9 43 24 11-21 34-36 60-36 36 0 64 26 68 60" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M85 160c-18 0-33-13-33-30 0-16 13-28 30-30 3-20 23-36 46-36 12 0 24 4 32 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M220 85c22-30 60-38 90-22s38 52 22 75-52 38-75 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="270" cy="115" r="4" fill="currentColor"/>
+          </svg>
         </div>
 
-        <!-- Secondary Visual Showcase -->
-        <div class="visual-card visual-card--secondary">
-          <figure class="visual-figure">
+        <div class="container">
+          <!-- Asymmetric Amorepacific Split Editorial (Zero Boxed Cards) -->
+          <div class="verticals-editorial-split">
+            <div class="verticals-lead-col">
+              <span class="surface-badge">Competitive Advantage</span>
+              <h3 class="verticals-lead-title">Targeting Sectors with Korea's Definite Global Leadership</h3>
+              <p class="body-text">
+                We concentrate capital where Korean engineering holds deep defensibility—patented intellectual property, scaled manufacturing ecosystems, and high-barrier industrial technologies aligned with international diversification mandates.
+              </p>
+            </div>
+
+            <div class="verticals-matrix">
+              <div class="vertical-matrix-row">
+                <span class="matrix-idx">01</span>
+                <div class="matrix-content">
+                  <h4>Artificial Intelligence &amp; Semiconductors</h4>
+                  <p>Generative AI enterprise infrastructure, neural processing unit (NPU) hardware, cognitive robotics, and specialized cleanroom fab equipment powering compute scalability.</p>
+                  <div class="matrix-tags">
+                    <span>High-Bandwidth Memory (HBM)</span>
+                    <span>Edge AI Systems</span>
+                    <span>Neural Processors</span>
+                    <span>Smart Fab Automation</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="vertical-matrix-row">
+                <span class="matrix-idx">02</span>
+                <div class="matrix-content">
+                  <h4>Electric Mobility &amp; Energy Storage</h4>
+                  <p>Next-generation battery chemistry, EV component ecosystems, power electronics, and charging networks accelerating national fleet electrification and grid-scale storage.</p>
+                  <div class="matrix-tags">
+                    <span>Solid-State Chemistry</span>
+                    <span>EV Powertrains</span>
+                    <span>Battery Recycling</span>
+                    <span>Thermal Management</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="vertical-matrix-row">
+                <span class="matrix-idx">03</span>
+                <div class="matrix-content">
+                  <h4>Advanced Bio-Cosmetics &amp; Health</h4>
+                  <p>High-efficacy skincare formulas, clinical peptide technology, medical aesthetics, and regenerative devices backed by Korea's world-leading bio-dermatology research institutes.</p>
+                  <div class="matrix-tags">
+                    <span>Clinical Peptides</span>
+                    <span>Medical Aesthetics</span>
+                    <span>Fermentation IP</span>
+                    <span>Transdermal Delivery</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="vertical-matrix-row">
+                <span class="matrix-idx">04</span>
+                <div class="matrix-content">
+                  <h4>Smart Infrastructure &amp; Green Tech</h4>
+                  <p>Industrial hydrogen distribution systems, digital twin urban modeling, smart city sensory grids, and modular construction engineering designed for monumental international infrastructure.</p>
+                  <div class="matrix-tags">
+                    <span>Green Hydrogen</span>
+                    <span>Digital Twin Urbanism</span>
+                    <span>Modular Engineering</span>
+                    <span>Smart Water Grids</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sub-Section 03: Deal Execution & Diligence Lifecycle (Photographic Banner + Open Horizontal Track) -->
+    <section
+      id="execution"
+      class="sub-section sub-section-banner"
+      data-section-id="execution"
+      aria-labelledby="execution-title"
+    >
+      <div class="sub-section-header sub-section-header--tall" style="background-image: url('/home/business-areas/invest-3-1600.webp');">
+        <div class="sub-section-header__overlay"></div>
+        <div class="sub-section-deco" aria-hidden="true"></div>
+
+        <div class="sub-section-title-wrap">
+          <span class="sub-section-meta">
+            <span class="sub-section-number">03</span>
+            <span class="sub-section-category">Allocation Process</span>
+          </span>
+          <h2 id="execution-title" class="sub-section-h">
+            Disciplined Execution<br />&amp; Diligence Lifecycle
+          </h2>
+        </div>
+      </div>
+
+      <div class="sub-section-surface">
+        <!-- Discreet Cloud Trademark Watermark -->
+        <div class="cloud-trademark-decor" aria-hidden="true">
+          <svg viewBox="0 0 500 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M120 210c-38 0-70-26-70-60 0-31 25-57 58-60 6-40 45-72 92-72 25 0 48 9 64 24 17-35 55-58 100-58 58 0 106 41 110 94 25 4 44 25 44 50 0 29-25 52-56 52H120z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M180 210c0-26 22-48 50-48 18 0 34 9 43 24 11-21 34-36 60-36 36 0 64 26 68 60" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M85 160c-18 0-33-13-33-30 0-16 13-28 30-30 3-20 23-36 46-36 12 0 24 4 32 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M220 85c22-30 60-38 90-22s38 52 22 75-52 38-75 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="270" cy="115" r="4" fill="currentColor"/>
+          </svg>
+        </div>
+
+        <div class="container">
+          <div class="surface-intro">
+            <span class="surface-badge">Institutional Governance</span>
+            <p class="lead-statement">
+              A structured 4-stage allocation lifecycle ensuring diligence rigor, governance transparency, and commercial acceleration.
+            </p>
+          </div>
+
+          <!-- Open Amorepacific Horizontal Pathway (Zero Boxed Cards) -->
+          <div class="lifecycle-flow-row">
+            <article class="lifecycle-step">
+              <span class="lifecycle-step__index">01</span>
+              <h3 class="lifecycle-step__title">Proprietary Origination</h3>
+              <p class="lifecycle-step__desc">
+                Direct deal origination through vetted Korean tech ecosystems, premier R&amp;D clusters, and corporate spin-offs. Zero intermediary distortion.
+              </p>
+            </article>
+
+            <article class="lifecycle-step">
+              <span class="lifecycle-step__index">02</span>
+              <h3 class="lifecycle-step__title">Rigorous Due Diligence</h3>
+              <p class="lifecycle-step__desc">
+                Technical stress-testing, laboratory &amp; cleanroom verification, forensic cap table auditing, and regulatory compliance under Korean and international law.
+              </p>
+            </article>
+
+            <article class="lifecycle-step">
+              <span class="lifecycle-step__index">03</span>
+              <h3 class="lifecycle-step__title">Bilateral SPV Structuring</h3>
+              <p class="lifecycle-step__desc">
+                Tailored co-investment SPVs, cross-border tax treaty leverage, currency risk management, and formal Korean FDI incentive clearance.
+              </p>
+            </article>
+
+            <article class="lifecycle-step">
+              <span class="lifecycle-step__index">04</span>
+              <h3 class="lifecycle-step__title">Post-Allocation Expansion</h3>
+              <p class="lifecycle-step__desc">
+                Active commercial acceleration: establishing regional joint ventures in Saudi Arabia &amp; the GCC, securing enterprise off-take, and scaling operations.
+              </p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sub-Section 04: Start a Conversation (Closing Section Matching Consultation Style) -->
+    <section id="contact" class="closing-cta" aria-labelledby="cta-heading">
+      <!-- Discreet Cloud Trademark Watermark -->
+      <div class="cloud-trademark-decor cloud-trademark-decor--center" aria-hidden="true">
+        <svg viewBox="0 0 500 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M120 210c-38 0-70-26-70-60 0-31 25-57 58-60 6-40 45-72 92-72 25 0 48 9 64 24 17-35 55-58 100-58 58 0 106 41 110 94 25 4 44 25 44 50 0 29-25 52-56 52H120z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M180 210c0-26 22-48 50-48 18 0 34 9 43 24 11-21 34-36 60-36 36 0 64 26 68 60" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M85 160c-18 0-33-13-33-30 0-16 13-28 30-30 3-20 23-36 46-36 12 0 24 4 32 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M220 85c22-30 60-38 90-22s38 52 22 75-52 38-75 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="270" cy="115" r="4" fill="currentColor"/>
+        </svg>
+      </div>
+
+      <div class="container">
+        <!-- Single Iconic Amorepacific Closing Card (Matching Consultation Page) -->
+        <div class="closing-card">
+          <div class="closing-card__visual">
             <img
-              src="/home/business-areas/investment-secondary.webp"
-              alt="Landmark commercial tower in Seoul representing Korean corporate capital strength."
-              width="960"
-              height="645"
+              src="/home/business-areas/invest-4-1600.webp"
+              alt="KoreaIN Global Investment Advisory"
               loading="lazy"
               decoding="async"
-              class="visual-img"
+              class="closing-visual-img"
             />
-          </figure>
-          <div class="visual-caption">
-            <span class="visual-caption__tag">Institutional Growth</span>
-            <p>Landmark commercial scale &amp; sovereign investment co-allocation</p>
           </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- Next Steps CTA -->
-    <section class="section section-cta">
-      <div class="container cta-card">
-        <div class="cta-card__body">
-          <h2 class="cta-card__title">Connect with Our Investment Team</h2>
-          <p class="cta-card__copy">
-            Whether you are an institutional fund exploring Korean co-investments or a Korean scale-up seeking global expansion capital, KoreaIN provides the strategic bridge.
-          </p>
-          <div class="cta-card__actions">
-            <a href="/contact" class="button button--primary">
-              <span>Initiate Investment Inquiry</span>
-              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                <path d="M4 10h11M11 5l5 5-5 5" />
-              </svg>
-            </a>
-            <a href="/about" class="button button--secondary">
-              <span>About KoreaIN Leadership</span>
-            </a>
+          <div class="closing-card__content">
+            <span class="section-tag">Next Step</span>
+            <h2 id="cta-heading" class="closing-card__title">Start a Conversation</h2>
+            <p class="closing-card__subtitle">Deploy Capital with Strategic Clarity</p>
+            <p class="closing-card__desc">
+              Whether you are an institutional allocator seeking exposure to Korea's most innovative technology companies or an enterprise scaling cross-border joint ventures, KoreaIN provides the strategic bridge between capital and execution.
+            </p>
+
+            <div class="closing-card__action">
+              <a href="/contact" class="closing-cta__btn">
+                <span>Discuss Investment Opportunities</span>
+                <svg class="cta-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M4 10h11M11 5l5 5-5 5" />
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </section>
   </main>
 </BaseLayout>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const sections = Array.from(document.querySelectorAll('.sub-section, #contact'));
+    const navItems = Array.from(document.querySelectorAll('.local-nav-list li'));
+
+    // IntersectionObserver for Amorepacific Sub-section Choreography
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-active');
+            const targetId = entry.target.id;
+            navItems.forEach((li) => {
+              if (li.getAttribute('data-target') === targetId) {
+                li.classList.add('is-current');
+              } else {
+                li.classList.remove('is-current');
+              }
+            });
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: '-15% 0px -25% 0px',
+        threshold: [0.1, 0.3]
+      }
+    );
+
+    sections.forEach((sec) => sectionObserver.observe(sec));
+
+    // Smooth Anchor Scrolling
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener('click', (e) => {
+        const href = anchor.getAttribute('href');
+        if (!href || href === '#') return;
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  });
+</script>
 
 <style>
   .page-hero {
@@ -351,78 +647,104 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     line-height: 1.4;
   }
 
-  /* Visual Section */
+  /* Panoramic Showcase (Elevated Architectural Visual) */
   .visual-section {
-    padding-top: clamp(2.5rem, 4.5vw, 4rem);
+    padding-top: clamp(2rem, 4vw, 3.5rem);
     padding-bottom: clamp(2.5rem, 4.5vw, 4rem);
   }
 
-  .visual-card {
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    background: var(--color-surface);
-    overflow: hidden;
-    box-shadow: var(--shadow-card);
-  }
-
-  .visual-card--hero {
+  .panoramic-showcase {
     width: 100%;
   }
 
-  .visual-card--hero .visual-figure {
-    aspect-ratio: 21 / 9;
-    max-height: 28rem;
-  }
-
-  .visual-card--secondary {
-    margin-top: 3.5rem;
-  }
-
-  .visual-card--secondary .visual-figure {
-    aspect-ratio: 21 / 9;
-    max-height: 24rem;
-  }
-
-  .visual-figure {
-    margin: 0;
+  .panoramic-showcase__media {
+    position: relative;
+    width: 100%;
+    height: clamp(380px, 48vh, 560px);
+    border-radius: var(--radius-md);
     overflow: hidden;
+    border: 1px solid var(--color-border);
+    box-shadow: 0 16px 45px rgba(10, 18, 48, 0.06);
   }
 
-  .visual-img {
+  .panoramic-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
+    object-position: center 40%;
     display: block;
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .visual-caption {
-    padding: 1.25rem 1.75rem;
+  .panoramic-showcase__media:hover .panoramic-img {
+    transform: scale(1.025);
   }
 
-  .visual-caption__tag {
-    font-size: 0.75rem;
+  .panoramic-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(5, 7, 34, 0.12) 0%,
+      rgba(5, 7, 34, 0.28) 45%,
+      rgba(5, 7, 34, 0.82) 100%
+    );
+  }
+
+  .panoramic-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: clamp(1.75rem, 3.5vw, 2.75rem);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    z-index: 2;
+    color: #ffffff;
+  }
+
+  .panoramic-eyebrow {
+    display: block;
+    font-size: 0.6875rem;
     font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--color-secondary);
+    color: #a6b8ff;
+    margin-bottom: 0.5rem;
   }
 
-  .visual-caption p {
-    margin: 0.4rem 0 0;
-    font-size: 0.9rem;
-    color: var(--color-muted);
+  .panoramic-headline {
+    font-size: clamp(1.25rem, 2.2vw, 1.85rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+    color: #ffffff;
+    margin: 0;
+  }
+
+  @media (max-width: 767px) {
+    .panoramic-caption {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.25rem;
+    }
   }
 
   /* Split Overview */
   .strategic-overview {
     background: var(--color-surface);
+    position: relative;
+    overflow: hidden;
   }
 
   .split-overview {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
     gap: clamp(2rem, 5vw, 5rem);
+    position: relative;
+    z-index: 1;
   }
 
   .split-overview__lead .section-title {
@@ -433,169 +755,725 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     margin-top: 1.5rem;
   }
 
-  /* Pillars Section */
-  .section-header {
-    max-width: 44rem;
-    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  /* ==========================================================================
+     Amorepacific Pure Editorial Investment Experience (Minimal Cards)
+     ========================================================================== */
+
+  /* Discreet Korean Cloud Trademark Background Watermark */
+  .cloud-trademark-decor {
+    position: absolute;
+    right: -4%;
+    top: 6%;
+    width: clamp(280px, 34vw, 520px);
+    height: auto;
+    pointer-events: none;
+    color: var(--color-primary);
+    opacity: 0.04;
+    z-index: 0;
+    transition: opacity 300ms ease;
   }
 
-  .pillars-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 2rem;
+  .cloud-trademark-decor--left {
+    right: auto;
+    left: -4%;
+    top: auto;
+    bottom: 8%;
+    transform: scaleX(-1);
+    opacity: 0.035;
   }
 
-  .pillar-card {
-    padding: clamp(2rem, 3.5vw, 2.75rem);
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-card);
-    transition: transform 220ms ease, border-color 220ms ease;
+  .cloud-trademark-decor--center {
+    right: auto;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: clamp(340px, 45vw, 680px);
+    opacity: 0.035;
   }
 
-  .pillar-card:hover {
-    transform: translateY(-3px);
-    border-color: color-mix(in srgb, var(--color-secondary) 40%, var(--color-border));
+  /* Floating Dot Navigation */
+  .local-nav {
+    display: none;
+    position: fixed;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 60;
+    background: rgba(11, 16, 51, 0.45);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 9999px;
+    padding: 1rem 0.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    transition: opacity 300ms ease;
   }
 
-  .pillar-card__index {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--color-secondary);
-    margin-bottom: 1.25rem;
+  @media (min-width: 1200px) {
+    .local-nav {
+      display: block;
+    }
   }
 
-  .pillar-card__title {
-    font-size: clamp(1.35rem, 2vw, 1.65rem);
-    font-weight: 650;
-    letter-spacing: -0.025em;
-    color: var(--color-text);
-    margin-bottom: 1rem;
-  }
-
-  .pillar-card__copy {
-    color: var(--color-muted);
-    font-size: 0.95rem;
-    line-height: 1.65;
-    margin-bottom: 1.5rem;
-  }
-
-  .pillar-card__list {
-    padding-left: 1.2rem;
+  .local-nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+    list-style: none;
     margin: 0;
-    color: var(--color-text);
-    font-size: 0.875rem;
-    line-height: 1.7;
+    padding: 0;
   }
 
-  /* Verticals Section */
-  .verticals-grid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 1.5rem;
-  }
-
-  .vertical-item {
-    padding: 1.75rem;
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-  }
-
-  .vertical-item__icon {
-    display: inline-block;
-    color: var(--color-accent);
-    margin-bottom: 1rem;
-    font-size: 1.1rem;
-  }
-
-  .vertical-item h4 {
-    font-size: 1.1rem;
-    font-weight: 650;
-    color: var(--color-text);
-    margin-bottom: 0.65rem;
-    letter-spacing: -0.015em;
-  }
-
-  .vertical-item p {
-    font-size: 0.875rem;
-    color: var(--color-muted);
-    line-height: 1.6;
-    margin: 0;
-  }
-
-  /* CTA Banner */
-  .cta-card {
-    background: #050722;
-    color: #f7f8fc;
-    border-radius: var(--radius-xl);
-    padding: clamp(3rem, 6vw, 5rem);
+  .local-nav-list li {
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+  }
+
+  .local-nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+  }
+
+  .nav-dot {
+    display: block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.45);
+    transition: all 260ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .local-nav-list li.is-current .nav-dot {
+    width: 11px;
+    height: 11px;
+    background: transparent;
+    border: 2px solid #ffffff;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.85);
+  }
+
+  .nav-tooltip {
+    position: absolute;
+    right: 2.25rem;
+    top: 50%;
+    transform: translateY(-50%) translateX(6px);
+    background: #0b1033;
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    padding: 0.35rem 0.75rem;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 220ms ease, transform 220ms ease;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  }
+
+  .local-nav-link:hover .nav-tooltip {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+
+  /* Sub-Section Photographic Banners */
+  .sub-section {
+    position: relative;
+    width: 100%;
     overflow: hidden;
   }
 
-  .cta-card::after {
-    content: '';
-    position: absolute;
-    top: -20%;
-    right: -10%;
-    width: 32rem;
-    height: 32rem;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(0, 71, 160, 0.45) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .cta-card__body {
-    max-width: 44rem;
+  .sub-section-header {
     position: relative;
-    z-index: 2;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
   }
 
+  .sub-section-header--tall {
+    height: clamp(520px, 64vh, 740px);
+  }
 
-  .cta-card__title {
-    font-size: clamp(2rem, 3.8vw, 3rem);
+  .sub-section-header__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(5, 7, 34, 0.88) 0%,
+      rgba(5, 7, 34, 0.58) 55%,
+      rgba(5, 7, 34, 0.35) 100%
+    );
+  }
+
+  /* Desktop Fixed Parallax & Animated Decorative Line */
+  @media (min-width: 1024px) {
+    .sub-section.sub-section-banner .sub-section-header--tall {
+      background-attachment: fixed;
+    }
+
+    .sub-section-title-wrap {
+      position: absolute;
+      left: clamp(55px, 10vw, 130px);
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 3;
+      opacity: 0;
+      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+
+    .sub-section-deco {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.45);
+      z-index: 3;
+      opacity: 0;
+      transition: width 1s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
+      will-change: width, opacity;
+    }
+
+    .sub-section-deco::after {
+      content: '';
+      position: absolute;
+      right: -4px;
+      top: -3px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #ffffff;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+    }
+
+    .sub-section.is-active .sub-section-title-wrap {
+      opacity: 1;
+      transform: translateY(-50%);
+    }
+
+    .sub-section.is-active .sub-section-deco {
+      width: clamp(40px, 8vw, 110px);
+      opacity: 0.6;
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .sub-section-title-wrap {
+      position: relative;
+      z-index: 3;
+      padding: clamp(3rem, 7vw, 5rem) var(--gutter);
+      max-width: 44rem;
+    }
+
+    .sub-section-deco {
+      display: none;
+    }
+  }
+
+  .sub-section-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .sub-section-number {
+    font-size: 0.8125rem;
     font-weight: 700;
-    letter-spacing: -0.03em;
+    color: #a6b8ff;
+    letter-spacing: 0.1em;
+  }
+
+  .sub-section-category {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  .sub-section-h {
+    font-size: clamp(2.25rem, 4.5vw, 4rem);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 1.1;
     color: #ffffff;
+    margin: 0;
+  }
+
+  /* Sub-Section Surface */
+  .sub-section-surface {
+    position: relative;
+    background: var(--color-bg);
+    padding: clamp(4.5rem, 7vw, 7rem) 0;
+    overflow: hidden;
+  }
+
+  .sub-section-surface .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .surface-intro {
+    max-width: 48rem;
+    margin-bottom: clamp(3rem, 5vw, 4.5rem);
+  }
+
+  .surface-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    background: transparent;
+    padding: 0;
+    border: none;
+    border-radius: 0;
     margin-bottom: 1.25rem;
   }
 
-  .cta-card__copy {
-    font-size: 1.1rem;
-    color: #c3cadb;
-    line-height: 1.7;
-    margin-bottom: 2rem;
+  .surface-badge::before {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 1.5px;
+    background: var(--color-primary);
+    opacity: 0.85;
   }
 
-  .cta-card__actions {
+  .lead-statement {
+    font-size: clamp(1.25rem, 2vw, 1.65rem);
+    font-weight: 600;
+    line-height: 1.45;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+  }
+
+  .body-text {
+    font-size: clamp(0.95rem, 1.25vw, 1.05rem);
+    line-height: 1.7;
+    color: var(--color-muted);
+    margin: 0;
+  }
+
+  /* --------------------------------------------------------------------------
+     1. Pillars Open Editorial Layout (Zero Boxed Cards)
+     -------------------------------------------------------------------------- */
+  .pillars-editorial-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  @media (min-width: 1200px) {
+    .pillars-editorial-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 2.25rem;
+    }
+  }
+
+  .pillar-editorial-item {
+    border-top: 1px solid var(--color-border);
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 260ms ease;
+  }
+
+  .pillar-editorial-item:hover {
+    border-color: var(--color-primary);
+  }
+
+  .editorial-meta {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+  }
+
+  .editorial-idx {
+    font-size: 1.5rem;
+    font-weight: 750;
+    color: var(--color-primary);
+    letter-spacing: -0.02em;
+  }
+
+  .editorial-tag {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  .editorial-title {
+    font-size: clamp(1.25rem, 1.8vw, 1.5rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.25;
+    color: var(--color-text);
+    margin: 0 0 0.85rem;
+  }
+
+  .editorial-desc {
+    font-size: 0.9375rem;
+    color: var(--color-muted);
+    line-height: 1.65;
+    margin: 0 0 1.5rem;
+    flex-grow: 1;
+  }
+
+  .editorial-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px dashed var(--color-border);
+    padding-top: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .editorial-list li {
+    font-size: 0.8125rem;
+    color: var(--color-text);
+    line-height: 1.5;
+    position: relative;
+    padding-left: 1rem;
+  }
+
+  .editorial-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    opacity: 0.7;
+  }
+
+  /* --------------------------------------------------------------------------
+     2. Verticals Asymmetric Split Editorial (Zero Boxed Cards)
+     -------------------------------------------------------------------------- */
+  .verticals-editorial-split {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.45fr);
+    gap: clamp(3rem, 6vw, 6rem);
+    align-items: start;
+  }
+
+  .verticals-lead-col {
+    position: sticky;
+    top: calc(var(--header-height) + 2rem);
+  }
+
+  .verticals-lead-title {
+    font-size: clamp(1.85rem, 3vw, 2.65rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.18;
+    color: var(--color-text);
+    margin: 1rem 0 1.25rem;
+  }
+
+  .verticals-matrix {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .vertical-matrix-row {
+    border-bottom: 1px solid var(--color-border);
+    padding: 2rem 0;
+    display: grid;
+    grid-template-columns: 2.75rem minmax(0, 1fr);
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .vertical-matrix-row:first-child {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .matrix-idx {
+    font-size: 1.25rem;
+    font-weight: 750;
+    color: var(--color-primary);
+    opacity: 0.9;
+  }
+
+  .matrix-content h4 {
+    font-size: clamp(1.15rem, 1.6vw, 1.4rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+    margin: 0 0 0.5rem;
+  }
+
+  .matrix-content p {
+    font-size: 0.9375rem;
+    color: var(--color-muted);
+    line-height: 1.65;
+    margin: 0 0 1rem;
+  }
+
+  .matrix-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    align-items: center;
+    gap: 0.6rem 1.35rem;
+    margin-top: 1rem;
+    padding-top: 0.85rem;
+    border-top: 1px dashed color-mix(in srgb, var(--color-border) 80%, transparent);
   }
 
-  .cta-card__actions .button--secondary {
-    background: rgba(255, 255, 255, 0.1);
+  .matrix-tags span {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--color-muted);
+    background: transparent;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    transition: color 180ms ease;
+  }
+
+  .matrix-tags span::before {
+    content: '✦';
+    font-size: 0.55rem;
+    color: var(--color-accent);
+    margin-right: 0.45rem;
+    opacity: 0.85;
+  }
+
+  .matrix-tags span:hover {
+    color: var(--color-primary);
+  }
+
+  /* --------------------------------------------------------------------------
+     3. Execution Lifecycle Open Pathway (Zero Boxed Cards)
+     -------------------------------------------------------------------------- */
+  .lifecycle-flow-row {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 2.5rem;
+    margin-top: 3.5rem;
+    border-top: 1px solid var(--color-border);
+    padding-top: 2.5rem;
+  }
+
+  .lifecycle-step {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .lifecycle-step__index {
+    font-size: 1.75rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+  }
+
+  .lifecycle-step__title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+    margin: 0 0 0.75rem;
+    line-height: 1.3;
+  }
+
+  .lifecycle-step__desc {
+    font-size: 0.875rem;
+    color: var(--color-muted);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  /* --------------------------------------------------------------------------
+     4. Closing Section (Single Iconic Card Matching Consultation Style)
+     -------------------------------------------------------------------------- */
+  .closing-cta {
+    position: relative;
+    padding: clamp(5rem, 8vw, 8rem) 0;
+    background: var(--color-bg);
+    overflow: hidden;
+  }
+
+  .closing-cta .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .closing-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    align-items: stretch;
+  }
+
+  .closing-card__visual {
+    position: relative;
+    min-height: 100%;
+    overflow: hidden;
+    background: var(--color-bg);
+  }
+
+  .closing-visual-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .closing-card:hover .closing-visual-img {
+    transform: scale(1.025);
+  }
+
+  .closing-card__content {
+    padding: clamp(3.5rem, 6vw, 5.5rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--color-surface);
+  }
+
+  .section-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    margin-bottom: 0.85rem;
+  }
+
+  .closing-card__title {
+    margin: 0 0 0.5rem;
+    font-size: clamp(2.2rem, 3.6vw, 3.2rem);
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 1.12;
+    color: var(--color-text);
+  }
+
+  .closing-card__subtitle {
+    font-size: clamp(1.15rem, 1.5vw, 1.35rem);
+    font-weight: 500;
+    color: var(--color-primary);
+    margin: 0 0 1.35rem;
+    letter-spacing: -0.015em;
+  }
+
+  .closing-card__desc {
+    margin: 0 0 2.25rem;
+    font-size: clamp(1rem, 1.25vw, 1.125rem);
+    color: var(--color-muted);
+    line-height: 1.75;
+    max-width: 36rem;
+  }
+
+  .closing-card__action {
+    display: flex;
+    align-items: center;
+  }
+
+  .closing-cta__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 1.1rem 2.25rem;
+    background: var(--color-primary);
     color: #ffffff;
-    border-color: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    transition: background-color 220ms ease, transform 220ms ease, box-shadow 220ms ease;
+    box-shadow: 0 4px 14px rgba(0, 14, 138, 0.16);
   }
 
-  .cta-card__actions .button--secondary:hover {
-    background: rgba(255, 255, 255, 0.18);
+  .closing-cta__btn:hover {
+    background: var(--color-secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 14, 138, 0.25);
+  }
+
+  .cta-arrow {
+    width: 18px;
+    height: 18px;
+    transition: transform 220ms ease;
+  }
+
+  .closing-cta__btn:hover .cta-arrow {
+    transform: translateX(4px);
+  }
+
+  /* --------------------------------------------------------------------------
+     Responsive Rules
+     -------------------------------------------------------------------------- */
+  @media (max-width: 1023px) {
+    .pillars-editorial-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .verticals-editorial-split {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .verticals-lead-col {
+      position: static;
+    }
+
+    .lifecycle-flow-row {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .closing-card {
+      grid-template-columns: 1fr;
+    }
+
+    .closing-card__visual {
+      min-height: 280px;
+      max-height: 380px;
+    }
+
+    .closing-card__content {
+      padding: clamp(2rem, 5vw, 3rem);
+    }
   }
 
   @media (max-width: 63.99rem) {
     .page-hero__grid {
       grid-template-columns: 1fr;
-    }
-
-    .pillars-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .verticals-grid {
-      grid-template-columns: repeat(2, 1fr);
     }
 
     .split-overview {
@@ -604,12 +1482,17 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   }
 
   @media (max-width: 39.99rem) {
-    .verticals-grid {
+    .page-hero__stats {
       grid-template-columns: 1fr;
     }
 
-    .page-hero__stats {
+    .lifecycle-flow-row {
       grid-template-columns: 1fr;
+    }
+
+    .vertical-matrix-row {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
     }
   }
 </style>

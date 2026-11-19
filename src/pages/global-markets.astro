@@ -50,8 +50,7 @@ const navItems = [
   { id: 'network', label: 'Bilateral Network' },
   { id: 'east-asia', label: 'East Asia' },
   { id: 'middle-east', label: 'Middle East' },
-  { id: 'global-corridors', label: 'Global Corridors' },
-  { id: 'contact', label: 'Contact' }
+  { id: 'global-corridors', label: 'Global Corridors' }
 ];
 ---
 
@@ -233,26 +232,6 @@ const navItems = [
         </section>
       ))}
     </div>
-
-    <!-- 4. Closing CTA (Sober & Spacious) -->
-    <section id="contact" class="closing-cta" aria-labelledby="cta-heading">
-      <div class="container">
-        <div class="closing-cta__box">
-          <div class="closing-cta__text">
-            <h2 id="cta-heading" class="closing-cta__title">Bring the Next Opportunity Closer</h2>
-            <p class="closing-cta__lead">
-              Let’s explore what we can build between South Korea and your market.
-            </p>
-          </div>
-          <a href="/contact" class="corridor-cta corridor-cta--primary">
-            <span>Start a Conversation</span>
-            <svg class="cta-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M4 10h11M11 5l5 5-5 5" />
-            </svg>
-          </a>
-        </div>
-      </div>
-    </section>
   </main>
 </BaseLayout>
 
@@ -267,7 +246,6 @@ const navItems = [
     const coverMouse = document.getElementById('coverMouse');
     const panels = Array.from(document.querySelectorAll('.corridor-panel'));
     const network = document.getElementById('network');
-    const contact = document.getElementById('contact');
     const navItems = Array.from(document.querySelectorAll('.local-nav-list li'));
 
     // 1. Hero Cover Entrance & Mousemove Parallax
@@ -291,11 +269,11 @@ const navItems = [
     // 2. Cover Content Scroll Fade-Out
     const handleScrollFade = () => {
       const scrollY = window.scrollY;
-      const fadeThreshold = window.innerHeight * 0.45;
+      const fadeThreshold = window.innerHeight * 0.5;
 
       if (coverContent) {
         const opacity = Math.max(0, 1 - scrollY / fadeThreshold);
-        const translateY = scrollY * 0.32;
+        const translateY = scrollY * 0.3;
         coverContent.style.opacity = opacity.toFixed(2);
         coverContent.style.transform = `translateY(${translateY.toFixed(1)}px)`;
       }
@@ -308,7 +286,7 @@ const navItems = [
     window.addEventListener('scroll', handleScrollFade, { passive: true });
 
     // 3. Section Scrollspy & Panel Animation
-    const allObserved = [cover, network, ...panels, contact].filter(Boolean);
+    const allObserved = [cover, network, ...panels].filter(Boolean);
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -467,8 +445,8 @@ const navItems = [
      -------------------------------------------------------------------------- */
   .cover {
     position: relative;
-    height: clamp(480px, 64vh, 580px);
-    min-height: 480px;
+    height: 100vh;
+    min-height: 640px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -485,12 +463,12 @@ const navItems = [
 
   .cover-bg {
     position: absolute;
-    inset: -20px;
+    inset: -30px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    transform: scale(1.06) translateX(25px);
-    opacity: 0.85;
+    transform: scale(1.08) translateX(30px);
+    opacity: 0.8;
     transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.2s ease;
     will-change: transform;
   }
@@ -772,8 +750,10 @@ const navItems = [
 
   .bilateral-bridge__badge {
     position: absolute;
-    top: -24px;
-    padding: 3px 10px;
+    bottom: calc(50% + 14px);
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 4px 12px;
     font-size: 0.6875rem;
     font-weight: 700;
     letter-spacing: 0.08em;
@@ -783,6 +763,8 @@ const navItems = [
     border: 1px solid rgba(141, 164, 255, 0.35);
     border-radius: 9999px;
     white-space: nowrap;
+    z-index: 2;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
   }
 
   .bilateral-bridge__line {
@@ -906,9 +888,9 @@ const navItems = [
   /* Visual Banner Header (Harmonized, Clean Visibility) */
   .corridor-banner {
     position: relative;
-    height: clamp(300px, 38vh, 420px);
+    height: clamp(540px, 68vh, 760px);
     background-size: cover;
-    background-position: center;
+    background-position: center center;
     background-repeat: no-repeat;
     display: flex;
     align-items: center;
@@ -921,9 +903,9 @@ const navItems = [
     inset: 0;
     background: linear-gradient(
       90deg,
-      rgba(5, 7, 34, 0.52) 0%,
-      rgba(5, 7, 34, 0.32) 55%,
-      rgba(5, 7, 34, 0.15) 100%
+      rgba(5, 7, 34, 0.72) 0%,
+      rgba(5, 7, 34, 0.42) 55%,
+      rgba(5, 7, 34, 0.2) 100%
     );
   }
 
@@ -955,6 +937,51 @@ const navItems = [
     position: relative;
     z-index: 3;
     padding-left: clamp(55px, 10vw, 130px);
+  }
+
+  /* Desktop Parallax & Entrance Choreography */
+  @media (min-width: 1024px) {
+    .corridor-banner {
+      background-attachment: fixed;
+    }
+
+    .corridor-title-wrap {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.85s ease, transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+
+    .corridor-deco {
+      width: 0;
+      opacity: 0;
+      transition: width 1s cubic-bezier(0.16, 1, 0.3, 1) 0.15s, opacity 0.8s ease 0.15s;
+      will-change: width, opacity;
+    }
+
+    .corridor-panel.is-active .corridor-title-wrap {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .corridor-panel.is-active .corridor-deco {
+      width: clamp(40px, 8vw, 110px);
+      opacity: 1;
+    }
+
+    .corridor-panel .content-left,
+    .corridor-panel .content-right {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.75s ease 0.2s, transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+      will-change: opacity, transform;
+    }
+
+    .corridor-panel.is-active .content-left,
+    .corridor-panel.is-active .content-right {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .corridor-number {
@@ -1049,37 +1076,6 @@ const navItems = [
   }
 
   /* --------------------------------------------------------------------------
-     5. Closing Section (Spacious & Clean)
-     -------------------------------------------------------------------------- */
-  .closing-cta {
-    padding-block: clamp(5rem, 8vw, 7.5rem);
-    background: var(--color-surface);
-  }
-
-  .closing-cta__box {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 3rem;
-  }
-
-  .closing-cta__title {
-    margin: 0 0 0.85rem;
-    font-size: clamp(2rem, 3.5vw, 3rem);
-    font-weight: 600;
-    letter-spacing: -0.035em;
-    color: var(--color-text);
-  }
-
-  .closing-cta__lead {
-    margin: 0;
-    font-size: clamp(1.05rem, 1.4vw, 1.25rem);
-    color: var(--color-muted);
-    line-height: 1.7;
-    max-width: 42rem;
-  }
-
-  /* --------------------------------------------------------------------------
      Responsive Adaptations
      -------------------------------------------------------------------------- */
   @media (max-width: 1023px) {
@@ -1107,15 +1103,30 @@ const navItems = [
       margin-inline: auto;
     }
 
+    .corridor-banner {
+      height: 420px;
+      background-attachment: scroll !important;
+    }
+
+    .corridor-title-wrap {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    .corridor-deco {
+      width: 32px !important;
+      opacity: 1 !important;
+    }
+
+    .corridor-panel .content-left,
+    .corridor-panel .content-right {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
     .corridor-content {
       grid-template-columns: 1fr;
       gap: 1.75rem;
-    }
-
-    .closing-cta__box {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 2rem;
     }
   }
 
@@ -1145,6 +1156,7 @@ const navItems = [
 
     .bilateral-bridge__badge {
       top: 50%;
+      bottom: auto;
       left: calc(50% + 20px);
       transform: translateY(-50%);
     }
@@ -1158,7 +1170,7 @@ const navItems = [
     }
 
     .corridor-banner {
-      height: 260px;
+      height: 340px;
     }
 
     .corridor-deco {
