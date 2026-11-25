@@ -1,211 +1,168 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const purchaseSteps = [
+  {
+    title: 'Tell us what you’re looking for',
+    description: 'Contact us with your preferred model, specifications and budget. This is where the search for your car begins.'
+  },
+  {
+    title: 'We find the right car',
+    description: 'We find a car that matches your requirements and compare offers to get the best available price.'
+  },
+  {
+    title: 'Inspect & reserve',
+    description: 'We inspect the car. If it is in excellent condition, we pay a deposit to reserve it.'
+  },
+  {
+    title: 'Receive your invoice',
+    description: 'We send you an invoice for the vehicle price.'
+  },
+  {
+    title: 'Complete the purchase',
+    description: 'Once we receive your payment, we complete the purchase of your car.'
+  },
+  {
+    title: 'Prepare & ship',
+    description: 'We prepare the export documents and ship your car to the agreed destination.'
+  },
+  {
+    title: 'Receive your car',
+    description: 'You receive your car when it arrives.'
+  }
+];
 ---
 
 <BaseLayout
-  title="Automotive & Future Mobility | KoreaIN"
-  description="Accelerating international partnerships across Korea's tier-1 automotive manufacturing, electric vehicle ecosystems, and smart mobility infrastructure."
+  title="Automotive | Buy & Ship a Car from South Korea | KoreaIN"
+  description="Find, inspect, purchase and ship your next car from South Korea with KoreaIN. A clear seven-step process, from your preferred model and budget to arrival."
 >
-  <main id="main-content" class="page-sector">
-    <!-- Hero Section -->
-    <header class="page-hero">
+  <main id="main-content" class="automotive-page">
+    <header class="auto-hero" aria-labelledby="automotive-title">
       <div class="container">
         <nav class="breadcrumbs" aria-label="Breadcrumb">
           <ol>
             <li><a href="/">Home</a></li>
-            <li><span aria-hidden="true">/</span></li>
             <li><a href="/business-areas">Business Areas</a></li>
-            <li><span aria-hidden="true">/</span></li>
             <li aria-current="page">Automotive</li>
           </ol>
         </nav>
-
-        <div class="page-hero__grid">
-          <div class="page-hero__text">
-            <h1 class="page-title">Automotive &amp; Clean Mobility</h1>
-            <p class="page-lead">
-              From world-class electric vehicle platforms and next-generation battery chemistries to autonomous drive sensors and clean fuel systems, KoreaIN links Korean automotive excellence with major transport networks in the Middle East and worldwide.
-            </p>
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="auto-eyebrow">KoreaIN Automotive</p>
+            <h1 id="automotive-title">Your next car.<br /><span>From South Korea.</span></h1>
+            <p class="hero-lead">Buy with a clear process. Ship with a plan.</p>
+            <p class="hero-description">From finding the right vehicle to arranging its export, KoreaIN guides your purchase from South Korea to your agreed destination.</p>
             <div class="hero-actions">
-              <a href="/contact" class="button button--primary">
-                <span>Engage Mobility Team</span>
-                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                  <path d="M4 10h11M11 5l5 5-5 5" />
-                </svg>
-              </a>
-              <a href="/business-areas" class="button button--secondary">
-                <span>All Business Areas</span>
-              </a>
+              <a class="auto-button auto-button--light" href="/contact">Find your car <span aria-hidden="true">↗</span></a>
+              <a class="auto-link" href="#purchase-process">How it works <span aria-hidden="true">↓</span></a>
             </div>
           </div>
-
-          <div class="page-hero__stats">
-            <div class="stat-card">
-              <span class="stat-card__number">Tier-1</span>
-              <span class="stat-card__label">Korean OEM &amp; Supply Ecosystem</span>
-            </div>
-            <div class="stat-card">
-              <span class="stat-card__number">Clean Energy</span>
-              <span class="stat-card__label">EV, Battery &amp; Alternative Fuels</span>
-            </div>
-            <div class="stat-card">
-              <span class="stat-card__number">Distribution</span>
-              <span class="stat-card__label">GCC Dealership &amp; Fleet Synergies</span>
-            </div>
-            <div class="stat-card">
-              <span class="stat-card__number">Smart Transit</span>
-              <span class="stat-card__label">Autonomous Fleets &amp; Telematics</span>
-            </div>
-          </div>
+          <figure class="hero-visual">
+            <img src="/home/automotive/vehicle-lineup.jpg" alt="Three dark SUVs photographed from the front in a vehicle yard." width="1206" height="792" fetchpriority="high" decoding="async" />
+            <figcaption><span>Vehicle sourcing &amp; export</span><span>South Korea</span></figcaption>
+          </figure>
         </div>
       </div>
+      <nav class="chapter-nav" aria-label="Automotive page sections">
+        <div class="container chapter-nav__inner">
+          <a href="#vehicle-sourcing"><span aria-hidden="true">01</span> Your requirements</a>
+          <a href="#purchase-process"><span aria-hidden="true">02</span> Purchase process</a>
+          <a href="#export-delivery"><span aria-hidden="true">03</span> Export &amp; arrival</a>
+        </div>
+      </nav>
     </header>
 
-    <!-- Visual Showcase: Existing Automotive Image & Black Placeholder -->
-    <section class="section visual-section">
-      <div class="container visual-grid">
-        <div class="visual-card">
-          <figure class="visual-figure">
-            <img
-              src="/home/business-areas/automotive.webp"
-              alt="Aerodynamic silhouette and LED tail signature of a high-performance modern concept vehicle."
-              width="960"
-              height="484"
-              loading="lazy"
-              decoding="async"
-              class="visual-img"
-            />
-          </figure>
-          <div class="visual-caption">
-            <span class="visual-caption__tag">Advanced Mobility</span>
-            <p>High-performance EV platform engineering &amp; aerodynamic design</p>
-          </div>
-        </div>
-
-        <div class="visual-card">
-          <figure class="visual-figure">
-            <img
-              src="/home/business-areas/automotive-secondary.webp"
-              alt="Clean mobility manufacturing, EV chassis engineering, and fleet infrastructure."
-              width="960"
-              height="632"
-              loading="lazy"
-              decoding="async"
-              class="visual-img"
-            />
-          </figure>
-          <div class="visual-caption">
-            <span class="visual-caption__tag">Future Mobility</span>
-            <p>Clean mobility fleet infrastructure &amp; smart vehicle platforms</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Strategic Narrative -->
-    <section class="section strategic-overview">
+    <section class="auto-section sourcing" id="vehicle-sourcing" aria-labelledby="sourcing-title">
       <div class="container">
-        <div class="split-overview">
-          <div class="split-overview__lead">
-            <h2 class="section-title">Bridging the Global Energy Transition in Transport</h2>
+        <div class="section-intro">
+          <div>
+            <p class="auto-eyebrow">A search built around you</p>
+            <h2 id="sourcing-title">The right car starts<br />with your priorities.</h2>
           </div>
-          <div class="split-overview__body">
-            <p class="section-copy">
-              South Korea is globally renowned for automotive engineering agility, setting global standards for battery safety, fast-charging architectures, lightweight composites, and integrated software-defined vehicle (SDV) stacks.
-            </p>
-            <p class="section-copy">
-              In parallel, regions like Saudi Arabia and the GCC are making multi-billion-dollar commitments to fleet decarbonization, localized manufacturing, and smart urban transit. KoreaIN facilitates direct partnerships between Korean automotive suppliers, regional automotive groups, and government transport authorities.
-            </p>
+          <div class="intro-copy">
+            <p>Tell us the model you have in mind, the specifications that matter and your budget. We use these details to find the right car and compare available offers.</p>
+            <ul class="requirements" aria-label="Details to include in your enquiry">
+              <li>Preferred model</li>
+              <li>Specifications</li>
+              <li>Budget</li>
+            </ul>
           </div>
+        </div>
+        <div class="vehicle-gallery">
+          <figure class="vehicle-photo vehicle-photo--wide">
+            <div class="photo-frame">
+              <img src="/home/automotive/sedan-and-suv.jpg" alt="A BMW sedan and Genesis SUV side by side, carrying Korea INCar display plates." width="736" height="1600" loading="lazy" decoding="async" />
+            </div>
+            <figcaption>A closer look at the possibilities.</figcaption>
+          </figure>
+          <figure class="vehicle-photo vehicle-photo--detail">
+            <div class="photo-frame">
+              <img src="/home/automotive/genesis-detail.jpg" alt="Rear three-quarter view of a Genesis G70 with a Korea INCar display plate." width="736" height="1600" loading="lazy" decoding="async" />
+            </div>
+            <figcaption>The details that make it yours.</figcaption>
+          </figure>
+        </div>
+        <p class="gallery-note">Vehicle photography supplied by KoreaIN. Availability is confirmed during your enquiry.</p>
+      </div>
+    </section>
+
+    <section class="auto-section purchase" id="purchase-process" aria-labelledby="process-title">
+      <div class="container process-grid">
+        <div class="process-intro">
+          <p class="auto-eyebrow">The purchase process</p>
+          <h2 id="process-title">From the first enquiry<br />to the day it arrives.</h2>
+          <p>Seven clear steps to buy and ship a car from South Korea.</p>
+          <figure class="process-photo">
+            <div class="photo-frame">
+              <img src="/home/automotive/vehicle-selection.jpg" alt="A white BMW and a dark Mercedes-Benz photographed from the front in a vehicle yard." width="736" height="1600" loading="lazy" decoding="async" />
+            </div>
+            <figcaption>Find. Inspect. Purchase. Ship.</figcaption>
+          </figure>
+          <a class="auto-link" href="/contact">Discuss your requirements <span aria-hidden="true">↗</span></a>
+        </div>
+        <ol class="purchase-steps">
+          {purchaseSteps.map((step, index) => (
+            <li>
+              <span class="step-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+              <div>
+                <h3>{step.title}</h3>
+                <p>{step.description}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <section class="auto-section export" id="export-delivery" aria-labelledby="export-title">
+      <div class="container export-grid">
+        <figure class="export-photo">
+          <img src="/home/business-areas/automotive-secondary.webp" alt="Passenger vehicles secured on a two-level vehicle transporter." width="960" height="632" loading="lazy" decoding="async" />
+          <figcaption>From purchase to the next part of the journey.</figcaption>
+        </figure>
+        <div class="export-copy">
+          <p class="auto-eyebrow">Export &amp; arrival</p>
+          <h2 id="export-title">Purchased in Korea.<br />On its way to you.</h2>
+          <p>Once your purchase is complete, we prepare the export documents and arrange shipment to the destination agreed with you.</p>
+          <dl class="delivery-details">
+            <div><dt>Before departure</dt><dd>Export paperwork and shipment preparation.</dd></div>
+            <div><dt>On arrival</dt><dd>You receive your car at the agreed destination.</dd></div>
+          </dl>
         </div>
       </div>
     </section>
 
-    <!-- Core Pillars -->
-    <section class="section pillars-section">
-      <div class="container">
-        <header class="section-header">
-          <h2 class="section-title">Key Commercial Capabilities</h2>
-          <p class="section-copy">
-            End-to-end commercial facilitation across the complete automotive value chain.
-          </p>
-        </header>
-
-        <div class="pillars-grid">
-          <article class="pillar-card">
-            <div class="pillar-card__index">01</div>
-            <h3 class="pillar-card__title">EV Platform &amp; Battery Supply Chains</h3>
-            <p class="pillar-card__copy">
-              Sourcing critical cell modules, battery management systems (BMS), thermal regulation assemblies, and power conversion electronics from Korean manufacturers.
-            </p>
-            <ul class="pillar-card__list">
-              <li>Direct Tier-1 supplier procurement</li>
-              <li>High-voltage electrical harness sourcing</li>
-              <li>Battery testing &amp; lifecycle compliance</li>
-            </ul>
-          </article>
-
-          <article class="pillar-card">
-            <div class="pillar-card__index">02</div>
-            <h3 class="pillar-card__title">Alternative Fuels &amp; Fleet Decarbonization</h3>
-            <p class="pillar-card__copy">
-              Facilitating conversion technology, natural gas vehicle (NGV) retrofitting systems, and hydrogen fuel-cell heavy transport integration for commercial fleets.
-            </p>
-            <ul class="pillar-card__list">
-              <li>Commercial bus &amp; truck fleet electrification</li>
-              <li>Dual-fuel and clean fuel conversion kits</li>
-              <li>Depot charging &amp; refueling infrastructure</li>
-            </ul>
-          </article>
-
-          <article class="pillar-card">
-            <div class="pillar-card__index">03</div>
-            <h3 class="pillar-card__title">Autonomous Drive Systems &amp; Sensor Fusion</h3>
-            <p class="pillar-card__copy">
-              Deploying solid-state LiDAR sensors, automotive millimeter-wave radar, and in-cabin AI driver monitoring systems engineered by Korean pioneers.
-            </p>
-            <ul class="pillar-card__list">
-              <li>ADAS sensor suite integration</li>
-              <li>Autonomous shuttle pilot program management</li>
-              <li>V2X (Vehicle-to-Everything) communication</li>
-            </ul>
-          </article>
-
-          <article class="pillar-card">
-            <div class="pillar-card__index">04</div>
-            <h3 class="pillar-card__title">Dealership &amp; Distribution Alliances</h3>
-            <p class="pillar-card__copy">
-              Establishing bilateral commercial bridges between Korean aftermarket and specialty automotive brands and leading Middle Eastern automotive dealership groups.
-            </p>
-            <ul class="pillar-card__list">
-              <li>Exclusive territorial distribution rights</li>
-              <li>OEM replacement parts supply contracts</li>
-              <li>Aftersales warranty and technician training</li>
-            </ul>
-          </article>
+    <section class="auto-section auto-contact" aria-labelledby="contact-title">
+      <div class="container contact-grid">
+        <div>
+          <p class="auto-eyebrow">Let’s find your next car</p>
+          <h2 id="contact-title">What would you<br />like to drive?</h2>
+          <p>Start with your preferred model, specifications and budget.<br class="desktop-break" /> We’ll take the next step together.</p>
         </div>
-      </div>
-    </section>
-
-    <!-- Next Steps CTA -->
-    <section class="section section-cta">
-      <div class="container cta-card">
-        <div class="cta-card__body">
-          <h2 class="cta-card__title">Power Your Mobility Expansion</h2>
-          <p class="cta-card__copy">
-            Connect with KoreaIN to explore automotive sourcing, joint ventures, or regional distributorships with top Korean manufacturers.
-          </p>
-          <div class="cta-card__actions">
-            <a href="/contact" class="button button--primary">
-              <span>Contact Mobility Practice</span>
-              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                <path d="M4 10h11M11 5l5 5-5 5" />
-              </svg>
-            </a>
-            <a href="/business-areas" class="button button--secondary">
-              <span>View All Sectors</span>
-            </a>
-          </div>
+        <div class="contact-actions">
+          <a class="auto-button" href="/contact">Tell us about your car <span aria-hidden="true">↗</span></a>
+          <a class="auto-link" href="/business-areas">All business areas <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
@@ -213,314 +170,143 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 </BaseLayout>
 
 <style>
-  .page-hero {
-    padding-top: calc(var(--header-height) + clamp(2.5rem, 5vw, 4rem));
-    padding-bottom: clamp(3rem, 5vw, 4.5rem);
-    background: var(--color-surface);
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .breadcrumbs {
-    margin-bottom: 2rem;
-  }
-
-  .breadcrumbs ol {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    font-size: 0.8125rem;
-    color: var(--color-muted);
-  }
-
-  .breadcrumbs a {
-    color: var(--color-muted);
-    transition: color 180ms ease;
-  }
-
-  .breadcrumbs a:hover {
-    color: var(--color-interactive);
-  }
-
-  .breadcrumbs [aria-current="page"] {
-    color: var(--color-text);
-    font-weight: 600;
-  }
-
-  .page-hero__grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.9fr);
-    gap: clamp(2.5rem, 5vw, 5rem);
-    align-items: end;
-  }
-
-  .page-title {
-    font-size: clamp(2.25rem, 4.5vw, 3.75rem);
-    font-weight: 700;
-    letter-spacing: -0.04em;
-    line-height: 1.08;
-    color: var(--color-text);
-    margin-bottom: 1.5rem;
-  }
-
-  .page-lead {
-    font-size: clamp(1.05rem, 1.4vw, 1.25rem);
-    line-height: 1.7;
-    color: var(--color-muted);
-    max-width: 44rem;
-    margin-bottom: 2rem;
-  }
-
-  .hero-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .hero-actions svg {
-    width: 1.15rem;
-    height: 1.15rem;
-  }
-
-  .page-hero__stats {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-  }
-
-  .stat-card {
-    padding: 1.5rem;
+  .automotive-page {
     background: var(--color-bg);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 8rem;
   }
 
-  .stat-card__number {
-    font-size: clamp(1.25rem, 2vw, 1.65rem);
-    font-weight: 750;
-    letter-spacing: -0.02em;
-    color: var(--color-primary);
-  }
-
-  .stat-card__label {
-    font-size: 0.8125rem;
-    color: var(--color-muted);
-    line-height: 1.4;
-  }
-
-  /* Visual Section */
-  .visual-section {
-    padding-top: clamp(2.5rem, 4.5vw, 4rem);
-    padding-bottom: clamp(2.5rem, 4.5vw, 4rem);
-  }
-
-  .visual-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 2rem;
-  }
-
-  .visual-card {
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    background: var(--color-surface);
-    overflow: hidden;
-    box-shadow: var(--shadow-card);
-  }
-
-  .visual-figure {
+  .automotive-page figure { margin: 0; min-width: 0; }
+  .automotive-page h1, .automotive-page h2, .automotive-page h3 { text-wrap: balance; }
+  .automotive-page p { text-wrap: pretty; }
+  .automotive-page h2 {
     margin: 0;
-    aspect-ratio: 16 / 10;
-    overflow: hidden;
+    font-size: clamp(2.125rem, 3.8vw, 3.625rem);
+    line-height: 1.07;
+    font-weight: 600;
+    letter-spacing: -0.045em;
   }
-
-  .visual-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .visual-caption {
-    padding: 1.25rem 1.75rem;
-  }
-
-  .visual-caption__tag {
+  .auto-section { padding-block: clamp(4.5rem, 7.5vw, 7.5rem); }
+  .auto-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0 0 1.5rem;
+    color: var(--color-secondary);
     font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--color-secondary);
   }
-
-  .visual-caption p {
-    margin: 0.4rem 0 0;
-    font-size: 0.9rem;
-    color: var(--color-muted);
+  .auto-eyebrow::before { content: ''; width: 1.5rem; height: 2px; flex: 0 0 auto; background: #cd2e3a; }
+  .auto-hero, .purchase { background: #0b1033; color: #f7f8fc; --focus-ring: #a6b8ff; }
+  .auto-hero { padding-top: calc(var(--header-height) + 1.75rem); }
+  .auto-hero .auto-eyebrow, .purchase .auto-eyebrow { color: #b0bfff; }
+  .breadcrumbs ol { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 0; padding: 0; list-style: none; font-size: 0.75rem; color: #c3cadb; }
+  .breadcrumbs li + li { display: flex; align-items: center; gap: 0.75rem; }
+  .breadcrumbs li + li::before { content: ''; width: 0.75rem; height: 1px; background: #74809f; }
+  .breadcrumbs a:hover { color: #fff; text-decoration: underline; text-underline-offset: 4px; }
+  .hero-grid { display: grid; grid-template-columns: 0.95fr 1.2fr; gap: clamp(2rem, 4vw, 4rem); align-items: center; padding-block: clamp(3.5rem, 6vw, 6rem); }
+  h1 { margin: 0; font-size: clamp(3rem, 4.5vw, 4.5rem); font-weight: 600; line-height: 1.05; letter-spacing: -0.055em; }
+  h1 span { color: #b0bfff; }
+  .hero-lead { margin: 1.75rem 0 0.75rem; font-size: 1.125rem; font-weight: 500; }
+  .hero-description { max-width: 30rem; margin: 0; color: #c3cadb; font-size: 1rem; line-height: 1.8; }
+  .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.75rem; margin-top: 2rem; }
+  .hero-visual img { width: 100%; height: auto; aspect-ratio: 1206 / 792; }
+  .hero-visual figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 1rem; border-top: 1px solid #39415f; margin-top: 1rem; padding-top: 1rem; color: #c3cadb; font-size: 0.75rem; }
+  .auto-button { display: inline-flex; align-items: center; justify-content: space-between; gap: 2rem; min-height: 3.5rem; max-width: 100%; padding: 0.9rem 1.35rem; background: #000e8a; border: 1px solid #000e8a; border-radius: 4px; color: #fff; font-size: 0.875rem; font-weight: 600; transition: background-color 220ms ease, border-color 220ms ease; }
+  .auto-button:hover { background: #0047a0; border-color: #0047a0; }
+  .auto-button--light { background: #f7f8fc; border-color: #f7f8fc; color: #000e8a; }
+  .auto-button--light:hover { background: #dce4ff; border-color: #dce4ff; }
+  .auto-button span, .auto-link span { font-size: 1.25rem; transition: transform 220ms ease; }
+  .auto-button:hover span, .auto-link:hover span { transform: translateX(4px); }
+  .auto-link { display: inline-flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-height: 2.75rem; font-size: 0.875rem; font-weight: 500; color: var(--color-interactive); }
+  .auto-hero .auto-link, .purchase .auto-link { color: #f7f8fc; }
+  .chapter-nav { border-top: 1px solid #343c5c; }
+  .chapter-nav__inner { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .chapter-nav a { display: flex; align-items: baseline; gap: 1.25rem; padding: 1.5rem 0; font-size: 0.875rem; color: #e2e6f1; transition: color 200ms ease; }
+  .chapter-nav a:hover { color: #b0bfff; }
+  .chapter-nav a span { color: #a6b8ff; font-size: 0.6875rem; }
+  .sourcing { background: var(--color-surface); }
+  .section-intro { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(2.5rem, 6vw, 6rem); align-items: end; }
+  .intro-copy > p, .export-copy > p:not(.auto-eyebrow) { margin: 0; color: var(--color-muted); font-size: 1.0625rem; line-height: 1.8; }
+  .requirements { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; list-style: none; padding: 1.25rem 0 0; margin: 1.5rem 0 0; border-top: 1px solid var(--color-border); }
+  .requirements li { font-size: 0.8125rem; color: var(--color-secondary); font-weight: 500; }
+  .vehicle-gallery { display: grid; grid-template-columns: 1.35fr 1fr; gap: clamp(1.5rem, 4vw, 4rem); margin-top: clamp(2.5rem, 4vw, 4rem); align-items: start; }
+  .vehicle-gallery .vehicle-photo--detail { margin-top: clamp(2.5rem, 7vw, 7rem); }
+  /* These supplied photographs have black letterboxing baked into the files.
+     A landscape frame reveals the central photograph without editing the source. */
+  .photo-frame { aspect-ratio: 1.5; overflow: hidden; background: #11151c; }
+  .photo-frame img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+  .vehicle-photo figcaption, .export-photo figcaption { margin-top: 0.9rem; font-size: 0.8125rem; color: var(--color-muted); }
+  .gallery-note { margin: 1.75rem 0 0; font-size: 0.75rem; line-height: 1.65; color: var(--color-muted); }
+  .process-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(3rem, 7vw, 7rem); align-items: start; }
+  .process-intro { position: sticky; top: calc(var(--header-height) + 2rem); }
+  .process-intro > p:not(.auto-eyebrow) { margin: 1.5rem 0 2rem; color: #c3cadb; max-width: 24rem; line-height: 1.75; font-size: 1rem; }
+  .process-photo { max-width: 27rem; }
+  .process-photo figcaption { color: #c3cadb; font-size: 0.75rem; margin-top: 0.75rem; }
+  .process-intro .auto-link { margin-top: 1.5rem; }
+  .purchase-steps { padding: 0; margin: 0; list-style: none; }
+  .purchase-steps li { display: grid; grid-template-columns: 2.5rem minmax(0, 1fr); gap: 1.5rem; padding: 1.75rem 0 2rem; border-top: 1px solid #343c5c; }
+  .purchase-steps li:last-child { border-bottom: 1px solid #343c5c; }
+  .step-number { font-size: 0.875rem; color: #a6b8ff; padding-top: 0.3rem; font-variant-numeric: tabular-nums; }
+  .purchase-steps h3 { margin: 0 0 0.75rem; font-size: clamp(1.375rem, 2vw, 1.75rem); font-weight: 500; line-height: 1.2; letter-spacing: -0.025em; }
+  .purchase-steps p { color: #c3cadb; margin: 0; max-width: 29rem; font-size: 1rem; line-height: 1.75; }
+  .export-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; align-items: center; gap: clamp(3rem, 6vw, 6rem); }
+  .export-photo img { width: 100%; height: auto; aspect-ratio: 960 / 632; }
+  .export-copy h2 { margin-bottom: 1.5rem; }
+  .delivery-details { margin: 2rem 0 0; }
+  .delivery-details div { padding-block: 1rem; border-top: 1px solid var(--color-border); }
+  .delivery-details dt { font-size: 0.875rem; font-weight: 600; margin-bottom: 0.35rem; }
+  .delivery-details dd { margin: 0; font-size: 0.9375rem; line-height: 1.7; color: var(--color-muted); }
+  .auto-contact { background: var(--color-surface); border-top: 1px solid var(--color-border); }
+  .contact-grid { display: flex; justify-content: space-between; align-items: center; gap: 3rem; }
+  .contact-grid > div:first-child { max-width: 39rem; }
+  .contact-grid p:not(.auto-eyebrow) { margin: 1.5rem 0 0; color: var(--color-muted); font-size: 1.0625rem; line-height: 1.75; }
+  .contact-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; flex-shrink: 0; }
+  @media (max-width: 1199px) {
+    .hero-grid { grid-template-columns: 1fr 1.05fr; gap: 2rem; }
+    h1 { font-size: clamp(2.75rem, 4.6vw, 3.5rem); }
+    .process-grid { gap: 2.5rem; }
+    .process-intro { position: static; }
   }
-
-  /* Split Overview */
-  .strategic-overview {
-    background: var(--color-surface);
+  @media (max-height: 850px) {
+    .process-intro { position: static; }
   }
-
-  .split-overview {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
-    gap: clamp(2rem, 5vw, 5rem);
+  @media (max-width: 1023px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .hero-copy { max-width: 40rem; }
+    h1 { font-size: clamp(3rem, 6.2vw, 4.5rem); }
+    .hero-description { max-width: 36rem; }
+    .hero-visual { width: 100%; }
+    .hero-visual img { max-height: 32rem; object-fit: cover; object-position: 50% 60%; }
+    .section-intro { gap: 2rem; }
+    .section-intro, .export-grid { grid-template-columns: 1fr; }
+    .intro-copy { max-width: 40rem; }
+    .export-photo { max-width: 50rem; }
+    .export-copy { max-width: 40rem; }
+    .contact-grid { align-items: flex-start; flex-direction: column; gap: 2rem; }
   }
-
-  .split-overview__lead .section-title {
-    margin-top: 0.5rem;
+  @media (max-width: 767px) {
+    .auto-hero { padding-top: calc(var(--header-height) + 1.25rem); }
+    .hero-grid { padding-block: 2.75rem; }
+    h1 { font-size: clamp(2.5rem, 10vw, 3.75rem); }
+    .automotive-page h2 { font-size: clamp(2rem, 8.1vw, 2.75rem); }
+    .hero-lead { font-size: 1.0625rem; }
+    .hero-actions { gap: 0.75rem 1.5rem; }
+    .chapter-nav a { flex-direction: column; align-items: flex-start; gap: 0.4rem; padding: 1.125rem 0; font-size: 0.75rem; }
+    .chapter-nav__inner { gap: 0.75rem; }
+    .vehicle-gallery { grid-template-columns: 1fr; gap: 2rem; }
+    .vehicle-gallery .vehicle-photo--detail { margin-top: 0; width: 87%; justify-self: end; }
+    .process-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .process-photo { max-width: none; }
+    .purchase-steps li { grid-template-columns: 1.75rem minmax(0, 1fr); gap: 0.75rem; padding-block: 1.5rem; }
+    .purchase-steps h3 { font-size: 1.375rem; }
+    .purchase-steps p { font-size: 0.9375rem; }
+    .export-grid { gap: 2.5rem; }
+    .desktop-break { display: none; }
   }
-
-  .split-overview__body p + p {
-    margin-top: 1.5rem;
-  }
-
-  /* Pillars Section */
-  .section-header {
-    max-width: 44rem;
-    margin-bottom: clamp(2.5rem, 5vw, 4rem);
-  }
-
-  .pillars-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 2rem;
-  }
-
-  .pillar-card {
-    padding: clamp(2rem, 3.5vw, 2.75rem);
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-card);
-    transition: transform 220ms ease, border-color 220ms ease;
-  }
-
-  .pillar-card:hover {
-    transform: translateY(-3px);
-    border-color: color-mix(in srgb, var(--color-secondary) 40%, var(--color-border));
-  }
-
-  .pillar-card__index {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--color-secondary);
-    margin-bottom: 1.25rem;
-  }
-
-  .pillar-card__title {
-    font-size: clamp(1.35rem, 2vw, 1.65rem);
-    font-weight: 650;
-    letter-spacing: -0.025em;
-    color: var(--color-text);
-    margin-bottom: 1rem;
-  }
-
-  .pillar-card__copy {
-    color: var(--color-muted);
-    font-size: 0.95rem;
-    line-height: 1.65;
-    margin-bottom: 1.5rem;
-  }
-
-  .pillar-card__list {
-    padding-left: 1.2rem;
-    margin: 0;
-    color: var(--color-text);
-    font-size: 0.875rem;
-    line-height: 1.7;
-  }
-
-  /* CTA Banner */
-  .cta-card {
-    background: #050722;
-    color: #f7f8fc;
-    border-radius: var(--radius-xl);
-    padding: clamp(3rem, 6vw, 5rem);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .cta-card::after {
-    content: '';
-    position: absolute;
-    top: -20%;
-    right: -10%;
-    width: 32rem;
-    height: 32rem;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(0, 71, 160, 0.45) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .cta-card__body {
-    max-width: 44rem;
-    position: relative;
-    z-index: 2;
-  }
-
-
-  .cta-card__title {
-    font-size: clamp(2rem, 3.8vw, 3rem);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    color: #ffffff;
-    margin-bottom: 1.25rem;
-  }
-
-  .cta-card__copy {
-    font-size: 1.1rem;
-    color: #c3cadb;
-    line-height: 1.7;
-    margin-bottom: 2rem;
-  }
-
-  .cta-card__actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .cta-card__actions .button--secondary {
-    background: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-    border-color: rgba(255, 255, 255, 0.2);
-  }
-
-  .cta-card__actions .button--secondary:hover {
-    background: rgba(255, 255, 255, 0.18);
-  }
-
-  @media (max-width: 63.99rem) {
-    .page-hero__grid {
-      grid-template-columns: 1fr;
-    }
-
-    .visual-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .pillars-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .split-overview {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  @media (max-width: 39.99rem) {
-    .page-hero__stats {
-      grid-template-columns: 1fr;
-    }
+  @media (prefers-reduced-motion: reduce) {
+    .auto-button, .auto-link span, .auto-button span, .chapter-nav a { transition: none; }
+    .auto-button:hover span, .auto-link:hover span { transform: none; }
   }
 </style>

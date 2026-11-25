@@ -1,209 +1,398 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const services = [
+  {
+    id: 'artificial-intelligence',
+    type: 'banner',
+    title: 'Artificial Intelligence & AI Solutions',
+    lead: 'Helping organizations evaluate, implement, and benefit from practical artificial intelligence that improves operational performance.',
+    description: 'KoreaIN works alongside enterprise leadership to integrate artificial intelligence into core business activities. Rather than treating AI as an isolated experiment, we focus on practical adoption—applying intelligent automation, data-driven forecasting, and modern cognitive tools to enhance productivity, streamline complex workflows, and unlock value from enterprise data.',
+    bgImage: '/home/technology/ai-applications-1200.webp',
+    capabilities: [
+      'Enterprise AI Strategy & Implementation',
+      'Workflow Automation & Intelligent Processing',
+      'Data Analytics & Practical Insights',
+      'Cognitive Business Applications'
+    ]
+  },
+  {
+    id: 'software-development',
+    type: 'split',
+    isReversed: false,
+    title: 'Software Development',
+    lead: 'Custom enterprise software, web applications, and digital platforms engineered for performance and scalability.',
+    description: 'We design and develop bespoke software solutions tailored to your operational requirements. From customer-facing platforms to internal enterprise tools, KoreaIN delivers clean, scalable architectures that support organizational growth, streamline operations, and integrate seamlessly with existing systems.',
+    imageName: 'software',
+    imageWidth: 1200,
+    imageHeight: 675,
+    altText: 'Software development workspace showcasing enterprise application engineering and modern code architecture',
+    capabilities: [
+      'Custom Enterprise Software Engineering',
+      'Web & Mobile Application Development',
+      'API & Service Architecture',
+      'Legacy System Modernization'
+    ]
+  },
+  {
+    id: 'cloud-solutions',
+    type: 'banner',
+    title: 'Cloud Solutions & Infrastructure',
+    lead: 'Scalable cloud architectures, seamless migration, and ongoing environment management tailored to business needs.',
+    description: 'KoreaIN assists companies with every phase of cloud adoption. Whether migrating legacy workloads, designing hybrid environments, or optimizing existing infrastructure, we deliver secure, cost-effective environments that ensure high availability and business agility.',
+    bgImage: '/home/technology/cloud-1200.webp',
+    capabilities: [
+      'Cloud Strategy & Migration Planning',
+      'Hybrid & Multi-Cloud Architecture',
+      'Infrastructure Management & Monitoring',
+      'Resource Optimization & Scaling'
+    ]
+  },
+  {
+    id: 'it-infrastructure',
+    type: 'split',
+    isReversed: true,
+    title: 'IT Infrastructure & Network Solutions',
+    lead: 'Dependable corporate networking, server systems, and workplace connectivity that keep operations running smoothly.',
+    description: 'Reliable day-to-day operations require stable, well-maintained IT infrastructure. KoreaIN designs, deploys, and supports enterprise networks, server environments, and communications systems to ensure secure, low-latency connectivity across office and remote locations.',
+    imageName: 'infrastructure',
+    imageWidth: 1200,
+    imageHeight: 675,
+    altText: 'Enterprise data center and high-throughput corporate network routing infrastructure',
+    capabilities: [
+      'Enterprise Network Design & Implementation',
+      'Server & Storage Infrastructure',
+      'Multi-Site & Workplace Connectivity',
+      'Network Monitoring & Recovery Planning'
+    ]
+  },
+  {
+    id: 'cybersecurity',
+    type: 'banner',
+    title: 'Cybersecurity & Data Protection',
+    lead: 'Multi-layered security strategies and data governance to protect critical business assets and confidential information.',
+    description: 'Protecting digital assets and maintaining stakeholder trust is central to every modern organization. KoreaIN implements structured security frameworks, access controls, and data protection measures that safeguard enterprise systems against vulnerabilities, disruptions, and unauthorized access.',
+    bgImage: '/home/technology/security-1200.webp',
+    capabilities: [
+      'Enterprise Threat Prevention & Defense',
+      'Data Privacy & Access Management',
+      'Security Risk Assessments & Audits',
+      'Incident Response & Business Continuity'
+    ]
+  },
+  {
+    id: 'system-integration',
+    type: 'split',
+    isReversed: false,
+    title: 'System Integration & Digital Transformation',
+    lead: 'Connecting disparate platforms and automating cross-functional workflows into a unified digital environment.',
+    description: 'Disconnected software creates bottlenecks and manual overhead. KoreaIN integrates heterogeneous enterprise systems—including ERP, CRM, and operational databases—enabling real-time data flow, eliminating duplicate processes, and advancing overall digital transformation.',
+    imageName: 'integration',
+    imageWidth: 1200,
+    imageHeight: 675,
+    altText: 'System integration architecture showing interconnected enterprise platforms and synchronized data streams',
+    capabilities: [
+      'Enterprise Systems & Database Integration',
+      'Workflow & Business Process Automation',
+      'Centralized Data Synchronization',
+      'Digital Transformation Execution'
+    ]
+  },
+  {
+    id: 'it-consulting',
+    type: 'banner',
+    title: 'IT Consulting & Managed Services',
+    lead: 'Strategic guidance and proactive technical management that align technology investments with business objectives.',
+    description: 'Navigating technology decisions requires seasoned perspective and consistent execution. KoreaIN provides strategic technology consulting alongside ongoing managed IT support, helping organizations plan their technology roadmaps, manage IT operations, and resolve technical challenges with dependable continuity.',
+    bgImage: '/home/technology/consulting-1200.webp',
+    capabilities: [
+      'Strategic IT Planning & Advisory',
+      'Comprehensive IT Operations Management',
+      'Infrastructure Maintenance & Support',
+      'Technology Sourcing & Vendor Coordination'
+    ]
+  }
+];
+
+const navChapters = [
+  { id: 'hero', label: 'Overview' },
+  { id: 'delivery-model', label: 'Architecture' },
+  { id: 'artificial-intelligence', label: 'AI Solutions' },
+  { id: 'software-development', label: 'Software Development' },
+  { id: 'cloud-solutions', label: 'Cloud Solutions' },
+  { id: 'it-infrastructure', label: 'IT Infrastructure' },
+  { id: 'cybersecurity', label: 'Cybersecurity' },
+  { id: 'system-integration', label: 'System Integration' },
+  { id: 'it-consulting', label: 'IT Consulting' },
+  { id: 'contact-technology', label: 'Contact' }
+];
 ---
 
 <BaseLayout
-  title="Artificial Intelligence & Deep Tech | KoreaIN"
-  description="Connecting international enterprise needs with South Korea's advanced artificial intelligence ecosystem, semiconductor innovations, and robotics."
+  title="IT Consulting, Technology Solutions & AI Services | KoreaIN"
+  description="KoreaIN provides comprehensive IT consulting, technology solutions, custom software development, cloud infrastructure, cybersecurity, system integration, and AI services."
 >
-  <main id="main-content" class="page-sector">
-    <!-- Hero Section -->
-    <header class="page-hero">
-      <div class="container">
+  <main id="main-content" class="tech-page">
+    <!-- Floating Side Dot Navigation (Amorepacific .local-nav) -->
+    <nav class="local-nav" aria-label="Page navigation">
+      <ul class="local-nav-list">
+        {navChapters.map((item, index) => (
+          <li class={index === 0 ? 'is-current' : ''} data-target={item.id}>
+            <a href={`#${item.id}`} class="local-nav-link" aria-label={item.label}>
+              <span class="nav-dot"></span>
+              <span class="nav-tooltip">{item.label}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- 1. Hero Cover Section -->
+    <header id="hero" class="tech-hero" aria-labelledby="tech-hero-title">
+      <div class="tech-hero__background">
+        <picture>
+          <source media="(min-width: 960px)" srcset="/home/technology/hero-1920.webp" width="1920" height="1079" />
+          <img
+            src="/home/technology/hero-1920.webp"
+            srcset="/home/technology/hero-960.webp 960w, /home/technology/hero-1920.webp 1920w"
+            sizes="100vw"
+            width="1920"
+            height="1079"
+            alt="Advanced corporate technology and cognitive computing infrastructure engineered by KoreaIN"
+            fetchpriority="high"
+            decoding="async"
+            class="tech-hero__image"
+          />
+        </picture>
+        <div class="tech-hero__scrim"></div>
+      </div>
+
+      <div class="container tech-hero__container">
         <nav class="breadcrumbs" aria-label="Breadcrumb">
           <ol>
             <li><a href="/">Home</a></li>
-            <li><span aria-hidden="true">/</span></li>
             <li><a href="/business-areas">Business Areas</a></li>
-            <li><span aria-hidden="true">/</span></li>
-            <li aria-current="page">Artificial Intelligence</li>
+            <li aria-current="page">Technology &amp; AI</li>
           </ol>
         </nav>
 
-        <div class="page-hero__grid">
-          <div class="page-hero__text">
-            <h1 class="page-title">Artificial Intelligence &amp; Deep Tech</h1>
-            <p class="page-lead">
-              South Korea is pioneering the convergence of high-bandwidth memory semiconductors, generative enterprise algorithms, and autonomous robotics. KoreaIN bridges Korean AI leaders with global industrial transformations.
-            </p>
-            <div class="hero-actions">
-              <a href="/contact" class="button button--primary">
-                <span>Explore AI Partnerships</span>
-                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                  <path d="M4 10h11M11 5l5 5-5 5" />
-                </svg>
-              </a>
-              <a href="/business-areas" class="button button--secondary">
-                <span>All Business Areas</span>
-              </a>
-            </div>
-          </div>
+        <div class="tech-hero__content">
+          <h1 id="tech-hero-title" class="tech-hero__heading">
+            Technology Solutions,<br />
+            <span>IT Consulting &amp; AI Services.</span>
+          </h1>
+          <p class="tech-hero__lead">
+            KoreaIN delivers end-to-end technology services, from custom enterprise software development and scalable cloud infrastructure to cybersecurity, system integration, and practical artificial intelligence.
+          </p>
+          <p class="tech-hero__description">
+            We operate as a trusted technology partner for organizations requiring dependable engineering, operational continuity, and sound digital execution across South Korea, Saudi Arabia, and international markets.
+          </p>
 
-          <div class="page-hero__stats">
-            <div class="stat-card">
-              <span class="stat-card__number">Next-Gen</span>
-              <span class="stat-card__label">Semiconductors &amp; NPU Compute</span>
-            </div>
-            <div class="stat-card">
-              <span class="stat-card__number">Robotics</span>
-              <span class="stat-card__label">Industrial Automation &amp; Vision</span>
-            </div>
-            <div class="stat-card">
-              <span class="stat-card__number">Enterprise</span>
-              <span class="stat-card__label">Sovereign LLMs &amp; Secure Cloud</span>
-            </div>
-            <div class="stat-card">
-              <span class="stat-card__number">Bilateral</span>
-              <span class="stat-card__label">Smart City &amp; Giga-Project R&amp;D</span>
-            </div>
+          <div class="tech-hero__actions">
+            <a class="tech-btn tech-btn--light" href="/contact">
+              Discuss Your Project
+              <span aria-hidden="true">↗</span>
+            </a>
+            <a class="tech-link tech-link--on-dark" href="#delivery-model">
+              Explore Our Services
+              <span aria-hidden="true">↓</span>
+            </a>
           </div>
         </div>
       </div>
+
+      <!-- Scroll Indicator -->
+      <a href="#delivery-model" class="tech-hero__scroll" aria-label="Scroll to architecture overview">
+        <span class="tech-hero__mouse"></span>
+        <span class="tech-hero__scroll-text">Scroll</span>
+      </a>
     </header>
 
-    <!-- Visual Showcase: Existing AI Image & Black Placeholder -->
-    <section class="section visual-section">
-      <div class="container visual-grid">
-        <div class="visual-card">
-          <figure class="visual-figure">
-            <img
-              src="/home/business-areas/ai.webp"
-              alt="High-precision robotic hand interacting with an illuminated AI semiconductor hologram."
-              width="960"
-              height="640"
-              loading="lazy"
-              decoding="async"
-              class="visual-img"
-            />
-          </figure>
-          <div class="visual-caption">
-            <span class="visual-caption__tag">Cognitive Technology</span>
-            <p>Korean semiconductor innovation &amp; robotic precision engineering</p>
-          </div>
-        </div>
+    <!-- Chapter Horizontal Navigation Bar -->
+    <nav class="chapter-nav" aria-label="Technology service areas">
+      <div class="container chapter-nav__inner">
+        <a href="#artificial-intelligence">AI Solutions</a>
+        <a href="#software-development">Software Development</a>
+        <a href="#cloud-solutions">Cloud Infrastructure</a>
+        <a href="#it-infrastructure">IT &amp; Networks</a>
+        <a href="#cybersecurity">Cybersecurity</a>
+        <a href="#system-integration">System Integration</a>
+        <a href="#it-consulting">IT Consulting</a>
+      </div>
+    </nav>
 
-        <div class="visual-card">
-          <figure class="visual-figure">
-            <img
-              src="/home/business-areas/ai-secondary.webp"
-              alt="Advanced neural computing cluster and cognitive technology infrastructure."
-              width="960"
-              height="640"
-              loading="lazy"
-              decoding="async"
-              class="visual-img"
-            />
-          </figure>
-          <div class="visual-caption">
-            <span class="visual-caption__tag">Advanced Compute</span>
-            <p>Scalable AI infrastructure &amp; neural model deployment</p>
+    <!-- 2. Integrated Delivery Model (Amorepacific About-Page Scroll) -->
+    <section
+      id="delivery-model"
+      class="sub-section sub-section-banner"
+      data-section-id="delivery-model"
+      aria-labelledby="delivery-title"
+    >
+      <div class="sub-section-header" style="background-image: url('/home/technology/ai-network-1200.webp');">
+        <div class="sub-section-header__overlay"></div>
+        <div class="sub-section-deco" aria-hidden="true"></div>
+        <div class="sub-section-title-wrap">
+          <h2 id="delivery-title" class="sub-section-h">
+            A Unified Approach<br />to Enterprise Technology
+          </h2>
+        </div>
+      </div>
+
+      <div class="sub-section-content-container">
+        <div class="container">
+          <div class="sub-section-content">
+            <div class="content-left">
+              <p class="lead-statement">
+                KoreaIN connects strategic IT consulting with dependable engineering execution, providing organizations with a single source of accountability across their digital ecosystem.
+              </p>
+              <p class="body-text">
+                Enterprise technology functions best as an integrated whole. Modern applications depend on resilient cloud and network infrastructure, data protection requires consistent security practices, and practical artificial intelligence relies on sound data management. By addressing each component with cohesive engineering oversight, we help clients build reliable systems that support sustained commercial growth.
+              </p>
+              <div class="delivery-pillars">
+                <div class="delivery-pillar">
+                  <h3>End-to-End Ownership</h3>
+                  <p>Direct responsibility from initial scoping and architecture through deployment, integration, and ongoing operational maintenance.</p>
+                </div>
+                <div class="delivery-pillar">
+                  <h3>Practical Engineering</h3>
+                  <p>Solutions built on proven enterprise standards, maintainable codebases, and realistic operational requirements.</p>
+                </div>
+                <div class="delivery-pillar">
+                  <h3>Cross-Border Support</h3>
+                  <p>Extensive experience supporting bilateral business initiatives between South Korea, Saudi Arabia, and international partners.</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Strategic Narrative -->
-    <section class="section strategic-overview">
+    <!-- 3. Seven Core Technology Services (Amorepacific About-Page Scroll Banners + Asymmetric Splits) -->
+    <div class="services-feed">
+      {services.map((service) => {
+        if (service.type === 'banner') {
+          return (
+            <section
+              id={service.id}
+              class="sub-section sub-section-banner"
+              data-section-id={service.id}
+              aria-labelledby={`${service.id}-title`}
+            >
+              <div
+                class="sub-section-header"
+                style={`background-image: url('${service.bgImage}');`}
+              >
+                <div class="sub-section-header__overlay"></div>
+                <div class="sub-section-deco" aria-hidden="true"></div>
+                <div class="sub-section-title-wrap">
+                  <h2 id={`${service.id}-title`} class="sub-section-h">
+                    {service.title}
+                  </h2>
+                </div>
+              </div>
+
+              <div class="sub-section-content-container">
+                <div class="container">
+                  <div class="sub-section-content">
+                    <div class="content-left">
+                      <p class="lead-statement">{service.lead}</p>
+                      <p class="body-text">{service.description}</p>
+                    </div>
+                    <div class="content-right">
+                      <ul class="focus-list" aria-label={`${service.title} focus areas`}>
+                        {service.capabilities.map((item) => (
+                          <li>
+                            <span class="focus-marker" aria-hidden="true">—</span>
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          );
+        }
+
+        return (
+          <section
+            id={service.id}
+            class={`tech-section split-section ${service.isReversed ? 'split-section--inverted' : ''}`}
+            data-section-id={service.id}
+            aria-labelledby={`${service.id}-title`}
+          >
+            <div class="container">
+              <div class={`editorial-split ${service.isReversed ? 'editorial-split--inverted' : ''} reveal-on-scroll`}>
+                <div class="editorial-copy">
+                  <h2 id={`${service.id}-title`} class="section-heading">
+                    {service.title}
+                  </h2>
+                  <p class="editorial-lead">{service.lead}</p>
+                  <p class="editorial-body">{service.description}</p>
+
+                  <div class="capabilities-block">
+                    <ul class="focus-list" aria-label={`${service.title} focus areas`}>
+                      {service.capabilities.map((item) => (
+                        <li>
+                          <span class="focus-marker" aria-hidden="true">—</span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="editorial-visual">
+                  <div class="visual-frame">
+                    <picture>
+                      <source media="(min-width: 768px)" srcset={`/home/technology/${service.imageName}-1200.webp`} width={service.imageWidth} height={service.imageHeight} />
+                      <img
+                        src={`/home/technology/${service.imageName}-1200.webp`}
+                        srcset={`/home/technology/${service.imageName}-640.webp 640w, /home/technology/${service.imageName}-1200.webp 1200w`}
+                        sizes="(max-width: 1024px) 100vw, 55vw"
+                        width={service.imageWidth}
+                        height={service.imageHeight}
+                        loading="lazy"
+                        decoding="async"
+                        alt={service.altText}
+                        class="visual-image"
+                      />
+                    </picture>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        );
+      })}
+    </div>
+
+    <!-- 4. Closing Strategic Engagement Section -->
+    <section id="contact-technology" class="tech-section tech-contact" aria-labelledby="contact-title">
       <div class="container">
-        <div class="split-overview">
-          <div class="split-overview__lead">
-            <h2 class="section-title">Powering the Next Wave of Sovereign Intelligence</h2>
+        <div class="contact-editorial reveal-on-scroll">
+          <div class="contact-editorial__copy">
+            <h2 id="contact-title" class="contact-editorial__heading">
+              Partner with KoreaIN for Your Technology Initiatives.
+            </h2>
+            <p class="contact-editorial__lead">
+              Whether developing custom enterprise software, migrating infrastructure to the cloud, strengthening cybersecurity, or exploring practical AI adoption, KoreaIN provides dependable technology services designed around your business goals.
+            </p>
+            <p class="contact-editorial__body">
+              Contact our team to discuss project requirements, technical scoping, and implementation schedules.
+            </p>
           </div>
-          <div class="split-overview__body">
-            <p class="section-copy">
-              From the world's leading memory semiconductor fabs to world-class software engineering in computer vision, digital twin technology, and industrial automation, South Korea provides the hardware foundation and algorithms powering the global AI revolution.
-            </p>
-            <p class="section-copy">
-              KoreaIN collaborates with prominent Korean AI labs, public research institutes, and commercial software innovators to deploy tailored cognitive solutions into Saudi Arabia's mega-projects, regional industrial conglomerates, and international enterprise environments.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- Core Pillars -->
-    <section class="section pillars-section">
-      <div class="container">
-        <header class="section-header">
-          <h2 class="section-title">Core Technology Vectors</h2>
-          <p class="section-copy">
-            Deploying verified Korean artificial intelligence solutions across international commercial sectors.
-          </p>
-        </header>
-
-        <div class="pillars-grid">
-          <article class="pillar-card">
-            <div class="pillar-card__index">01</div>
-            <h3 class="pillar-card__title">Industrial Automation &amp; Digital Twins</h3>
-            <p class="pillar-card__copy">
-              Integrating real-time 3D spatial simulation, predictive maintenance algorithms, and sensor fusion for advanced factories, ports, and smart city infrastructure.
-            </p>
-            <ul class="pillar-card__list">
-              <li>Digital twin facility modeling</li>
-              <li>High-speed computer vision quality control</li>
-              <li>Automated guided vehicle (AGV) orchestration</li>
-            </ul>
-          </article>
-
-          <article class="pillar-card">
-            <div class="pillar-card__index">02</div>
-            <h3 class="pillar-card__title">Semiconductor Hardware &amp; NPU Compute</h3>
-            <p class="pillar-card__copy">
-              Connecting regional data centers with Korean next-generation Neural Processing Units (NPUs) optimized for high energy efficiency and ultra-low latency inference.
-            </p>
-            <ul class="pillar-card__list">
-              <li>Custom AI accelerator procurement</li>
-              <li>Energy-efficient data center design</li>
-              <li>Edge AI hardware deployment</li>
-            </ul>
-          </article>
-
-          <article class="pillar-card">
-            <div class="pillar-card__index">03</div>
-            <h3 class="pillar-card__title">Sovereign &amp; Enterprise LLMs</h3>
-            <p class="pillar-card__copy">
-              Facilitating technology transfer of multilingual large language models adapted for sovereign Arabic data environments, institutional knowledge, and government workflows.
-            </p>
-            <ul class="pillar-card__list">
-              <li>Bespoke domain-specific fine-tuning</li>
-              <li>On-premise zero-data-leakage deployment</li>
-              <li>Multimodal Arabic-Korean-English capabilities</li>
-            </ul>
-          </article>
-
-          <article class="pillar-card">
-            <div class="pillar-card__index">04</div>
-            <h3 class="pillar-card__title">Healthcare &amp; Precision Diagnostics</h3>
-            <p class="pillar-card__copy">
-              Partnering with Korea's top AI-driven medical imaging pioneers and genomics diagnostic firms to empower modern hospital networks across the GCC and internationally.
-            </p>
-            <ul class="pillar-card__list">
-              <li>Radiology &amp; oncology screening models</li>
-              <li>Hospital information system (HIS) integration</li>
-              <li>Clinical trial and regulatory clearance</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Next Steps CTA -->
-    <section class="section section-cta">
-      <div class="container cta-card">
-        <div class="cta-card__body">
-          <h2 class="cta-card__title">Accelerate Your AI Adoption with Korea</h2>
-          <p class="cta-card__copy">
-            Tap into Korea's premier AI labs and hardware innovators. KoreaIN manages bilateral dialogue, technical scoping, and commercial execution.
-          </p>
-          <div class="cta-card__actions">
-            <a href="/contact" class="button button--primary">
-              <span>Connect with AI Specialists</span>
-              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                <path d="M4 10h11M11 5l5 5-5 5" />
-              </svg>
+          <div class="contact-editorial__actions">
+            <a class="tech-btn tech-btn--primary" href="/contact">
+              Discuss Your Project
+              <span aria-hidden="true">↗</span>
             </a>
-            <a href="/business-areas" class="button button--secondary">
-              <span>View All Sectors</span>
+            <a class="tech-link" href="/business-areas">
+              Explore All Business Areas
+              <span aria-hidden="true">→</span>
             </a>
           </div>
         </div>
@@ -212,315 +401,862 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   </main>
 </BaseLayout>
 
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1. Amorepacific Section Observer (triggers .is-active for background banners & lines)
+    const sections = Array.from(document.querySelectorAll('.sub-section, header#hero, section.tech-section'));
+    const navItems = Array.from(document.querySelectorAll('.local-nav-list li'));
+
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-active');
+            const id = entry.target.id;
+            navItems.forEach((li) => {
+              if (li.getAttribute('data-target') === id) {
+                li.classList.add('is-current');
+              } else {
+                li.classList.remove('is-current');
+              }
+            });
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: '-15% 0px -25% 0px',
+        threshold: [0.1, 0.35]
+      }
+    );
+
+    sections.forEach((sec) => sectionObserver.observe(sec));
+
+    // 2. Reveal on scroll for split sections
+    const revealElements = document.querySelectorAll('.reveal-on-scroll');
+    if ('IntersectionObserver' in window) {
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-revealed');
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { rootMargin: '0px 0px -10% 0px', threshold: 0.05 }
+      );
+
+      revealElements.forEach((el) => {
+        el.classList.add('reveal-prep');
+        revealObserver.observe(el);
+      });
+    }
+
+    // 3. Smooth scroll handling for internal links
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener('click', (e) => {
+        const href = anchor.getAttribute('href');
+        if (!href || href === '#') return;
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  });
+</script>
+
 <style>
-  .page-hero {
-    padding-top: calc(var(--header-height) + clamp(2.5rem, 5vw, 4rem));
-    padding-bottom: clamp(3rem, 5vw, 4.5rem);
+  /* ==========================================================================
+     KoreaIN Enterprise Technology & Artificial Intelligence
+     Amorepacific-Inspired Refined Editorial Layout & Background Scroll Parallax
+     ========================================================================== */
+
+  .tech-page {
+    background: var(--color-bg);
+    color: var(--color-text);
+    overflow-x: clip;
+  }
+
+  .tech-page h1,
+  .tech-page h2,
+  .tech-page h3 {
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  .tech-page p {
+    text-wrap: pretty;
+  }
+
+  /* --------------------------------------------------------------------------
+     Floating Side Dot Navigation (Amorepacific .local-nav)
+     -------------------------------------------------------------------------- */
+  .local-nav {
+    display: none;
+    position: fixed;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 90;
+  }
+
+  @media (min-width: 1280px) {
+    .local-nav {
+      display: block;
+    }
+  }
+
+  .local-nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.125rem;
+  }
+
+  .local-nav-list li {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .local-nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    text-decoration: none;
+  }
+
+  .nav-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-muted);
+    opacity: 0.4;
+    transition: transform 240ms ease, opacity 240ms ease, background-color 240ms ease;
+  }
+
+  .local-nav-link:hover .nav-dot,
+  .local-nav-list li.is-current .nav-dot {
+    opacity: 1;
+    background: var(--color-primary);
+    transform: scale(1.6);
+  }
+
+  .local-nav-list li.is-current .nav-dot {
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-primary) 25%, transparent);
+  }
+
+  .nav-tooltip {
+    position: absolute;
+    right: 2rem;
+    white-space: nowrap;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--color-text);
     background: var(--color-surface);
-    border-bottom: 1px solid var(--color-border);
+    padding: 0.35rem 0.75rem;
+    border-radius: 2px;
+    border: 1px solid var(--color-border);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(8px);
+    transition: opacity 180ms ease, transform 180ms ease;
+  }
+
+  .local-nav-link:hover .nav-tooltip {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* --------------------------------------------------------------------------
+     Hero Cover Section
+     -------------------------------------------------------------------------- */
+  .tech-hero {
+    position: relative;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: calc(var(--header-height) + clamp(2rem, 4vw, 3.5rem));
+    padding-bottom: clamp(3rem, 5vw, 4.5rem);
+    background: #050722;
+    color: #ffffff;
+    overflow: hidden;
+  }
+
+  .tech-hero__background {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  .tech-hero__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 38%;
+    filter: brightness(0.68) contrast(1.08);
+  }
+
+  .tech-hero__scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(5, 7, 34, 0.75) 0%,
+      rgba(5, 7, 34, 0.45) 40%,
+      rgba(5, 7, 34, 0.85) 100%
+    );
+  }
+
+  .tech-hero__container {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
   }
 
   .breadcrumbs {
-    margin-bottom: 2rem;
+    margin-bottom: clamp(2rem, 4vw, 3.5rem);
   }
 
   .breadcrumbs ol {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.6rem;
     padding: 0;
     margin: 0;
     list-style: none;
     font-size: 0.8125rem;
-    color: var(--color-muted);
+    color: rgba(255, 255, 255, 0.65);
+  }
+
+  .breadcrumbs li:not(:last-child)::after {
+    content: '/';
+    margin-left: 0.6rem;
+    opacity: 0.4;
   }
 
   .breadcrumbs a {
-    color: var(--color-muted);
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
     transition: color 180ms ease;
   }
 
   .breadcrumbs a:hover {
-    color: var(--color-interactive);
+    color: #ffffff;
   }
 
   .breadcrumbs [aria-current="page"] {
-    color: var(--color-text);
+    color: #ffffff;
+    font-weight: 500;
+  }
+
+  .tech-hero__content {
+    max-width: 54rem;
+  }
+
+  .tech-hero__heading {
+    font-size: clamp(2.5rem, 5.2vw, 4.75rem);
+    line-height: 1.05;
     font-weight: 600;
-  }
-
-  .page-hero__grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.9fr);
-    gap: clamp(2.5rem, 5vw, 5rem);
-    align-items: end;
-  }
-
-  .page-title {
-    font-size: clamp(2.25rem, 4.5vw, 3.75rem);
-    font-weight: 700;
     letter-spacing: -0.04em;
-    line-height: 1.08;
-    color: var(--color-text);
-    margin-bottom: 1.5rem;
+    color: #ffffff;
+    margin-bottom: clamp(1.5rem, 2.5vw, 2.25rem);
   }
 
-  .page-lead {
-    font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  .tech-hero__heading span {
+    color: #a6b8ff;
+  }
+
+  .tech-hero__lead {
+    font-size: clamp(1.125rem, 1.8vw, 1.375rem);
+    line-height: 1.6;
+    color: #e4e8f7;
+    margin: 0 0 1.25rem;
+    max-width: 48rem;
+  }
+
+  .tech-hero__description {
+    font-size: clamp(0.9375rem, 1.3vw, 1.0625rem);
     line-height: 1.7;
-    color: var(--color-muted);
+    color: #b6bed1;
+    margin: 0 0 clamp(2rem, 3.5vw, 3rem);
     max-width: 44rem;
-    margin-bottom: 2rem;
   }
 
-  .hero-actions {
+  .tech-hero__actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    align-items: center;
+    gap: 1.25rem 2rem;
   }
 
-  .hero-actions svg {
-    width: 1.15rem;
-    height: 1.15rem;
+  .tech-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.9375rem 1.75rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    line-height: 1;
+    transition: background-color 200ms ease, color 200ms ease, transform 200ms ease;
   }
 
-  .page-hero__stats {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+  .tech-btn--light {
+    background: #ffffff;
+    color: #050722;
   }
 
-  .stat-card {
-    padding: 1.5rem;
-    background: var(--color-bg);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
+  .tech-btn--light:hover {
+    background: #eef1f7;
+    transform: translateY(-2px);
+  }
+
+  .tech-btn--primary {
+    background: var(--color-primary);
+    color: #ffffff;
+  }
+
+  .tech-btn--primary:hover {
+    background: var(--color-secondary);
+    transform: translateY(-2px);
+  }
+
+  .tech-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-secondary);
+    text-decoration: none;
+    transition: color 180ms ease, transform 180ms ease;
+  }
+
+  .tech-link--on-dark {
+    color: #ffffff;
+  }
+
+  .tech-link:hover {
+    color: var(--color-primary);
+    transform: translateX(3px);
+  }
+
+  .tech-link--on-dark:hover {
+    color: #a6b8ff;
+    transform: translateY(3px);
+  }
+
+  .tech-hero__scroll {
+    position: relative;
+    z-index: 2;
+    align-self: center;
+    margin-top: 3rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    min-height: 8rem;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 180ms ease;
   }
 
-  .stat-card__number {
-    font-size: clamp(1.25rem, 2vw, 1.65rem);
-    font-weight: 750;
-    letter-spacing: -0.02em;
+  .tech-hero__scroll:hover {
+    color: #ffffff;
+  }
+
+  .tech-hero__mouse {
+    width: 22px;
+    height: 34px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 11px;
+    position: relative;
+  }
+
+  .tech-hero__mouse::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3px;
+    height: 6px;
+    background: #ffffff;
+    border-radius: 2px;
+    animation: mouseWheel 1.8s ease-in-out infinite;
+  }
+
+  @keyframes mouseWheel {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-50%, 12px);
+    }
+  }
+
+  /* --------------------------------------------------------------------------
+     Sticky Chapter Navigation Bar
+     -------------------------------------------------------------------------- */
+  .chapter-nav {
+    position: sticky;
+    top: var(--header-height);
+    z-index: 80;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .chapter-nav__inner {
+    display: flex;
+    align-items: center;
+    gap: clamp(1.5rem, 3vw, 3rem);
+    overflow-x: auto;
+    padding-block: 1rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .chapter-nav__inner::-webkit-scrollbar {
+    display: none;
+  }
+
+  .chapter-nav a {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-muted);
+    text-decoration: none;
+    white-space: nowrap;
+    letter-spacing: 0.02em;
+    transition: color 180ms ease;
+  }
+
+  .chapter-nav a:hover {
     color: var(--color-primary);
   }
 
-  .stat-card__label {
-    font-size: 0.8125rem;
-    color: var(--color-muted);
-    line-height: 1.4;
-  }
-
-  /* Visual Section */
-  .visual-section {
-    padding-top: clamp(2.5rem, 4.5vw, 4rem);
-    padding-bottom: clamp(2.5rem, 4.5vw, 4rem);
-  }
-
-  .visual-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 2rem;
-  }
-
-  .visual-card {
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    background: var(--color-surface);
-    overflow: hidden;
-    box-shadow: var(--shadow-card);
-  }
-
-  .visual-figure {
-    margin: 0;
-    aspect-ratio: 16 / 10;
-    overflow: hidden;
-  }
-
-  .visual-img {
+  /* The image and content have independent heights. The title stays centered
+     within the visible photograph, including before the observer activates. */
+  .sub-section {
+    position: relative;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
   }
 
-  .visual-caption {
-    padding: 1.25rem 1.75rem;
-  }
-
-  .visual-caption__tag {
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--color-secondary);
-  }
-
-  .visual-caption p {
-    margin: 0.4rem 0 0;
-    font-size: 0.9rem;
-    color: var(--color-muted);
-  }
-
-  /* Split Overview */
-  .strategic-overview {
-    background: var(--color-surface);
-  }
-
-  .split-overview {
+  .sub-section-header {
+    position: relative;
+    isolation: isolate;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+    place-items: center;
+    min-height: clamp(24rem, 58svh, 40rem);
+    padding: clamp(3rem, 6vw, 6rem) var(--gutter);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .sub-section-title-wrap {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 66rem);
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .sub-section-deco {
+    display: none;
+  }
+
+  .sub-section-content-container {
+    position: relative;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    padding-block: clamp(2.75rem, 5vw, 5rem);
+  }
+
+  /* Match About's fixed-image scroll effect without moving the centered title.
+     Keep normal scrolling on smaller screens and for reduced motion. */
+  @media (min-width: 1024px) {
+    .sub-section-header {
+      background-attachment: fixed;
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .sub-section-header {
+      min-height: clamp(22rem, 50svh, 32rem);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .sub-section-header {
+      min-height: clamp(20rem, 48svh, 28rem);
+      padding-block: 3rem;
+    }
+  }
+
+  .sub-section-header__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(5, 7, 34, 0.88) 0%,
+      rgba(5, 7, 34, 0.6) 55%,
+      rgba(5, 7, 34, 0.35) 100%
+    );
+  }
+
+  .sub-section-h {
+    margin: 0;
+    font-size: clamp(2.35rem, 5vw, 4.25rem);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    color: #ffffff;
+    text-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
+    text-wrap: balance;
+  }
+
+  /* --------------------------------------------------------------------------
+     Amorepacific Architectural Surface Body
+     -------------------------------------------------------------------------- */
+  .sub-section-content {
+    display: grid;
+    grid-template-columns: 1fr auto;
     gap: clamp(2rem, 5vw, 5rem);
+    align-items: start;
+    width: 100%;
   }
 
-  .split-overview__lead .section-title {
-    margin-top: 0.5rem;
-  }
-
-  .split-overview__body p + p {
-    margin-top: 1.5rem;
-  }
-
-  /* Pillars Section */
-  .section-header {
-    max-width: 44rem;
-    margin-bottom: clamp(2.5rem, 5vw, 4rem);
-  }
-
-  .pillars-grid {
+  .surface-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 2rem;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(3rem, 6vw, 6rem);
+    align-items: start;
   }
 
-  .pillar-card {
-    padding: clamp(2rem, 3.5vw, 2.75rem);
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-card);
-    transition: transform 220ms ease, border-color 220ms ease;
+  .surface-intro {
+    max-width: 52rem;
   }
 
-  .pillar-card:hover {
-    transform: translateY(-3px);
-    border-color: color-mix(in srgb, var(--color-secondary) 40%, var(--color-border));
-  }
-
-  .pillar-card__index {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--color-secondary);
-    margin-bottom: 1.25rem;
-  }
-
-  .pillar-card__title {
-    font-size: clamp(1.35rem, 2vw, 1.65rem);
-    font-weight: 650;
-    letter-spacing: -0.025em;
+  .lead-statement {
+    font-size: clamp(1.15rem, 1.5vw, 1.35rem);
+    font-weight: 500;
+    line-height: 1.6;
     color: var(--color-text);
-    margin-bottom: 1rem;
+    margin: 0 0 1.25rem;
   }
 
-  .pillar-card__copy {
+  .body-text {
+    font-size: clamp(0.975rem, 1.2vw, 1.1rem);
+    line-height: 1.75;
     color: var(--color-muted);
-    font-size: 0.95rem;
+    margin: 0;
+  }
+
+  /* --------------------------------------------------------------------------
+     Integrated Delivery Model Pillars
+     -------------------------------------------------------------------------- */
+  .delivery-pillars {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(2rem, 4vw, 4rem);
+    margin-top: clamp(2.5rem, 5vw, 4.5rem);
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .delivery-pillar h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+    margin: 0 0 0.65rem;
+  }
+
+  .delivery-pillar p {
+    font-size: 0.9375rem;
     line-height: 1.65;
+    color: var(--color-muted);
+    margin: 0;
+  }
+
+  /* --------------------------------------------------------------------------
+     Asymmetric Editorial Split Sections (Software, IT Infra, System Integration)
+     -------------------------------------------------------------------------- */
+  .tech-section {
+    padding-block: clamp(5.5rem, 9vw, 9.5rem);
+  }
+
+  .split-section {
+    background: var(--color-bg);
+  }
+
+  .editorial-split {
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: clamp(3.5rem, 6.5vw, 7rem);
+    align-items: center;
+  }
+
+  .editorial-split--inverted {
+    grid-template-columns: 1.05fr 0.95fr;
+  }
+
+  .editorial-split--inverted .editorial-copy {
+    order: 2;
+  }
+
+  .editorial-split--inverted .editorial-visual {
+    order: 1;
+  }
+
+  .section-heading {
+    font-size: clamp(2.25rem, 4.2vw, 3.65rem);
+    line-height: 1.08;
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    color: var(--color-text);
     margin-bottom: 1.5rem;
   }
 
-  .pillar-card__list {
-    padding-left: 1.2rem;
-    margin: 0;
+  .editorial-lead {
+    font-size: clamp(1.1rem, 1.5vw, 1.25rem);
+    line-height: 1.6;
     color: var(--color-text);
-    font-size: 0.875rem;
-    line-height: 1.7;
+    margin: 0 0 1.25rem;
+    font-weight: 450;
   }
 
-  /* CTA Banner */
-  .cta-card {
-    background: #050722;
-    color: #f7f8fc;
-    border-radius: var(--radius-xl);
-    padding: clamp(3rem, 6vw, 5rem);
+  .editorial-body {
+    font-size: clamp(0.95rem, 1.2vw, 1.0625rem);
+    line-height: 1.75;
+    color: var(--color-muted);
+    margin: 0;
+  }
+
+  .visual-frame {
     position: relative;
+    border-radius: 2px;
     overflow: hidden;
+    background: var(--color-surface-soft);
   }
 
-  .cta-card::after {
-    content: '';
-    position: absolute;
-    top: -20%;
-    right: -10%;
-    width: 32rem;
-    height: 32rem;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(0, 71, 160, 0.45) 0%, transparent 70%);
-    pointer-events: none;
+  .visual-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .cta-card__body {
-    max-width: 44rem;
-    position: relative;
-    z-index: 2;
+  .visual-frame:hover .visual-image {
+    transform: scale(1.02);
   }
 
-
-  .cta-card__title {
-    font-size: clamp(2rem, 3.8vw, 3rem);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    color: #ffffff;
-    margin-bottom: 1.25rem;
+  .capabilities-block {
+    margin-top: 2rem;
   }
 
-  .cta-card__copy {
-    font-size: 1.1rem;
-    color: #c3cadb;
-    line-height: 1.7;
-    margin-bottom: 2rem;
+  /* --------------------------------------------------------------------------
+     Focus Areas List (Clean Editorial Hairlines, No Badges)
+     -------------------------------------------------------------------------- */
+  .focus-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
   }
 
-  .cta-card__actions {
+  .focus-list li {
     display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
+    align-items: baseline;
+    gap: 0.75rem;
+    padding-block: 0.65rem;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    color: var(--color-text);
+    border-bottom: 1px solid var(--color-border);
   }
 
-  .cta-card__actions .button--secondary {
-    background: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-    border-color: rgba(255, 255, 255, 0.2);
+  .focus-list li:first-child {
+    border-top: 1px solid var(--color-border);
   }
 
-  .cta-card__actions .button--secondary:hover {
-    background: rgba(255, 255, 255, 0.18);
+  .focus-marker {
+    color: var(--color-muted);
+    font-weight: 400;
+    user-select: none;
   }
 
-  @media (max-width: 63.99rem) {
-    .page-hero__grid {
+  /* --------------------------------------------------------------------------
+     Closing Engagement Section
+     -------------------------------------------------------------------------- */
+  .tech-contact {
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .contact-editorial {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: clamp(2.5rem, 5vw, 5rem);
+  }
+
+  .contact-editorial__copy {
+    max-width: 46rem;
+  }
+
+  .contact-editorial__heading {
+    font-size: clamp(2.25rem, 4.2vw, 3.65rem);
+    line-height: 1.08;
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    color: var(--color-text);
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-editorial__lead {
+    font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
+    line-height: 1.65;
+    color: var(--color-text);
+    margin: 0 0 1rem;
+  }
+
+  .contact-editorial__body {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: var(--color-muted);
+    margin: 0;
+  }
+
+  .contact-editorial__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+    flex-shrink: 0;
+  }
+
+  /* --------------------------------------------------------------------------
+     Scroll Reveal Animation Mechanics
+     -------------------------------------------------------------------------- */
+  .reveal-prep {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 750ms cubic-bezier(0.16, 1, 0.3, 1), transform 750ms cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+
+  .reveal-prep.is-revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* --------------------------------------------------------------------------
+     Responsive Media Queries
+     -------------------------------------------------------------------------- */
+  @media (max-width: 1023px) {
+    .editorial-split,
+    .editorial-split--inverted {
       grid-template-columns: 1fr;
+      gap: 2.5rem;
     }
 
-    .visual-grid {
-      grid-template-columns: 1fr;
+    .editorial-split--inverted .editorial-copy {
+      order: 1;
     }
 
-    .pillars-grid {
-      grid-template-columns: 1fr;
+    .editorial-split--inverted .editorial-visual {
+      order: 2;
     }
 
-    .split-overview {
+    .sub-section-content {
       grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .delivery-pillars {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .contact-editorial {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2.5rem;
     }
   }
 
-  @media (max-width: 39.99rem) {
-    .page-hero__stats {
-      grid-template-columns: 1fr;
+  @media (max-width: 767px) {
+    .tech-hero {
+      min-height: auto;
+      padding-top: calc(var(--header-height) + 1.5rem);
+      padding-bottom: 3.5rem;
+    }
+
+    .tech-hero__scroll {
+      display: none;
+    }
+
+    .chapter-nav__inner {
+      gap: 1.25rem;
+    }
+
+    .chapter-nav a {
+      font-size: 0.75rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tech-hero__mouse::before {
+      animation: none;
+    }
+
+    .reveal-prep {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    .sub-section-title-wrap,
+    .sub-section-deco,
+    .sub-section-content-container,
+    .sub-section .content-left,
+    .sub-section .content-right,
+    .tech-btn,
+    .tech-link,
+    .visual-image,
+    .nav-dot {
+      transition: none !important;
+      transform: none !important;
+      opacity: 1 !important;
+    }
+
+    .visual-frame:hover .visual-image {
+      transform: none;
     }
   }
 </style>
